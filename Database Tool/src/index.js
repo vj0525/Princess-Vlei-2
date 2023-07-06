@@ -6,13 +6,11 @@ import Input from './InputBox.js';
 import FancyButton from './FancyButton.js';
 import topBar from './VleiTopBar.png';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let message = (
-<h2>Welcome to Princess Vlei Forum!<br />
-Please log in with your credentials.</h2>)
 let startPage = (
   <div className="main-div">
     <img src={topBar} className="topBar" alt="Header for Princess Vlei Application"/>
-    {message}
+    <h2>Welcome to Princess Vlei Forum!<br />
+        Please log in with your credentials.</h2>
     <Input value="Username" />
     <Input value="Password" category="password" />
     <FancyButton title="Log in" buttonFunc={()=>LoggingIn()} />
@@ -23,7 +21,7 @@ let introPage = (
     <img src={topBar} className="topBar" alt="Header for Princess Vlei Application"/>
     <h2>Welcome!<br />
     What type of data would you like to input?</h2>
-    <FancyButton title="Organism" buttonFunc={()=>console.log("Hello World")} />
+    <FancyButton title="Organism" buttonFunc={()=>console.log("Hello World")}/>
     <FancyButton title="Survey" buttonFunc={()=>console.log("Hello World")} />
     <FancyButton title="Education/Outreach" buttonFunc={()=>console.log("Hello World")} />
     </div>
@@ -39,9 +37,6 @@ root.render(
 reportWebVitals();
 function LoggingIn(){
   //Write stuff here confirming username and password. If inaccurate, just say wrong password and return
-  message = (
-    <h2>Welcome!<br />
-    What type of data would you like to input?</h2>)
   root.render(
     <React.StrictMode>
       {introPage}

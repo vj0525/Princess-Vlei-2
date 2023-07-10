@@ -1,10 +1,10 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './FancyButton.css';
-export default function Button( {title, buttonFunc=null} ){
+export default function Button( {title, buttonFunc=null, specialty=false} ){
+    let buttonClass = specialty ? "special" : "fancy-button";
     return (
-        <div className="fancy-button" onClick={buttonFunc}>
+        <div className={buttonClass} onClick={buttonFunc}>
             <p>{title}</p>
         </div>
     )

@@ -1,11 +1,12 @@
 import React from 'react';
+import App from './App';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Input from './InputBox.js';
-import FancyButton from './FancyButton.js';
-import topBar from './VleiTopBar.png';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+<<<<<<< HEAD
+=======
 let startPage = (
   <div className="main-div">
     <img src={topBar} className="topBar" alt="Header for Princess Vlei Application"/>
@@ -26,15 +27,18 @@ let introPage = (
     <FancyButton title="Education/Outreach" buttonFunc={()=>console.log("Hello World")} />
     </div>
 )
+>>>>>>> main
 root.render(
   <React.StrictMode>
-    {startPage}
+    <App />
   </React.StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+<<<<<<< HEAD
+=======
 function LoggingIn(){
   //Write stuff here confirming username and password. If inaccurate, just say wrong password and return
   root.render(
@@ -44,3 +48,4 @@ function LoggingIn(){
   )
   console.log("Hi!")
 }
+>>>>>>> main

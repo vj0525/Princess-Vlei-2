@@ -1,0 +1,28 @@
+import FancyButton from '../components/FancyButton';
+import Input from '../components/InputBox';
+import TopBar from '../components/VleiTopBar.png';
+import {Routes, Route, useNavigate} from 'react-router-dom';
+
+
+export default function OrganismPage(){
+
+    const navigate = useNavigate();
+
+    const navToPlant = () => {
+        navigate('/plant');
+    }
+
+    const navToAni = () => {
+        navigate('/animal');
+    }
+
+    return (
+        <div className="main-div">
+            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+            <h2>What type of organism are you entering?</h2>
+            <FancyButton title="Plant" buttonFunc={navToPlant}/>
+            <FancyButton title="Animal" buttonFunc={navToAni} />
+            <FancyButton title="Back" buttonFunc={()=>console.log("Hello World")} specialty={true} />
+        </div>
+    )
+}

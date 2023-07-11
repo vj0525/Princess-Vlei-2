@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/animal" element={<AnimalPage />} />
         <Route path="/plant" element={<PlantPage />} />
-        <Route path="/data" element={<NewDataPage />} />
+        <Route path="/newdata" element={<NewDataPage />} />
         <Route path="/organism" element={<OrganismPage />} />
         <Route path="/outreach" element={<OutreachPage />} />
         <Route path="/success" element={<SuccessPage />} />

@@ -32,16 +32,14 @@ export default function IntroPage() {
     }
 
     return (
-        <h1>
-            <div className="main-div">
-            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
-            <h2>Welcome!<br />
-                What type of data would you like to input?
-            </h2>
-            <FancyButton title="Organism" buttonFunc={navToOrg} />
-            <FancyButton title="Survey" buttonFunc={navToSury} />
-            <FancyButton title="Education/Outreach" buttonFunc={navToOut} />
-            </div>
-        </h1>
+        <div className="main-div">
+        <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+        <h2>Welcome!<br />
+            What type of data would you like to input?
+        </h2>
+        <FancyButton title="Organism" buttonFunc={navToOrg} />
+        <FancyButton title="Survey" buttonFunc={navToSury} />
+        <FancyButton title="Education/Outreach" buttonFunc={navToOut} />
+        </div>
     )
 }

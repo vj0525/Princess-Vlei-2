@@ -15,7 +15,7 @@ code {
   position: relative;
   height: initial;
   height: 100vh;
-  background-color: rgba(122, 206, 240,.6);
+  background-color: #e1edf0;
   text-align: center;
   align-items: center;
   overflow: auto;

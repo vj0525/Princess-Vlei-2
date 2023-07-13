@@ -1,3 +1,5 @@
+/* PLEASE RUN npm install express mysql cors --save BEFORE RUNNING*/
+
 const express = require("express");
 const cors = require("cors");
 

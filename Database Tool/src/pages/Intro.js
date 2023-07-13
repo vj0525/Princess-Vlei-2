@@ -19,29 +19,26 @@ export default function IntroPage() {
 
     const navigate = useNavigate();
 
-    const navToOrg = () => {
-        navigate('/organism');
+    const navToNew = () => {
+        navigate('/NewData');
     }
+/* For once we make modifying data option
+    const navToModify = () => {
+        navigate('/modify');
+    }*/
 
-    const navToSury = () => {
-        navigate('/surveyone');
-    }
-
-    const navToOut = () => {
-        navigate('/outreach');
+    const navToLogIn = () => {
+        navigate('/');
     }
 
     return (
-        <h1>
-            <div className="main-div">
+        <div className="main-div">
             <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
             <h2>Welcome!<br />
-                What type of data would you like to input?
-            </h2>
-            <FancyButton title="Organism" buttonFunc={navToOrg} />
-            <FancyButton title="Survey" buttonFunc={navToSury} />
-            <FancyButton title="Education/Outreach" buttonFunc={navToOut} />
-            </div>
-        </h1>
+            What would you like to do?</h2>
+            <FancyButton title="Enter New Data" buttonFunc={()=>navToNew()}/>
+            <FancyButton title="Modify Existing Data" buttonFunc={()=>console.log("Hello World")} />
+            <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+        </div>
     )
 }

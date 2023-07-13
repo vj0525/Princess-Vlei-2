@@ -1,6 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import Input from '../components/InputBox';
-import TopBar from '../components/VleiTopBar.png';
+import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 export default function NewDataPage(){
@@ -25,7 +25,7 @@ export default function NewDataPage(){
     
     return (
         <div className="main-div">
-            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+            <TopBar />
             <h2>What type of data would you like to input?</h2>
             <FancyButton title="Organism" buttonFunc={()=>navToOrg()}/>
             <FancyButton title="Survey" buttonFunc={()=>navToSury()} />

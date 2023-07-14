@@ -16,7 +16,7 @@ module.exports = app => {
   router.get("/:orgID", organism.findOne);
 
   // Delete a Organism with id
-  router.delete("/:id", tutorials.delete);
+  router.delete("/:id", organism.delete);
 
   app.use('/api/organism', router);
 };

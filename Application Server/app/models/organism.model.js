@@ -11,7 +11,7 @@ const Organism = function(organism) {
 };
 
 Organism.create = (newOrganism, result) => {
-  sql.query("INSERT INTO organism SET ?", newOrganism, (err, res) => {
+  sql.query("INSERT INTO Organism SET ?", newOrganism, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -24,7 +24,7 @@ Organism.create = (newOrganism, result) => {
 };
 
 Organism.findById = (orgID, result) => {
-  sql.query(`SELECT * FROM organism WHERE orgID = ${orgID}`, (err, res) => {
+  sql.query(`SELECT * FROM Organism WHERE orgID = ${orgID}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -43,7 +43,7 @@ Organism.findById = (orgID, result) => {
 };
 
 Organism.getAll = (common_name, result) => {
-  let query = "SELECT * FROM organism";
+  let query = "SELECT * FROM Organism";
 
   if (common_name) {
     query += ` WHERE common_name LIKE '%${common_name}%'`;
@@ -62,7 +62,7 @@ Organism.getAll = (common_name, result) => {
 };
 
 Organism.getAllInvasive = result => {
-  sql.query("SELECT * FROM organism WHERE invasive=true", (err, res) => {
+  sql.query("SELECT * FROM Organism WHERE invasive=true", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -74,11 +74,11 @@ Organism.getAllInvasive = result => {
   });
 };
 
-/*
+
 Organism.updateById = (orgID, Organism, result) => {
   sql.query(
-    "UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?",
-    [Organism.title, Organism.description, Organism.published, id],
+    "UPDATE Organism SET genus = ?, species = ?, common_name = ?, conservation_status = ?, alien = ?, invasive = ?, WHERE orgID = ?",
+    [Organism.genus, Organism.species, Organism.common_name, Organism.conservation_status, Organism.alien, Organism.invasive, orgID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -92,13 +92,13 @@ Organism.updateById = (orgID, Organism, result) => {
         return;
       }
 
-      console.log("updated Organism: ", { id: id, ...Organism });
-      result(null, { id: id, ...Organism });
+      console.log("updated Organism: ", { orgID: orgID, ...Organism });
+      result(null, { orgID: orgID, ...Organism });
     }
   );
 };
 
-
+/*
 Organism.remove = (id, result) => {
   sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
     if (err) {

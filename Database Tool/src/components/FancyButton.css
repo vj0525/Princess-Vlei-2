@@ -1,7 +1,7 @@
 .fancy-button{
-    background-color: #9393DB;
+    background-color: #449aad;
     color: #FFFFFF;
-    border: 5px solid #9393DB;
+    border: 5px solid #449aad;
     border-radius:20px;
     text-align: center;
     vertical-align: middle;
@@ -25,17 +25,17 @@
     animation-fill-mode: forwards;
 }
 @keyframes mouseNonspecial{
-    from {background-color: #9393DB;
+    from {background-color: #449aad;
         color: #FFFFFF;
     }
     to{background-color: #FFFFFF;
-        color: #9393DB;
+        color: #449aad;
     }
 }
 .special{
-    background-color: #3e41f0;
+    background-color: #80c431;
     color: #FFFFFF;
-    border: 5px solid #3e41f0;
+    border: 5px solid #80c431;
     border-radius:7px;
     text-align: center;
     padding-left: 7%;
@@ -58,12 +58,10 @@
     animation-fill-mode: forwards;
 }
 @keyframes mouseSpecial{
-    from {background-color: #3e41f0;
+    from {background-color: #80c431;
         color: #FFFFFF;
-        border: 5px solid #3e41f0;
     }
     to{background-color: #FFFFFF;
-        color: #3e41f0;
-        border: 5px solid #3e41f0;
+        color: #80c431;
     }
 }

@@ -7,7 +7,7 @@ export default function SuccessPage(){
     const navigate = useNavigate();
 
     const navToLogIn = () => {
-        navigate('/Login');
+        navigate('/');
     }
     const navToIntro = () => {
         navigate('/Intro');

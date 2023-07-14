@@ -11,7 +11,8 @@
     padding-bottom: 5px;
 }
 .title{
-    color: black;
+    color: #FFFFFF;
+    text-shadow: 2px 2px black;
     font-size: 210%;
     max-height: 100%;
     font-weight:700;

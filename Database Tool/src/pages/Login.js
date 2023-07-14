@@ -1,6 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import Input from '../components/InputBox';
-import TopBar from '../components/VleiTopBar.png';
+import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 export default function Login(){
@@ -15,7 +15,7 @@ export default function Login(){
 
     //Write stuff here confirming username and password. If inaccurate, just say wrong password and return
     <div className="main-div">
-        <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+        <TopBar />
         <h2>Welcome to Princess Vlei Forum!<br />
         Please log in with your credentials.</h2>
         <Input value="Username" />

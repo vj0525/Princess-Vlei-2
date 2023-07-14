@@ -1,6 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import Input from '../components/InputBox';
-import TopBar from '../components/VleiTopBar.png';
+import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
@@ -33,7 +33,7 @@ export default function IntroPage() {
 
     return (
         <div className="main-div">
-            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+            <TopBar />
             <h2>Welcome!<br />
             What would you like to do?</h2>
             <FancyButton title="Enter New Data" buttonFunc={()=>navToNew()}/>

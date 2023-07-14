@@ -1,6 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import Input from '../components/InputBox';
-import TopBar from '../components/VleiTopBar.png';
+import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 export default function OutreachPage(){
@@ -21,7 +21,7 @@ export default function OutreachPage(){
     }
     return (
         <div className="main-div">
-            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
+            <TopBar />
             <h2>Enter the location information from the survey data</h2>
             <Input value="Name of Community" />
             <Input value="Number of People" />

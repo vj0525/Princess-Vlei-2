@@ -98,9 +98,8 @@ Organism.updateById = (orgID, Organism, result) => {
   );
 };
 
-/*
 Organism.remove = (id, result) => {
-  sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM Organism WHERE orgID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -118,17 +117,4 @@ Organism.remove = (id, result) => {
   });
 };
 
-Organism.removeAll = result => {
-  sql.query("DELETE FROM tutorials", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    console.log(`deleted ${res.affectedRows} tutorials`);
-    result(null, res);
-  });
-};
-*/
 module.exports = Organism;

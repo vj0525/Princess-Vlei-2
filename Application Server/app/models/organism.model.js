@@ -77,7 +77,7 @@ Organism.getAllInvasive = result => {
 
 Organism.updateById = (orgID, Organism, result) => {
   sql.query(
-    "UPDATE Organism SET genus = ?, species = ?, common_name = ?, conservation_status = ?, alien = ?, invasive = ?, WHERE orgID = ?",
+    "UPDATE Organism SET genus = ?, species = ?, common_name = ?, conservation_status = ?, alien = ?, invasive = ? WHERE orgID = ?",
     [Organism.genus, Organism.species, Organism.common_name, Organism.conservation_status, Organism.alien, Organism.invasive, orgID],
     (err, res) => {
       if (err) {
@@ -98,9 +98,8 @@ Organism.updateById = (orgID, Organism, result) => {
   );
 };
 
-/*
 Organism.remove = (id, result) => {
-  sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM Organism WHERE orgID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -118,17 +117,4 @@ Organism.remove = (id, result) => {
   });
 };
 
-Organism.removeAll = result => {
-  sql.query("DELETE FROM tutorials", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    console.log(`deleted ${res.affectedRows} tutorials`);
-    result(null, res);
-  });
-};
-*/
 module.exports = Organism;

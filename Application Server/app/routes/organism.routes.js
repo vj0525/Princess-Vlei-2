@@ -12,8 +12,11 @@ module.exports = app => {
   // Retrieve all invasive Organisms
   router.get("/invasive", organism.findAllInvasive);
 
-  // Retrieve a single Tutorial with id
+  // Retrieve a single Organism with id
   router.get("/:orgID", organism.findOne);
+
+  // Delete a Organism with id
+  router.delete("/:id", organism.delete);
 
   app.use('/api/organism', router);
 };

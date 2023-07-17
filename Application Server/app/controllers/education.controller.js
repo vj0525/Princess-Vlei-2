@@ -1,4 +1,4 @@
-const Flora = require("../models/flora.model.js");
+const Education = require("../models/education.model.js");
 
 // Create and Save a new Organism
 exports.create = (req, res) => {
@@ -10,15 +10,16 @@ exports.create = (req, res) => {
   }
 
   // Create a Organism
-  const flora = new Flora({
-    floraID: req.body.floraID,
-    growth_form: req.body.growth_form,
-    growing_method: req.body.growing_method,
-    veg_type: req.body.veg_type,
+  const education = new Education({
+    event_type: req.body.event_type,
+    school: req.body.school,
+    school_grade: req.body.school_grade,
+    num_of_learners: req.body.num_of_learners,
+    avg_score: req.body.avg_score
   });
 
   // Save Organism in the database
-  Flora.create(flora, (err, data) => {
+  Education.create(education, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -28,12 +29,12 @@ exports.create = (req, res) => {
   });
 };
 
-/*
+
 // Retrieve all Organism from the database (with condition).
 exports.findAll = (req, res) => {
-  const title = req.query.title;
+  const school = req.query.school;
 
-  Organism.getAll(title, (err, data) => {
+  Education.getAll(school, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -42,10 +43,10 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
-*/
+
 
 exports.findAllInvasive = (req, res) => {
-  Flora.getAllInvasive((err, data) => {
+  Education.getAllInvasive((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -57,15 +58,15 @@ exports.findAllInvasive = (req, res) => {
 
 // Find a single Organism with a id
 exports.findOne = (req, res) => {
-    Flora.findById(req.params.id, (err, data) => {
+    Education.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flora with id ${req.params.id}.`
+          message: `Not found Education with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Flora with id " + req.params.id
+          message: "Error retrieving Education with id " + req.params.id
         });
       }
     } else res.send(data);
@@ -81,18 +82,18 @@ exports.update = (req, res) => {
     });
   }
 
-  Flora.updateById(
+  Education.updateById(
     req.params.id,
-    new Flora(req.body),
+    new Education(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Flora with id ${req.params.id}.`
+            message: `Not found Education with id ${req.params.id}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating Flora with id " + req.params.id
+            message: "Error updating Education with id " + req.params.id
           });
         }
       } else res.send(data);
@@ -102,17 +103,17 @@ exports.update = (req, res) => {
 
 // Delete a Organism with the specified id in the request
 exports.delete = (req, res) => {
-    Flora.remove(req.params.id, (err, data) => {
+    Education.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flora with id ${req.params.id}.`
+          message: `Not found Education with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Could not delete Flora with id " + req.params.id
+          message: "Could not delete Education with id " + req.params.id
         });
       }
-    } else res.send({ message: `Flora was deleted successfully!` });
+    } else res.send({ message: `Education was deleted successfully!` });
   });
 };

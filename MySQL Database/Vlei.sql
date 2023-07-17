@@ -10,6 +10,7 @@ CREATE TABLE Organism (
 );
 
 CREATE TABLE Fauna_Survey (
+	faunaSID int NOT NULL AUTO_INCREMENT,
 	faunaID int NOT NULL,
 	Survey_Date date NOT NULL,
 	Sex varchar(1) NOT NULL,
@@ -17,7 +18,7 @@ CREATE TABLE Fauna_Survey (
 	Longitude int NOT NULL,
 	Activity varchar(255) NOT NULL,
 	Life_Stage varchar(255) NOT NULL,
-	PRIMARY KEY (faunaID),
+	PRIMARY KEY (faunaSID),
     FOREIGN KEY(faunaID) REFERENCES Organism(orgID)
 );
 
@@ -31,12 +32,13 @@ CREATE TABLE Flora (
 );
 
 CREATE TABLE Flora_Survey (
-	floraSID int NOT NULL REFERENCES Flora(floraID),
+	floraSID int NOT NULL AUTO_INCREMENT,
+	floraID int REFERENCES Flora(floraID),
 	Survey_Date date NOT NULL,
 	Latitude int NOT NULL,
 	Longitude int NOT NULL,
     PRIMARY KEY (floraSID),
-    FOREIGN KEY(floraSID) REFERENCES Flora(floraID)
+    FOREIGN KEY(floraID) REFERENCES Flora(floraID)
 );
 
 CREATE TABLE Education (

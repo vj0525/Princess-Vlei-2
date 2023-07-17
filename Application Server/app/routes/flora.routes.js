@@ -10,7 +10,7 @@ module.exports = app => {
   router.get("/invasive", flora.findAllInvasive);
 
   // Retrieve a single Organism with id
-  router.get("/:orgID", flora.findOne);
+  router.get("/:id", flora.findOne);
 
   // Delete a Organism with id
   router.delete("/:id", flora.delete);

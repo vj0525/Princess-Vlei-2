@@ -1,17 +1,17 @@
 const sql = require("./db.js");
 
 // constructor
-const FaunaSurvey = function(faunasurvey) {
-  this.faunaID = faunasurvey.faunaID;
-  this.survey_date = faunasurvey.survey_date;
-  this.sex = faunasurvey.sex;
-  this.latitude = faunasurvey.latitude;
-  this.longitude = faunasurvey.longitude;
-  this.activity = faunasurvey.activity;
-  this.life_stage = faunasurvey.life_stage;
+const Fauna_Survey = function(fauna_survey) {
+  this.faunaID = fauna_survey.faunaID;
+  this.survey_date = fauna_survey.survey_date;
+  this.sex = fauna_survey.sex;
+  this.latitude = fauna_survey.latitude;
+  this.longitude = fauna_survey.longitude;
+  this.activity = fauna_survey.activity;
+  this.life_stage = fauna_survey.life_stage;
 };
 
-FaunaSurvey.create = (newFaunaSurvey, result) => {
+Fauna_Survey.create = (newFaunaSurvey, result) => {
   sql.query("INSERT INTO Fauna_Survey SET ?", newFaunaSurvey, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -24,7 +24,7 @@ FaunaSurvey.create = (newFaunaSurvey, result) => {
   });
 };
 
-FaunaSurvey.findById = (faunaSID, result) => {
+Fauna_Survey.findById = (faunaSID, result) => {
   sql.query(`SELECT * FROM Fauna_Survey WHERE faunaSID = ${faunaSID}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -43,7 +43,7 @@ FaunaSurvey.findById = (faunaSID, result) => {
   });
 };
 
-FaunaSurvey.getAll = (result) => {
+Fauna_Survey.getAll = (result) => {
   let query = "SELECT * FROM Fauna_Survey";
 
   sql.query(query, (err, res) => {
@@ -59,10 +59,10 @@ FaunaSurvey.getAll = (result) => {
 };
 
 
-FaunaSurvey.updateById = (faunaSID, FaunaSurvey, result) => {
+Fauna_Survey.updateById = (faunaSID, Fauna_Survey, result) => {
   sql.query(
     "UPDATE Fauna_Survey SET faunaID = ?, survey_date = ?, sex = ?, latitude = ?, longitude = ?, activity = ?, life_stage = ? WHERE faunaSID = ?",
-    [FaunaSurvey.faunaID, FaunaSurvey.survey_date, FaunaSurvey.sex, FaunaSurvey.latitude, FaunaSurvey.longitude, FaunaSurvey.activity, FaunaSurvey.life_stage, faunaSID],
+    [Fauna_Survey.faunaID, Fauna_Survey.survey_date, Fauna_Survey.sex, Fauna_Survey.latitude, Fauna_Survey.longitude, Fauna_Survey.activity, Fauna_Survey.life_stage, faunaSID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -76,13 +76,13 @@ FaunaSurvey.updateById = (faunaSID, FaunaSurvey, result) => {
         return;
       }
 
-      console.log("updated Fauna Survey: ", { faunaID: faunaID, ...FaunaSurvey });
-      result(null, { faunaID: faunaID, ...FaunaSurvey });
+      console.log("updated Fauna Survey: ", { faunaID: faunaID, ...Fauna_Survey });
+      result(null, { faunaID: faunaID, ...Fauna_Survey });
     }
   );
 };
 
-FaunaSurvey.remove = (id, result) => {
+Fauna_Survey.remove = (id, result) => {
   sql.query("DELETE FROM Fauna_Survey WHERE faunaSID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -101,4 +101,4 @@ FaunaSurvey.remove = (id, result) => {
   });
 };
 
-module.exports = FaunaSurvey;
+module.exports = Fauna_Survey;

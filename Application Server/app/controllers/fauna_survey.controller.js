@@ -1,4 +1,4 @@
-const FaunaSurvey = require("../models/faunasurvey.model.js");
+const Fauna_Survey = require("../models/fauna_survey.model.js");
 
 // Create and Save a new Fauna Survey
 exports.create = (req, res) => {
@@ -9,10 +9,8 @@ exports.create = (req, res) => {
     });
   }
 
-
-
   // Create a Organism
-  const faunasurvey = new FaunaSurvey({
+  const fauna_survey = new Fauna_Survey({
     faunaID: req.body.faunaID,
     survey_date: req.body.survey_date,
     sex: req.body.sex,
@@ -24,7 +22,7 @@ exports.create = (req, res) => {
 
 
   // Save Fauna Survey in the database
-  FaunaSurvey.create(faunasurvey, (err, data) => {
+  Fauna_Survey.create(fauna_survey, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -37,7 +35,7 @@ exports.create = (req, res) => {
 // Retrieve all Fauna Surveys from the database (with condition).
 exports.findAll = (req, res) => {
 
-  FaunaSurvey.getAll((err, data) => {
+  Fauna_Survey.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -50,7 +48,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Fauna Survey with a id
 exports.findOne = (req, res) => {
-    FaunaSurvey.findById(req.params.id, (err, data) => {
+    Fauna_Survey.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -76,9 +74,9 @@ exports.update = (req, res) => {
 
   console.log(req.body);
 
-  FaunaSurvey.updateById(
+  Fauna_Survey.updateById(
     req.params.id,
-    new FaunaSurvey(req.body),
+    new Fauna_Survey(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -97,7 +95,7 @@ exports.update = (req, res) => {
 
 // Delete a Organism with the specified id in the request
 exports.delete = (req, res) => {
-    FaunaSurvey.remove(req.params.id, (err, data) => {
+    Fauna_Survey.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

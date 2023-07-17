@@ -43,7 +43,7 @@ CREATE TABLE Flora_Survey (
 
 CREATE TABLE Education (
 	eduID int NOT NULL AUTO_INCREMENT,
-	Event_Type int NOT NULL,
+	Event_Type varchar(255) NOT NULL,
 	School varchar(255) NOT NULL,
 	School_Grade int NOT NULL,
 	Num_Of_Learners int NOT NULL,

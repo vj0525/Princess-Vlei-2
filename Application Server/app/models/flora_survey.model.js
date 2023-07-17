@@ -2,7 +2,7 @@ const sql = require("./db.js");
 
 // constructor
 const Flora_Survey = function(flora_survey) {
-  this.floraSID = flora_survey.floraSID;
+  this.floraID = flora_survey.floraID;
   this.survey_date = flora_survey.survey_date;
   this.latitude = flora_survey.latitude;
   this.longitude = flora_survey.longitude;
@@ -55,8 +55,8 @@ Flora_Survey.getAllInvasive = result => {
 
 Flora_Survey.updateById = (floraSID, Flora_Survey, result) => {
   sql.query(
-    "UPDATE Flora_Survey SET survey_date = ?, latitude = ?, longitude = ? WHERE floraSID = ?",
-    [Flora_Survey.growth_form, Flora_Survey.growing_method, Flora_Survey.veg_type, floraSID],
+    "UPDATE Flora_Survey SET floraID = ?, survey_date = ?, latitude = ?, longitude = ? WHERE floraSID = ?",
+    [Flora_Survey.floraID, Flora_Survey.growth_form, Flora_Survey.growing_method, Flora_Survey.veg_type, floraSID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

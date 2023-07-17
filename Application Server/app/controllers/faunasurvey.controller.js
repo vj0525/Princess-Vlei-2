@@ -36,9 +36,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Fauna Surveys from the database (with condition).
 exports.findAll = (req, res) => {
-  const title = req.query.title;
 
-  FaunaSurvey.getAll(title, (err, data) => {
+  FaunaSurvey.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:

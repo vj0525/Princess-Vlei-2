@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/organism.routes.js")(app);
+require("./app/routes/faunasurvey.routes.js")(app);
 require("./app/routes/flora.routes.js")(app);
 require("./app/routes/flora_survey.routes.js")(app);
 

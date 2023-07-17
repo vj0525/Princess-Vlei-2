@@ -11,7 +11,7 @@ exports.create = (req, res) => {
 
   // Create a Organism
   const flora_survey = new Flora_Survey({
-    floraSID: req.body.floraSID,
+    floraID: req.body.floraID,
     survey_date: req.body.survey_date,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
@@ -41,15 +41,15 @@ exports.findAllInvasive = (req, res) => {
 
 // Find a single Organism with a id
 exports.findOne = (req, res) => {
-    Flora_Survey.findById(req.params.floraSID, (err, data) => {
+    Flora_Survey.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flora_Survey with id ${req.params.floraSID}.`
+          message: `Not found Flora_Survey with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Flora_Survey with id " + req.params.floraSID
+          message: "Error retrieving Flora_Survey with id " + req.params.id
         });
       }
     } else res.send(data);

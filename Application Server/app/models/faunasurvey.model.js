@@ -19,13 +19,13 @@ FaunaSurvey.create = (newFaunaSurvey, result) => {
       return;
     }
 
-    console.log("created Fauna Survey: ", { faunaID: res.insertId, ...newFaunaSurvey });
-    result(null, { faunaID: res.insertId, ...newFaunaSurvey });
+    console.log("created Fauna Survey: ", { faunaSID: res.insertId, ...newFaunaSurvey });
+    result(null, { faunaSID: res.insertId, ...newFaunaSurvey });
   });
 };
 
-FaunaSurvey.findById = (faunaID, result) => {
-  sql.query(`SELECT * FROM Fauna_Survey WHERE faunaID = ${faunaID}`, (err, res) => {
+FaunaSurvey.findById = (faunaSID, result) => {
+  sql.query(`SELECT * FROM Fauna_Survey WHERE faunaSID = ${faunaSID}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -59,10 +59,10 @@ FaunaSurvey.getAll = (result) => {
 };
 
 
-FaunaSurvey.updateById = (faunaID, Organism, result) => {
+FaunaSurvey.updateById = (faunaSID, FaunaSurvey, result) => {
   sql.query(
-    "UPDATE Fauna_Survey SET survey_date = ?, sex = ?, latitude = ?, longitude = ?, activity = ?, life_stage = ? WHERE faunaID = ?",
-    [Organism.survey_date, Organism.sex, Organism.latitude, Organism.longitude, Organism.activity, Organism.life_stage, faunaID],
+    "UPDATE Fauna_Survey SET faunaID = ?, survey_date = ?, sex = ?, latitude = ?, longitude = ?, activity = ?, life_stage = ? WHERE faunaSID = ?",
+    [FaunaSurvey.faunaID, FaunaSurvey.survey_date, FaunaSurvey.sex, FaunaSurvey.latitude, FaunaSurvey.longitude, FaunaSurvey.activity, FaunaSurvey.life_stage, faunaSID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -83,7 +83,7 @@ FaunaSurvey.updateById = (faunaID, Organism, result) => {
 };
 
 FaunaSurvey.remove = (id, result) => {
-  sql.query("DELETE FROM Fauna_Survey WHERE faunaID = ?", id, (err, res) => {
+  sql.query("DELETE FROM Fauna_Survey WHERE faunaSID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

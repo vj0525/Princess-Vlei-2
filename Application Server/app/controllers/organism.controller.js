@@ -57,15 +57,15 @@ exports.findAllInvasive = (req, res) => {
 
 // Find a single Organism with a id
 exports.findOne = (req, res) => {
-    Organism.findById(req.params.orgID, (err, data) => {
+    Organism.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Organism with id ${req.params.orgID}.`
+          message: `Not found Organism with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Organism with id " + req.params.orgID
+          message: "Error retrieving Organism with id " + req.params.id
         });
       }
     } else res.send(data);

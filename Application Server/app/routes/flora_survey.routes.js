@@ -10,7 +10,7 @@ module.exports = app => {
   router.get("/invasive", flora_survey.findAllInvasive);
 
   // Retrieve a single Flora Survey with id
-  router.get("/:orgID", flora_survey.findOne);
+  router.get("/:id", flora_survey.findOne);
 
   // Delete a Flora Survey with id
   router.delete("/:id", flora_survey.delete);

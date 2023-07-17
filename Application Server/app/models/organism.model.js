@@ -77,7 +77,7 @@ Organism.getAllInvasive = result => {
 
 Organism.updateById = (orgID, Organism, result) => {
   sql.query(
-    "UPDATE Organism SET genus = ?, species = ?, common_name = ?, conservation_status = ?, alien = ?, invasive = ?, WHERE orgID = ?",
+    "UPDATE Organism SET genus = ?, species = ?, common_name = ?, conservation_status = ?, alien = ?, invasive = ? WHERE orgID = ?",
     [Organism.genus, Organism.species, Organism.common_name, Organism.conservation_status, Organism.alien, Organism.invasive, orgID],
     (err, res) => {
       if (err) {

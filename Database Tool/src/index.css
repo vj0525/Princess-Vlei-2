@@ -41,3 +41,40 @@ code {
   width:60%;
   font-size: x-large;
 }
+.body-div{
+  /*border: 3px solid green;*/
+  text-align: left;
+  display: flex;
+  width: 100%;
+}
+.panels{
+  flex: 1;
+  float: left;
+  /*border: 3px solid red;*/
+  height: 100%;
+  width: 50%;
+  
+}
+.formItems, .formAccessories{
+  display: block;
+  margin: 40px;
+  height: 30px;
+}
+.formAccessories{
+  /*border: 3px solid purple;*/
+  text-align: right;
+  margin-right: 10%;
+  padding: 2.778px;
+}
+.formItems{
+  width: 40%;
+}
+.formBox{
+  display: block;
+  margin: 42.778px;
+  height: 30px;
+}
+.quickTest{
+  height: 100%;
+  /*border: 3px solid blue;*/
+}

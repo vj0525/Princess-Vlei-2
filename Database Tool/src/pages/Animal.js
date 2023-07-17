@@ -24,12 +24,26 @@ export default function AnimalPage(){
         <div className="main-div">
             <TopBar />
             <h2>Enter the location information from the survey data</h2>
-            <Input value="Genus" page="Organism" />
-            <Input value="Species" page="Organism" />
-            <Input value="Common Name" page="Organism" />
-            <Input value="Conservation Status" page="Organism" />
-            <Input value="Alien" category="checkbox"/> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-            <Input value="Invasive" category="checkbox"/>
+            <div className="body-div">
+            <div className="panels" id="titles">
+                <h3 className="formAccessories">Genus:</h3>
+                <h3 className="formAccessories">Species:</h3>
+                <h3 className="formAccessories">Common Name:</h3>
+                <h3 className="formAccessories">Conservation Status:</h3>
+                <h3 className="formAccessories">Alien Species?:</h3>
+                <h3 className="formAccessories">Invasive Species?:</h3>
+            </div>
+            <div className="panels">
+            <form className="quickTest">
+            <input className="formItems" type="text" placeholder="Genus" />
+            <input className="formItems" type="text" placeholder="Species" />
+            <input className="formItems" type="text" placeholder="Common Name" />
+            <input className="formItems" type="text" placeholder="Conservation Status" />
+            <input className="formBox" type="checkbox" placeholder="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
+            <input className="formBox" type="checkbox" placeholder="Invasive" />
+            </form>
+            </div>
+            </div>
             <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
             <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
         </div>

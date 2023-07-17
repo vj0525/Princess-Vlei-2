@@ -24,11 +24,15 @@ export default function PlantPage(){
         <div className="main-div">
             <TopBar />
             <h2>Enter the species information for the plant</h2>
-            <Input value="Genus" />
-            <Input value="Species" />
-            <Input value="Common Name" />
-            <Input value="Alien Species?" category="checkbox"/>
-            <Input value="Invasive?" category="checkbox"/>
+            <Input value="Genus" page="Organism" />
+            <Input value="Species" page="Organism" />
+            <Input value="Common Name" page="Organism" />
+            <Input value="Conservation Status" page="Organism" />
+            <Input value="Growth Form" page="Flora" />
+            <Input value="Growing Method" page="Flora" />
+            <Input value="Veg Type" page="Flora" />
+            <Input value="Alien" category="checkbox"/>
+            <Input value="Invasive" category="checkbox"/>
             <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
             <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
         </div>

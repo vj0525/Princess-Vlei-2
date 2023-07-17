@@ -24,11 +24,12 @@ export default function AnimalPage(){
         <div className="main-div">
             <TopBar />
             <h2>Enter the location information from the survey data</h2>
-            <Input value="Genus" />
-            <Input value="Species" />
-            <Input value="Common Name" />
-            <Input value="Alien Species?" category="checkbox"/> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-            <Input value="Invasive?" category="checkbox"/>
+            <Input value="Genus" page="Organism" />
+            <Input value="Species" page="Organism" />
+            <Input value="Common Name" page="Organism" />
+            <Input value="Conservation Status" page="Organism" />
+            <Input value="Alien" category="checkbox"/> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
+            <Input value="Invasive" category="checkbox"/>
             <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
             <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
         </div>

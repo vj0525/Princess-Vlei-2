@@ -23,10 +23,11 @@ export default function OutreachPage(){
         <div className="main-div">
             <TopBar />
             <h2>Enter the location information from the survey data</h2>
-            <Input value="Name of Community" />
-            <Input value="Number of People" />
-            <Input value="Date" />
-            <Input value="Money Invested" />
+            <Input value="Event Type" page="Education" />
+            <Input value="School" page="Education" />
+            <Input value="School Grade" />
+            <Input value="Number of Learners" />
+            <Input value="Average Score" />
             <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
             <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
         </div>

@@ -17,6 +17,7 @@ export default function AnimalPage(){
     }
     function submitInfo(){
         //To Add, Check that data submits successfully and nav to error if not
+        console.log("Aooga");
         navToSuc();
     }
 
@@ -34,19 +35,19 @@ export default function AnimalPage(){
                 <h3 className="formAccessories">Invasive Species?:</h3>
             </div>
             <div className="panels">
-            <form className="quickTest">
-            <input className="formItems" type="text" placeholder="Genus" />
-            <input className="formItems" type="text" placeholder="Species" />
-            <input className="formItems" type="text" placeholder="Common Name" />
-            <input className="formItems" type="text" placeholder="Conservation Status" />
-            <input className="formBox" type="checkbox" placeholder="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-            <input className="formBox" type="checkbox" placeholder="Invasive" />
+            <form className="quickTest" id="animalForm" onSubmit={()=>submitInfo()}>
+            <input className="formItems" type="text" placeholder="Genus" name="Genus" />
+            <input className="formItems" type="text" placeholder="Species" name="Species" />
+            <input className="formItems" type="text" placeholder="Common Name" name="Common_Name" />
+            <input className="formItems" type="text" placeholder="Conservation Status" name="Conservation_Status" />
+            <input className="formBox" type="checkbox" placeholder="Alien" name="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
+            <input className="formBox" type="checkbox" placeholder="Invasive" name="Invasive" />
             </form>
             </div>
             </div>
             <div>
+            <button type="submit" form="animalForm" id="submission"><p className="textP">Submit</p></button>
                 <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
-                <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
             </div>
         </div>
     )

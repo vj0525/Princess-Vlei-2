@@ -1,5 +1,5 @@
 .header{
-    background: #97fbff;
+    background: #0e5384;
     /* background: linear-gradient(0deg, rgba(85,206,244,1) 0%, rgba(133,94,244,1) 100%); */
     position: relative;
     width: 100%;
@@ -12,13 +12,12 @@
     display: block;
     overflow: hidden;
     position: inherit;
-    border-bottom: 3px solid #256e8d;
 }
 .title{
-    color: #256e8d;
+    color: #4daec2;
     font-size: 300%;
     font-weight:800;
-    text-shadow: 1px 1px #0e5384, -1px 1px #4daec2;
+    text-shadow: 1px 1px #0e5384, -1px 1px #256e8d;
     padding: auto;
     margin-right: 7%;
     vertical-align: middle;
@@ -32,4 +31,6 @@
     padding: 16px;
     padding-top: 1px;
     vertical-align: middle;
+    filter: drop-shadow(0.8px 1px 0 black)
+                    drop-shadow(-0.4px -0.4px 0 black);
 }

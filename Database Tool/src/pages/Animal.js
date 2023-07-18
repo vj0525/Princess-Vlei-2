@@ -30,7 +30,7 @@ export default function AnimalPage(){
         });
         console.log("Aooga");
         console.log(dataString);
-        //navToSuc();
+        navToSuc();
     }
 
     return (
@@ -38,28 +38,28 @@ export default function AnimalPage(){
             <TopBar />
             <h2>Enter the location information from the survey data</h2>
             <div className="body-div">
-            <div className="panels" id="titles">
-                <h3 className="formAccessories">Genus:</h3>
-                <h3 className="formAccessories">Species:</h3>
-                <h3 className="formAccessories">Common Name:</h3>
-                <h3 className="formAccessories">Conservation Status:</h3>
-                <h3 className="formAccessories">Alien Species?:</h3>
-                <h3 className="formAccessories">Invasive Species?:</h3>
-            </div>
-            <div className="panels">
-            <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
-            <input className="formItems" type="text" placeholder="Genus" name="Genus" />
-            <input className="formItems" type="text" placeholder="Species" name="Species" />
-            <input className="formItems" type="text" placeholder="Common Name" name="Common_Name" />
-            <input className="formItems" type="text" placeholder="Conservation Status" name="Conservation_Status" />
-            <input className="formBox" type="checkbox" placeholder="Alien" name="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-            <input className="formBox" type="checkbox" placeholder="Invasive" name="Invasive" />
-            </form>
-            </div>
+                <div className="panels" id="titles">
+                    <h3 className="formAccessories">Genus:</h3>
+                    <h3 className="formAccessories">Species:</h3>
+                    <h3 className="formAccessories">Common Name:</h3>
+                    <h3 className="formAccessories">Conservation Status:</h3>
+                    <h3 className="formAccessories">Alien Species?:</h3>
+                    <h3 className="formAccessories">Invasive Species?:</h3>
+                </div>
+                <div className="panels">
+                    <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
+                        <input className="formItems" type="text" placeholder="Genus" name="Genus" />
+                        <input className="formItems" type="text" placeholder="Species" name="Species" />
+                        <input className="formItems" type="text" placeholder="Common Name" name="Common_Name" />
+                        <input className="formItems" type="text" placeholder="Conservation Status" name="Conservation_Status" />
+                        <input className="formBox" type="checkbox" placeholder="Alien" name="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
+                        <input className="formBox" type="checkbox" placeholder="Invasive" name="Invasive" />
+                    </form>
+                </div>
             </div>
             <div>
-            <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
-            <button type="submit" form="animalForm" id="submission"><p className="textP">Submit</p></button>
+                <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+                <button type="submit" form="animalForm" id="submission"><p className="textP">Submit</p></button>
             </div>
         </div>
     )

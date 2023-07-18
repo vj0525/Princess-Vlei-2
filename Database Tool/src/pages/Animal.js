@@ -14,7 +14,7 @@ export default function AnimalPage(){
     const navToOrg = () => {
         navigate('/Organism');
     }
-    function submitInfo(event){
+    async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
         const pandorasBox = new FormData(event.target);
@@ -22,17 +22,20 @@ export default function AnimalPage(){
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
         const dataString = JSON.stringify(data).toLowerCase();
-        fetch('https://pv-test.onrender.com/api/organism', {
+        console.log(dataString);
+        const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: dataString
         });
-<<<<<<< HEAD
-=======
-        console.log("Aooga");
+        await responseOrg.json();
+        if (!responseOrg.ok){
+            navToError();
+            return;
+        }
         console.log(dataString);
->>>>>>> 026f5a99e452baf28bc42a3350c3dfee3b9bc43d
         navToSuc();
+        return;
     }
 
     return (
@@ -50,21 +53,12 @@ export default function AnimalPage(){
                 </div>
                 <div className="panels">
                     <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
-<<<<<<< HEAD
                         <input className="formItems" type="text" placeholder="Genus" name="genus" />
                         <input className="formItems" type="text" placeholder="Species" name="species" />
                         <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
                         <input className="formItems" type="text" placeholder="Conservation Status" name="conservation_status" />
                         <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
-=======
-                        <input className="formItems" type="text" placeholder="Genus" name="Genus" />
-                        <input className="formItems" type="text" placeholder="Species" name="Species" />
-                        <input className="formItems" type="text" placeholder="Common Name" name="Common_Name" />
-                        <input className="formItems" type="text" placeholder="Conservation Status" name="Conservation_Status" />
-                        <input className="formBox" type="checkbox" placeholder="Alien" name="Alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-                        <input className="formBox" type="checkbox" placeholder="Invasive" name="Invasive" />
->>>>>>> 026f5a99e452baf28bc42a3350c3dfee3b9bc43d
                     </form>
                 </div>
             </div>

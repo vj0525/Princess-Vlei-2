@@ -19,9 +19,6 @@ export default function PlantPage(){
         event.preventDefault();
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
-        //delete data['growth_form'];
-        //delete data['growing_method'];
-        //delete data['veg_type'];
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
         const dataStringOrg = JSON.stringify(data).toLowerCase();
@@ -31,19 +28,15 @@ export default function PlantPage(){
             headers: {"Content-Type": "application/json"},
             body: dataStringOrg
         });
-        console.log("First bar passed");
         const dataWID = await responseOrg.json();
         if (!responseOrg.ok){
             navToError();
             return;
         }
         console.log(dataWID);
-        console.log("Second bar passed");
         data["floraID"] = dataWID["orgID"];
         const dataStringFull = JSON.stringify(data);
-        console.log("Third bar passed");
         console.log(dataStringFull)
-        console.log("Fourth bar passed");
         const responseFull = await fetch('https://pv-test.onrender.com/api/flora', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -52,12 +45,11 @@ export default function PlantPage(){
         console.log("Fifth bar passed");
         if (!responseFull.ok){
             navToError();
-            console.log("Well look where we are")
             return;
-        } 
-        console.log("Passed all bars")
+        }
         console.log(data);
         navToSuc();
+        return;
     }
 
     return (

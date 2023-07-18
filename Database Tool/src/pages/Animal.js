@@ -1,7 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import 
 
 export default function AnimalPage(){
     const navigate = useNavigate();
@@ -15,10 +14,23 @@ export default function AnimalPage(){
     const navToOrg = () => {
         navigate('/Organism');
     }
-    function submitInfo(){
+    function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
+        event.preventDefault();
+        const pandorasBox = new FormData(event.target);
+        let data = Object.fromEntries(pandorasBox.entries());
+        data["Alien"] = data["Alien"]==='on';
+        data["Invasive"] = data["Invasive"]==='on';
+        const dataString = JSON.stringify(data).toLowerCase();
+        const dataBody = JSON.parse(dataString);
+        fetch('https://pv-test.onrender.com/api/organism', {
+            method: 'POST',
+            ContentType: "application/json",
+            body: dataString
+        });
         console.log("Aooga");
-        navToSuc();
+        console.log(dataString);
+        //navToSuc();
     }
 
     return (
@@ -35,7 +47,7 @@ export default function AnimalPage(){
                 <h3 className="formAccessories">Invasive Species?:</h3>
             </div>
             <div className="panels">
-            <form className="quickTest" id="animalForm" onSubmit={()=>submitInfo()}>
+            <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
             <input className="formItems" type="text" placeholder="Genus" name="Genus" />
             <input className="formItems" type="text" placeholder="Species" name="Species" />
             <input className="formItems" type="text" placeholder="Common Name" name="Common_Name" />

@@ -1,7 +1,7 @@
 import FancyButton from '../components/FancyButton';
-import Input from '../components/InputBox';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import 
 
 export default function AnimalPage(){
     const navigate = useNavigate();
@@ -46,8 +46,8 @@ export default function AnimalPage(){
             </div>
             </div>
             <div>
+            <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
             <button type="submit" form="animalForm" id="submission"><p className="textP">Submit</p></button>
-                <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
             </div>
         </div>
     )

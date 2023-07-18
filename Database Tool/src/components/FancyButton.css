@@ -28,7 +28,7 @@
         color: #449aad;
     }
 }
-.special{
+.special, #submission{
     background-color: #0e5384;
     color: #FFFFFF;
     border: 5px solid #0e5384;
@@ -44,7 +44,7 @@
     cursor: pointer;
     align-items: center;
 }
-.special:hover{
+.special:hover, #submission:hover{
     animation-name: mouseSpecial;
     animation-duration: .5s;
     animation-iteration-count: 1;
@@ -58,7 +58,7 @@
         color: #0e5384;
     }
 }
-.textP {
+.textP, #submission {
     font-size: 130%;
     text-align: center;
 }

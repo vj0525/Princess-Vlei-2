@@ -1,7 +1,6 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
-import 
+import {Routes, Route, useNavigate} from 'react-router-dom'; 
 
 export default function AnimalPage(){
     const navigate = useNavigate();

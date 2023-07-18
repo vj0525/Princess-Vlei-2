@@ -17,8 +17,10 @@ export default function ErrorPage(){
         <div className="main-div">
             <TopBar />
             <h2>Sorry, something went wrong.<br />Please try again shortly.</h2>
-            <FancyButton title="Return to Start" buttonFunc={()=>navToIntro()} specialty={true} />
-            <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            <div>
+                <FancyButton title="Return to Start" buttonFunc={()=>navToIntro()} specialty={true} />
+                <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            </div>
         </div>
     )
 }

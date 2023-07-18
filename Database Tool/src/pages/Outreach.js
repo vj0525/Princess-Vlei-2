@@ -28,8 +28,10 @@ export default function OutreachPage(){
             <Input value="School Grade" />
             <Input value="Number of Learners" />
             <Input value="Average Score" />
-            <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
-            <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+            <div>
+                <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+                <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
+            </div>
         </div>
     )
 }

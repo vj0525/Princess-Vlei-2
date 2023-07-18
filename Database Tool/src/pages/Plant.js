@@ -33,8 +33,10 @@ export default function PlantPage(){
             <Input value="Veg Type" page="Flora" />
             <Input value="Alien" category="checkbox"/>
             <Input value="Invasive" category="checkbox"/>
-            <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
-            <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+            <div>
+                <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+                <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
+            </div>
         </div>
     )
 }

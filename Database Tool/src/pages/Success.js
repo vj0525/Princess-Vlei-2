@@ -20,9 +20,11 @@ export default function SuccessPage(){
         <div className="main-div">
             <TopBar />
             <h2>Your data has been successfully submitted!</h2>
-            <FancyButton title="Enter Another" buttonFunc={()=>navToSurvey()} specialty={true} />
-            <FancyButton title="Return to Start" buttonFunc={()=>navToIntro()} specialty={true} />
-            <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            <div>
+                <FancyButton title="Enter Another" buttonFunc={()=>navToSurvey()} specialty={true} />
+                <FancyButton title="Return to Start" buttonFunc={()=>navToIntro()} specialty={true} />
+                <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            </div>
         </div>
     )
 }

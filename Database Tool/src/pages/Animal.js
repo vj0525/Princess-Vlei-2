@@ -44,8 +44,10 @@ export default function AnimalPage(){
             </form>
             </div>
             </div>
-            <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
-            <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+            <div>
+                <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+                <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
+            </div>
         </div>
     )
 }

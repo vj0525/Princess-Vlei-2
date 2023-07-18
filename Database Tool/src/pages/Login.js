@@ -20,7 +20,9 @@ export default function Login(){
         Please log in with your credentials.</h2>
         <Input value="Username" />
         <Input value="Password" category="password" />
-        <FancyButton title="Log in" buttonFunc={navToIntro} specialty={true}/>
+        <div>
+          <FancyButton title="Log in" buttonFunc={navToIntro} specialty={true}/>
+        </div>
     </div>
   )
 }

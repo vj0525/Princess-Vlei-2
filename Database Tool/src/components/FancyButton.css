@@ -3,20 +3,16 @@
     color: #FFFFFF;
     border: 5px solid #449aad;
     border-radius:20px;
-    text-align: center;
     vertical-align: middle;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-top: 2%;
-    padding-bottom: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 7%;
-    margin-bottom: 7%;
-    font-size: 1.2vw;
-    font-weight: 400;
+    width: 15%;
+    height: 20%;
+    font-weight: 500;
+    padding: 1%;
     cursor: pointer;
-    display:inline-flex;
+    margin: 2%;
+    text-align: center;
+    line-height: 100%;
+    display: inline-block;
 }
 .fancy-button:hover{
     animation-name: mouseNonspecial;
@@ -33,23 +29,20 @@
     }
 }
 .special{
-    background-color: #80c431;
+    background-color: #0e5384;
     color: #FFFFFF;
-    border: 5px solid #80c431;
+    border: 5px solid #0e5384;
     border-radius:7px;
+    display: inline-flex;
     text-align: center;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-top: 2%;
-    padding-bottom: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 7%;
-    margin-bottom: 7%;
+    width: 22%;
+    height: 7%;
+    margin: 3%;
+    padding: 1%;
     font-size: 1.2vw;
     font-weight: 400;
     cursor: pointer;
-    display: block;
+    align-items: center;
 }
 .special:hover{
     animation-name: mouseSpecial;
@@ -58,10 +51,14 @@
     animation-fill-mode: forwards;
 }
 @keyframes mouseSpecial{
-    from {background-color: #80c431;
+    from {background-color: #0e5384;
         color: #FFFFFF;
     }
     to{background-color: #FFFFFF;
-        color: #80c431;
+        color: #0e5384;
     }
+}
+.textP {
+    font-size: 130%;
+    text-align: center;
 }

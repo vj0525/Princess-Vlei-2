@@ -38,7 +38,9 @@ export default function IntroPage() {
             What would you like to do?</h2>
             <FancyButton title="Enter New Data" buttonFunc={()=>navToNew()}/>
             <FancyButton title="Modify Existing Data" buttonFunc={()=>console.log("Hello World")} />
-            <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            <div>
+                <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
+            </div>
         </div>
     )
 }

@@ -30,8 +30,10 @@ export default function SurveyPageOne(){
             <Input value="Surface Area (Hectares)" />
             <Input value="Date" />
             <Input value="Amount" />
-            <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
-            <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+            <div>
+                <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+                <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
+            </div>
         </div>
     )
 }

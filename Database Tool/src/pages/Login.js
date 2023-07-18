@@ -4,7 +4,6 @@ import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 export default function Login(){
-
   const navigate = useNavigate();
 
     const navToIntro = () => {

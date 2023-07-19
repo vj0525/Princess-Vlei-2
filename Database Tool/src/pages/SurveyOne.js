@@ -18,7 +18,7 @@ export default function SurveyOnePage(){
     const navToNew = () => {
         navigate('/NewData');
     }
-
+    
     return (
         <div className="main-div">
             <TopBar />
@@ -26,9 +26,8 @@ export default function SurveyOnePage(){
             <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
             <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
             <div>
-                <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+            <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
             </div>
-            <p id="loadText" class="load"></p>
         </div>
     )
 }

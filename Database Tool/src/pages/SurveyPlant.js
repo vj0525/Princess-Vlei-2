@@ -15,6 +15,27 @@ export default function SurveyPlantPage(){
     const navToOne = () => {
         navigate('/surveyone');
     }
+    function plantDNE(dataWID){
+        console.log(dataWID);
+        console.log(dataWID[0]);
+        console.log(dataWID.length);
+        let midMessage = "";
+        if(dataWID.length === 0){
+            midMessage = ""
+        }
+        else if(dataWID.length === 1){
+            midMessage = `You may have meant ${dataWID[0]['Common_Name']}`
+        }else{
+            midMessage = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}`
+        }
+        const linked = document.createElement('a');
+        linked.setAttribute('href','/plant');
+        linked.innerHTML = 'here';
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = `No plant in the database matches that name. ${midMessage}. If you did not, you may want to try entering this plant in the plant database `;
+        paragraph.appendChild(linked);
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
@@ -49,7 +70,8 @@ export default function SurveyPlantPage(){
         }
         if (orgID < 0){
             //Write function here for having user input an organism into the database
-            console.log("nothing doing");
+            plantDNE(dataWID);
+            document.getElementById("loadText").innerHTML = "";
             return;
         }
         data["floraID"] = orgID;
@@ -84,10 +106,12 @@ export default function SurveyPlantPage(){
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <input className="formItems" type="text" placeholder="Plant Name" name="common_name" required/>
                         <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
-                        <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
-                        <input className="formItems" type="text" placeholder="Longitude" name="longitude" /> 
+                        <input className="formItems" type="text" placeholder="Latitude" name="latitude" required/>
+                        <input className="formItems" type="text" placeholder="Longitude" name="longitude" required/> 
                     </form>    
                 </div>
+            </div>
+            <div id="forErrorMessages">
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOne()} specialty={true} />

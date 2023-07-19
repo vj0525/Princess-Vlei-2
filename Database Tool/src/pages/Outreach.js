@@ -28,13 +28,13 @@ export default function OutreachPage(){
             headers: {"Content-Type": "application/json"},
             body: dataString
         });
-        // await responseOrg.json();
-        // if (!responseOrg.ok){
-        //     navToError();
-        //     return;
-        // }
-        // console.log(dataString);
-        // navToSuc();
+         await responseOrg.json();
+         if (!responseOrg.ok){
+             navToError();
+             return;
+         }
+         console.log(dataString);
+         navToSuc();
     }
 
     return (

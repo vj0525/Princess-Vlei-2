@@ -42,7 +42,6 @@ export default function PlantPage(){
             headers: {"Content-Type": "application/json"},
             body: dataStringFull
         });
-        console.log("Fifth bar passed");
         if (!responseFull.ok){
             navToError();
             return;

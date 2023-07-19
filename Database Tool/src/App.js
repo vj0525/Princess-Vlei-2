@@ -9,7 +9,8 @@ import OrganismPage from './pages/Organism';
 import OutreachPage from './pages/Outreach';
 import SuccessPage from './pages/Success';
 import SurveyOnePage from './pages/SurveyOne';
-
+import SurveyAnimalPage from './pages/SurveyAnimal';
+import SurveyPlantPage from './pages/SurveyPlant';
 
 /* 
 To add a new page to the link tree, add a new route with a path and an page element
@@ -30,7 +31,8 @@ export default function App() {
         <Route path="/outreach" element={<OutreachPage />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/surveyone" element={<SurveyOnePage />} />
-
+        <Route path="/surveyanimal" element={<SurveyAnimalPage />} />
+        <Route path="/surveyplant" element={<SurveyPlantPage />} />
       </Routes>
     </BrowserRouter>
   )

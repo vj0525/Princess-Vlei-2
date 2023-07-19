@@ -16,27 +16,32 @@ export default function SurveyPlantPage(){
         navigate('/surveyone');
     }
     function plantDNE(dataWID){
-        const oldMessageIfApplies = document.getElementById('errorMessage');
-        if(!oldMessageIfApplies){
-            console.log(typeof(oldMessageIfApplies))
-            oldMessageIfApplies.remove();
-        }
-        let midMessage = "";
+        let message = "";
         if(dataWID.length === 0){
-            midMessage = ""
+            message = ""
         }
         else if(dataWID.length === 1){
-            midMessage = `You may have meant ${dataWID[0]['Common_Name']}`
+            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this plant in the plant database `
         }else{
-            midMessage = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}`
+            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this plant in the plant database `
         }
-        const linked = document.createElement('a');
-        linked.setAttribute('href','/plant');
-        linked.innerHTML = 'here';
+        updateMessage(message,'/plant')
+    }
+    function updateMessage(error, route=""){
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(oldMessageIfApplies){
+            console.log(oldMessageIfApplies)
+            oldMessageIfApplies.remove();
+        }
         const paragraph = document.createElement('p');
-        paragraph.innerHTML = `No plant in the database matches that name. ${midMessage}. If you did not, you may want to try entering this plant in the plant database `;
-        paragraph.appendChild(linked);
+        paragraph.innerHTML = error;
         paragraph.setAttribute('id','errorMessage');
+        if(route){
+            const linked = document.createElement('a');
+            linked.setAttribute('href',route);
+            linked.innerHTML = 'here';
+            paragraph.appendChild(linked);
+        }
         document.getElementById('forErrorMessages').appendChild(paragraph);
     }
     async function submitInfo(event){
@@ -72,11 +77,18 @@ export default function SurveyPlantPage(){
             }
         }
         if (orgID < 0){
-            //Write function here for having user input an organism into the database
             plantDNE(dataWID);
             document.getElementById("loadText").innerHTML = "";
             return;
         }
+        //Next make sure it's a flora
+        //Gonna have to test tomorrow with database consistency 
+        /*
+        const responsePlanthood = await fetch(`https://pv-test.onrender.com/api/flora?floraID=${orgID})}`, {
+            method: 'GET'
+        });
+        console.log(responsePlanthood)
+        */
         data["floraID"] = orgID;
         const dataStringFull = JSON.stringify(data);
         console.log(dataStringFull);

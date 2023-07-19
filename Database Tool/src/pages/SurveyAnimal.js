@@ -15,6 +15,30 @@ export default function SurveyAnimalPage(){
     const navToOne = () => {
         navigate('/surveyone');
     }
+    function animalDNE(dataWID){
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(oldMessageIfApplies){
+            console.log(oldMessageIfApplies)
+            oldMessageIfApplies.remove();
+        }
+        let midMessage = "";
+        if(dataWID.length === 0){
+            midMessage = ""
+        }
+        else if(dataWID.length === 1){
+            midMessage = `You may have meant ${dataWID[0]['Common_Name']}, or`
+        }else{
+            midMessage = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or`
+        }
+        const linked = document.createElement('a');
+        linked.setAttribute('href','/animal');
+        linked.innerHTML = 'here';
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = `No animal in the database matches that name. ${midMessage} you may want to try entering this plant in the plant database `;
+        paragraph.appendChild(linked);
+        paragraph.setAttribute('id','errorMessage');
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
@@ -48,8 +72,8 @@ export default function SurveyAnimalPage(){
             }
         }
         if (orgID < 0){
-            //Write function here for having user input an organism into the database
-            console.log("nothing doing");
+            animalDNE(dataWID);
+            document.getElementById("loadText").innerHTML = "";
             return;
         }
         data["faunaID"] = orgID;

@@ -15,29 +15,34 @@ export default function SurveyAnimalPage(){
     const navToOne = () => {
         navigate('/surveyone');
     }
-    function animalDNE(dataWID){
+    function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
             console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
-        let midMessage = "";
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = error;
+        paragraph.setAttribute('id','errorMessage');
+        if(route){
+            const linked = document.createElement('a');
+            linked.setAttribute('href',route);
+            linked.innerHTML = 'here';
+            paragraph.appendChild(linked);
+        }
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
+    function animalDNE(dataWID){
+        let message = "";
         if(dataWID.length === 0){
-            midMessage = ""
+            message = ""
         }
         else if(dataWID.length === 1){
-            midMessage = `You may have meant ${dataWID[0]['Common_Name']}, or`
+            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this animal in the animal database `
         }else{
-            midMessage = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or`
+            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this animal in the animal database `
         }
-        const linked = document.createElement('a');
-        linked.setAttribute('href','/animal');
-        linked.innerHTML = 'here';
-        const paragraph = document.createElement('p');
-        paragraph.innerHTML = `No animal in the database matches that name. ${midMessage} you may want to try entering this plant in the plant database `;
-        paragraph.appendChild(linked);
-        paragraph.setAttribute('id','errorMessage');
-        document.getElementById('forErrorMessages').appendChild(paragraph);
+        updateMessage(message,'/animal')
     }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not

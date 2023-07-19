@@ -15,18 +15,6 @@ export default function SurveyPlantPage(){
     const navToOne = () => {
         navigate('/surveyone');
     }
-    function plantDNE(dataWID){
-        let message = "";
-        if(dataWID.length === 0){
-            message = ""
-        }
-        else if(dataWID.length === 1){
-            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }else{
-            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }
-        updateMessage(message,'/plant')
-    }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
@@ -43,6 +31,18 @@ export default function SurveyPlantPage(){
             paragraph.appendChild(linked);
         }
         document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
+    function plantDNE(dataWID){
+        let message = "";
+        if(dataWID.length === 0){
+            message = ""
+        }
+        else if(dataWID.length === 1){
+            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this plant in the plant database `
+        }else{
+            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this plant in the plant database `
+        }
+        updateMessage(message,'/plant')
     }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not

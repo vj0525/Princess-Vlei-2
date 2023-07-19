@@ -40,7 +40,7 @@ export default function OutreachPage(){
     return (
         <div className="main-div">
             <TopBar />
-            <h2>Enter the location information from the survey data</h2>
+            <h2>Enter the Information from the Survey Data:</h2>
             <div className="body-div">
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Event Type:</h3>
@@ -55,7 +55,7 @@ export default function OutreachPage(){
                         <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
                         <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
                         <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
-                        <input className="formItems" type="number" min="0" max="10" placeholder="Average Score" name="avg_score" />   
+                        <input className="formItems" type="number" min="0.0" max="10.0" placeholder="Average Score" name="avg_score" />   
                     </form>    
                 </div>
             </div>

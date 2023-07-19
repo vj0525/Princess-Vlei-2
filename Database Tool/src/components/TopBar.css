@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@100;200&display=swap');
+
 .header{
-    background: #0e5384;
+    background: #d6feff;
     /* background: linear-gradient(0deg, rgba(85,206,244,1) 0%, rgba(133,94,244,1) 100%); */
     position: relative;
     width: 100%;
@@ -12,25 +14,23 @@
     display: block;
     overflow: hidden;
     position: inherit;
+    border-bottom: 1px solid #3a6d06;
 }
 .title{
-    color: #4daec2;
+    color: #3a6d06;
     font-size: 300%;
-    font-weight:800;
-    text-shadow: 1px 1px #0e5384, -1px 1px #256e8d;
+    font-weight: 200;
     padding: auto;
     margin-right: 7%;
     vertical-align: middle;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 1px;
 }
 .logo{
     max-height: 95%;
     height: 70px;
     float: left;
-    padding: 16px;
+    padding: 12px;
     padding-top: 1px;
     vertical-align: middle;
-    filter: drop-shadow(0.8px 1px 0 black)
-            drop-shadow(-0.4px -0.4px 0 black);
 }

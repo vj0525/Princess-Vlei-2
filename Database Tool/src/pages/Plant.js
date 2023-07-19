@@ -57,7 +57,7 @@ export default function PlantPage(){
     return (
         <div className="main-div">
             <TopBar />
-            <h2>Enter the species information for the plant</h2>
+            <h2>Enter Information for the Plant:</h2>
             <div className="body-div">
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Genus:</h3>

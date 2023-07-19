@@ -16,9 +16,11 @@ export default function SurveyPlantPage(){
         navigate('/surveyone');
     }
     function plantDNE(dataWID){
-        console.log(dataWID);
-        console.log(dataWID[0]);
-        console.log(dataWID.length);
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(!oldMessageIfApplies){
+            console.log(typeof(oldMessageIfApplies))
+            oldMessageIfApplies.remove();
+        }
         let midMessage = "";
         if(dataWID.length === 0){
             midMessage = ""
@@ -34,6 +36,7 @@ export default function SurveyPlantPage(){
         const paragraph = document.createElement('p');
         paragraph.innerHTML = `No plant in the database matches that name. ${midMessage}. If you did not, you may want to try entering this plant in the plant database `;
         paragraph.appendChild(linked);
+        paragraph.setAttribute('id','errorMessage');
         document.getElementById('forErrorMessages').appendChild(paragraph);
     }
     async function submitInfo(event){

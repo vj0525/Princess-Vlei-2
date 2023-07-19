@@ -1,5 +1,4 @@
 import FancyButton from '../components/FancyButton';
-import Input from '../components/InputBox';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
@@ -17,8 +16,8 @@ export default function Login(){
         <TopBar />
         <h2>Welcome to Princess Vlei Forum!<br />
         Please log in with your credentials.</h2>
-        <Input value="Username" />
-        <Input value="Password" category="password" />
+        <input type="text" placeholder="Username" name="username" />
+        <input value="Password" type="password" placeholder="Password" name="password"/>
         <div>
           <FancyButton title="Log in" buttonFunc={navToIntro} specialty={true}/>
         </div>

@@ -1,5 +1,4 @@
 import FancyButton from '../components/FancyButton';
-import Input from '../components/InputBox';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 

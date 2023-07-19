@@ -17,6 +17,9 @@ export default function PlantPage(){
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
+
+        document.getElementById("loadText").innerHTML = "Loading...";
+
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         data["alien"] = data["alien"]==='on';
@@ -85,6 +88,7 @@ export default function PlantPage(){
                 <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
                 <button type="submit" form="plantForm" id="submission"><p className="textP">Submit</p></button>
             </div>
+            <p id="loadText" class="load"></p>
         </div>
     )
 }

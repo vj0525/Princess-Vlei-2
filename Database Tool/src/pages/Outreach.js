@@ -17,6 +17,9 @@ export default function OutreachPage(){
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
+
+        document.getElementById("loadText").innerHTML = "Loading...";
+
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         const dataString = JSON.stringify(data).toLowerCase();
@@ -25,13 +28,13 @@ export default function OutreachPage(){
             headers: {"Content-Type": "application/json"},
             body: dataString
         });
-        await responseOrg.json();
-        if (!responseOrg.ok){
-            navToError();
-            return;
-        }
-        console.log(dataString);
-        navToSuc();
+        // await responseOrg.json();
+        // if (!responseOrg.ok){
+        //     navToError();
+        //     return;
+        // }
+        // console.log(dataString);
+        // navToSuc();
     }
 
     return (
@@ -50,17 +53,18 @@ export default function OutreachPage(){
                     <form className="quickTest" id="educationForm" onSubmit={(event)=>submitInfo(event)}>
                         <input className="formItems" type="text" placeholder="Event Type" name="event_type" page="Education" />
                         <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
-                        <input className="formItems" type="text" placeholder="School Grade" name="school_grade" />
-                        <input className="formItems" type="text" placeholder="Number of Learners" name="num_of_learners" />
-                        <input className="formItems" type="text" placeholder="Average Score" name="avg_score" />   
+                        <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
+                        <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
+                        <input className="formItems" type="number" min="0" max="10" placeholder="Average Score" name="avg_score" />   
                     </form>    
                 </div>
             </div>
             
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
-                <button type="submit" form="educationForm" id="submission"><p className="textP">Submit</p></button>
+                <button type="submit" form="educationForm" id="submission" value="Submit"><p className="textP">Submit</p></button>
             </div>
+            <p id="loadText" class="load"></p>
         </div>
     )
 }

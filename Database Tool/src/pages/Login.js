@@ -16,8 +16,12 @@ export default function Login(){
         <TopBar />
         <h2>Welcome to Princess Vlei Forum!<br />
         Please log in with your credentials.</h2>
-        <input type="text" placeholder="Username" name="username" />
-        <input value="Password" type="password" placeholder="Password" name="password"/>
+        <div id="login-div">
+            <div id="login-panel">
+                <input className="formItems" type="text" placeholder="Username" name="username" />
+                <input className="formItems" type="password" placeholder="Password" name="password"/>
+            </div>
+        </div>
         <div>
           <FancyButton title="Log in" buttonFunc={navToIntro} specialty={true}/>
         </div>

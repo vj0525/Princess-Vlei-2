@@ -49,13 +49,20 @@ code {
   display: flex;
   width: 100%;
 }
+#login-panel{
+  flex: 1;
+  text-align: center;
+  align-items: center;
+  /*border: 3px solid red;*/
+  height: 100%;
+  width: 50%;
+}
 .panels{
   flex: 1;
   float: left;
   /*border: 3px solid red;*/
   height: 100%;
-  width: 50%;
-  
+  width: 50%; 
 }
 .formItems, .formAccessories{
   display: block;
@@ -75,6 +82,18 @@ code {
   display: block;
   margin: 42.778px;
   height: 30px;
+}
+#login-div{
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+#login-panel{
+  text-align: center;
+  align-items: center;
+  /*border: 3px solid red;*/
+  height: 100%;
+  width: 50%;
 }
 .quickTest{
   height: 100%;

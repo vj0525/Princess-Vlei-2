@@ -88,7 +88,7 @@ export default function PlantPage(){
                 <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
                 <button type="submit" form="plantForm" id="submission"><p className="textP">Submit</p></button>
             </div>
-            <p id="loadText" class="load"></p>
+            <p id="loadText" className="load"></p>
         </div>
     )
 }

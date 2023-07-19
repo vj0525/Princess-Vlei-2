@@ -18,6 +18,9 @@ export default function SurveyPlantPage(){
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
+        
+        document.getElementById("loadText").innerHTML = "Loading...";
+
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         data['latitude'] = data['latitude'] ? data['latitude'] : null;
@@ -90,6 +93,7 @@ export default function SurveyPlantPage(){
                 <FancyButton title="Back" buttonFunc={()=>navToOne()} specialty={true} />
                 <button type="submit" form="surveyForm" id="submission"><p className="textP">Submit</p></button>
             </div>
+            <p id="loadText" className="load"></p>
         </div>
     )
 }

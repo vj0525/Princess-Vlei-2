@@ -64,7 +64,7 @@ export default function OutreachPage(){
                 <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
                 <button type="submit" form="educationForm" id="submission" value="Submit"><p className="textP">Submit</p></button>
             </div>
-            <p id="loadText" class="load"></p>
+            <p id="loadText" className="load"></p>
         </div>
     )
 }

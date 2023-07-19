@@ -14,21 +14,24 @@ export default function OutreachPage(){
     const navToNew = () => {
         navigate('/NewData');
     }
-    function submitInfo(event){
+    async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         const dataString = JSON.stringify(data).toLowerCase();
-        const dataBody = JSON.parse(dataString);
-        fetch('https://pv-test.onrender.com/api/education', {
+        const responseOrg = await fetch('https://pv-test.onrender.com/api/education', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: dataString
         });
-        console.log("Aooga");
+        await responseOrg.json();
+        if (!responseOrg.ok){
+            navToError();
+            return;
+        }
         console.log(dataString);
-        //navToSuc();
+        navToSuc();
     }
 
     return (
@@ -45,11 +48,11 @@ export default function OutreachPage(){
                 </div>
                 <div className="panels">
                     <form className="quickTest" id="educationForm" onSubmit={(event)=>submitInfo(event)}>
-                        <input className="formItems" type="text" placeholder="Event Type" name="Event Type" page="Education" />
-                        <input className="formItems" type="text" placeholder="School" name="School" page="Education" />
-                        <input className="formItems" type="text" placeholder="School Grade" name="School Grade" />
-                        <input className="formItems" type="text" placeholder="Number of Learners" name="Number of Learners" />
-                        <input className="formItems" type="text" placeholder="Average Score" name="Average Score" />   
+                        <input className="formItems" type="text" placeholder="Event Type" name="event_type" page="Education" />
+                        <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
+                        <input className="formItems" type="text" placeholder="School Grade" name="school_grade" />
+                        <input className="formItems" type="text" placeholder="Number of Learners" name="num_of_learners" />
+                        <input className="formItems" type="text" placeholder="Average Score" name="avg_score" />   
                     </form>    
                 </div>
             </div>

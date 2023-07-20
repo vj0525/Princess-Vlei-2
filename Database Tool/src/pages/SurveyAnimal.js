@@ -106,6 +106,7 @@ export default function SurveyAnimalPage(){
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Common Name:</h3>
                     <h3 className="formAccessories">Date:</h3>
+                    <h3 className="formAccessories">Location:</h3>
                     <h3 className="formAccessories">Latitude:</h3>
                     <h3 className="formAccessories">Longitude:</h3>
                     <h3 className="formAccessories">Sex:</h3>
@@ -116,6 +117,13 @@ export default function SurveyAnimalPage(){
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <input className="formItems" type="text" placeholder="Animal Name" name="common_name" required/>
                         <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
+                        <select className="formItems" name="location" form="surveyForm">
+                            <option>Please choose a location</option>
+                            <option>East</option>
+                            <option>West</option>
+                            <option>North</option>
+                            <option>South</option>
+                        </select>
                         <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
                         <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
                         <input className="formItems" type="text" placeholder="Sex" name="sex" />

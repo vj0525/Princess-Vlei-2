@@ -75,6 +75,12 @@ code {
   margin-right: 10%;
   padding: 2.778px;
 }
+.formSelect{
+  display: block;
+  margin: 40px;
+  height: 35.56px;
+  padding: 4px;
+}
 .formItems{
   width: 40%;
 }

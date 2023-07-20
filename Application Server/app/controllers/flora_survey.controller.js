@@ -28,6 +28,19 @@ exports.create = (req, res) => {
   });
 };
 
+// Retrieve all Flora Surveys from the database (with condition).
+exports.findAll = (req, res) => {
+
+  Flora_Survey.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Flora Surveys."
+      });
+    else res.send(data);
+  });
+};
+
 exports.findAllInvasive = (req, res) => {
   Flora_Survey.getAllInvasive((err, data) => {
     if (err)

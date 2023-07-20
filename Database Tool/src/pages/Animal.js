@@ -59,7 +59,18 @@ export default function AnimalPage(){
                         <input className="formItems" type="text" placeholder="Genus" name="genus" />
                         <input className="formItems" type="text" placeholder="Species" name="species" />
                         <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
-                        <input className="formItems" type="text" placeholder="Conservation Status" name="conservation_status" />
+                        <select className="formItems" name="conservation_status" form="animalForm">
+                            <option>Please choose a status</option>
+                            <option>Data Deficient (DD)</option>
+                            <option>Not Evaluated (NE)</option>
+                            <option>Least Concern (LC)</option>
+                            <option>Near Threatened (NT)</option>
+                            <option>Vulnerable (VU)</option>
+                            <option>Endangered (EN)</option>
+                            <option>Critically Endangered (CR)</option>
+                            <option>Extinct in the Wild (EW)</option>
+                            <option>Extinct (EX)</option>
+                        </select>
                         <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
                     </form>

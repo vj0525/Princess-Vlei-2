@@ -40,6 +40,21 @@ Flora_Survey.findById = (floraSID, result) => {
   });
 };
 
+Flora_Survey.getAll = (result) => {
+  let query = "SELECT * FROM Flora_Survey";
+
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("Flora Surveys: ", res);
+    result(null, res);
+  });
+};
+
 Flora_Survey.getAllInvasive = result => {
   sql.query("SELECT * FROM Flora_Survey NATURAL JOIN Organism WHERE invasive = true", (err, res) => {
     if (err) {

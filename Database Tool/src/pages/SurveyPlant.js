@@ -82,13 +82,7 @@ export default function SurveyPlantPage(){
             return;
         }
         //Next make sure it's a flora
-        //Gonna have to test tomorrow with database consistency 
-        /*
-        const responsePlanthood = await fetch(`https://pv-test.onrender.com/api/flora?floraID=${orgID})}`, {
-            method: 'GET'
-        });
-        console.log(responsePlanthood)
-        */
+        //Gonna have to test tomorrow with database consistency
         data["floraID"] = orgID;
         const dataStringFull = JSON.stringify(data);
         console.log(dataStringFull);
@@ -102,7 +96,7 @@ export default function SurveyPlantPage(){
             return;
         }
         console.log(data);
-        navToSuc();
+        //navToSuc();
         return;
     }
 

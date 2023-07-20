@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all invasive Flora Survey
   router.get("/invasive", flora_survey.findAllInvasive);
 
+  // Retrieve all invasive Flora Survey
+  router.get("/", flora_survey.findAll);
+
   // Retrieve a single Flora Survey with id
   router.get("/:id", flora_survey.findOne);
 

@@ -46,6 +46,11 @@ export default function PlantPage(){
             document.getElementById("loadText").innerHTML = "";
             return;
         }
+        if(data['growth_form']==='Please choose a form'){
+            updateMessage('Please choose a growth form before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         if(data['growing_method']==='Please choose a method'){
             updateMessage('Please choose a growing method before submitting')
             document.getElementById("loadText").innerHTML = "";
@@ -114,7 +119,18 @@ export default function PlantPage(){
                             <option>Extinct in the Wild (EW)</option>
                             <option>Extinct (EX)</option>
                         </select>
-                        <input className="formItems" type="text" placeholder="Growth Form" name="growth_form" />
+                        <select className="formSelect" name="growth_form" form="plantForm">
+                            <option>Please choose a form</option>
+                            <option>Restiad</option>
+                            <option>Gramnoid</option>
+                            <option>Erica</option>
+                            <option>Protea</option>
+                            <option>HerbPen</option>
+                            <option>Small Shrub</option>
+                            <option>Large Shrub</option>
+                            <option>Geophytes</option>
+                            <option>Annual</option>
+                        </select>
                         <select className="formSelect" name="growing_method" form="plantForm">
                             <option>Please choose a method</option>
                             <option>Seed</option>

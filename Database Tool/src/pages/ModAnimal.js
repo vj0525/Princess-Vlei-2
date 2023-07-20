@@ -29,7 +29,7 @@ export default function ModAnimalPage(){
     }
     function DivMaker(organism){
         const entry = document.createElement('div');
-        entry.setAttribute('className', 'orgEntry');
+        entry.setAttribute('class', 'orgEntry');
         entry.setAttribute('id', `orgEntry-${organism.orgID}`);
         const common = document.createElement('h4');
         common.innerHTML = `Name: ${organism['Common_Name']}`;
@@ -40,9 +40,11 @@ export default function ModAnimalPage(){
         const conserve = document.createElement('h4');
         conserve.innerHTML = `Conservation Status: ${organism['Conservation_Status']}`;
         const trashButton = document.createElement('button');
-        trashButton.setAttribute('className','trash');
+        trashButton.setAttribute('class','trash');
+        trashButton.innerHTML = 'delete organism';
         const editButton = document.createElement('button');
-        editButton.setAttribute('className', 'edit');
+        editButton.setAttribute('class', 'edit');
+        editButton.innerHTML = 'edit organism';
         entry.appendChild(common);
         entry.appendChild(genus);
         entry.appendChild(species);
@@ -51,15 +53,15 @@ export default function ModAnimalPage(){
         entry.appendChild(editButton);
         return entry;
     }
-    async function putUpDivs(dataFunc){
-        const data = await dataFunc();
+    async function putUpDivs(dataFunc, key=""){
+        const data = await dataFunc(key);
         const oldDataIfApplies = document.getElementById('data-container');
         if(oldDataIfApplies){
             console.log(oldDataIfApplies)
             oldDataIfApplies.remove();
         }
         const newSet = document.createElement('div');
-        newSet.setAttribute('className','data-container');
+        newSet.setAttribute('id','data-container');
         let datapoint = null;
         console.log(data);
         for (let element in data){
@@ -70,17 +72,29 @@ export default function ModAnimalPage(){
         }
         document.getElementById('forIDPurposes').appendChild(newSet);
     }
-    function searchFilter(event){
-
+    async function searchFilter(key){
+        console.log(key);
+        let keyString = key.toLowerCase();
+        const response = await fetch(`https://pv-test.onrender.com/api/organism?title=${keyString}`, {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json();
+        if (!response.ok){
+            navToError();
+            return;
+        }
+        console.log(data);
+        return data;
     }
     return (
         <div className="main-div">
             <TopBar />
             <h2>Which animal would you like to modify:</h2>
-            <input className="formItems" type="text" onKeyUp={(event)=>searchFilter(event)} placeholder="Search here for a specific animal"/>
+            <input className="formItems" type="text" onKeyUp={(key)=>putUpDivs(searchFilter,key.target.value)} placeholder="Search here for a specific animal"/>
             <div className="body-div" id="forIDPurposes">
                 <button onClick={()=>putUpDivs(initializeAll)}>Click to start</button>
-                <div className="data-container">
+                <div id="data-container">
                 </div>
             </div>
             <div>

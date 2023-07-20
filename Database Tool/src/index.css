@@ -124,3 +124,9 @@ h2 {
   font-weight: 600;
   vertical-align: middle;
 }
+.orgEntry{
+  background-color: rgba(38, 206, 228, 0.8);
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+}

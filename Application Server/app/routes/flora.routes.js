@@ -6,6 +6,9 @@ module.exports = app => {
   // Create a new Organisms
   router.post("/", flora.create);
 
+  // Create a new Organisms
+  router.get("/", flora.findAll);
+
   // Retrieve all invasive Organisms
   router.get("/invasive", flora.findAllInvasive);
 

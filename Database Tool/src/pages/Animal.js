@@ -44,7 +44,7 @@ export default function AnimalPage(){
     return (
         <div className="main-div">
             <TopBar />
-            <h2>Enter the Data on this Animal:</h2>
+            <h2>Enter Information on this Animal:</h2>
             <div className="body-div">
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Genus:</h3>

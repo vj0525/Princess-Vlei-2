@@ -59,20 +59,26 @@ export default function OutreachPage(){
             <TopBar />
             <h2>Enter the Information from the Survey Data:</h2>
             <div className="body-div">
-                <div className="panels" id="titles">
-                    <h3 className="formAccessories">Event Type:</h3>
-                    <h3 className="formAccessories">School:</h3>
-                    <h3 className="formAccessories">School Grade:</h3>
-                    <h3 className="formAccessories">Number of Learners:</h3>
-                    <h3 className="formAccessories">Average Score:</h3>
-                </div>
                 <div className="panels">
                     <form className="quickTest" id="educationForm" onSubmit={(event)=>submitInfo(event)}>
-                        <input className="formItems" type="text" placeholder="Event Type" name="event_type" page="Education" />
-                        <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
-                        <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
-                        <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
-                        <input className="formItems" type="number" min="0.0" max="10.0" placeholder="Average Score" name="avg_score" />   
+                        <div className='col1'>
+                            <h3 className="formAccessories">Event Type:</h3>
+                            <h3 className="formAccessories">School:</h3>
+                            <h3 className="formAccessories">School Grade:</h3>
+                            <h3 className="formAccessories">Number of Learners:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="text" placeholder="Event Type" name="event_type" page="Education" />
+                            <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
+                            <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
+                            <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
+                        </div>
+                        <div className='col1'>
+                            <h3 className="formAccessories">Average Score:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="number" min="0.0" max="10.0" placeholder="Average Score" name="avg_score" />
+                        </div>
                     </form>    
                 </div>
             </div>

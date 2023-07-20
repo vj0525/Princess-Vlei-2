@@ -91,17 +91,6 @@ export default function PlantPage(){
             <TopBar />
             <h2>Enter Information for the Plant:</h2>
             <div className="body-div">
-                <div className="panels" id="titles">
-                    <h3 className="formAccessories">Genus:</h3>
-                    <h3 className="formAccessories">Species:</h3>
-                    <h3 className="formAccessories">Common Name:</h3>
-                    <h3 className="formAccessories">Conservation Status:</h3>
-                    <h3 className="formAccessories">Growth Form:</h3>
-                    <h3 className="formAccessories">Growing Method:</h3>
-                    <h3 className="formAccessories">Vegetation Type:</h3>
-                    <h3 className="formAccessories">Alien Species?:</h3>
-                    <h3 className="formAccessories">Invasive Species?:</h3>
-                </div>
                 <div className="panels">
                     <form className="quickTest" id="plantForm" onSubmit={(event)=>submitInfo(event)}>
                         <input className="formItems" type="text" placeholder="Genus" name="genus" />

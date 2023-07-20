@@ -68,33 +68,39 @@ export default function AnimalPage(){
             <TopBar />
             <h2>Enter Information on this Animal:</h2>
             <div className="body-div">
-                <div className="panels" id="titles">
-                    <h3 className="formAccessories">Genus:</h3>
-                    <h3 className="formAccessories">Species:</h3>
-                    <h3 className="formAccessories">Common Name:</h3>
-                    <h3 className="formAccessories">Conservation Status:</h3>
-                    <h3 className="formAccessories">Alien Species?:</h3>
-                    <h3 className="formAccessories">Invasive Species?:</h3>
-                </div>
                 <div className="panels">
                     <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
-                        <input className="formItems" type="text" placeholder="Genus" name="genus" />
-                        <input className="formItems" type="text" placeholder="Species" name="species" />
-                        <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
-                        <select className="formItems" name="conservation_status" form="animalForm">
-                            <option>Please choose a status</option>
-                            <option>Data Deficient (DD)</option>
-                            <option>Not Evaluated (NE)</option>
-                            <option>Least Concern (LC)</option>
-                            <option>Near Threatened (NT)</option>
-                            <option>Vulnerable (VU)</option>
-                            <option>Endangered (EN)</option>
-                            <option>Critically Endangered (CR)</option>
-                            <option>Extinct in the Wild (EW)</option>
-                            <option>Extinct (EX)</option>
-                        </select>
-                        <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
-                        <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
+                        <div className='col1'>
+                            <h3 className="formAccessories" id="titles">Genus:</h3>
+                            <h3 className="formAccessories" id="titles">Species:</h3>
+                            <h3 className="formAccessories" id="titles">Common Name:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="text" placeholder="Genus" name="genus" />
+                            <input className="formItems" type="text" placeholder="Species" name="species" />
+                            <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
+                        </div>
+                        <div className='col1'>
+                            <h3 className="formAccessories" id="titles">Conservation Status:</h3>
+                            <h3 className="formAccessories" id="titles">Alien Species?:</h3>
+                            <h3 className="formAccessories" id="titles">Invasive Species?:</h3>
+                        </div>
+                        <div className='col1'>
+                            <select className="formItems" name="conservation_status" form="animalForm">
+                                <option>Please choose a status</option>
+                                <option>Data Deficient (DD)</option>
+                                <option>Not Evaluated (NE)</option>
+                                <option>Least Concern (LC)</option>
+                                <option>Near Threatened (NT)</option>
+                                <option>Vulnerable (VU)</option>
+                                <option>Endangered (EN)</option>
+                                <option>Critically Endangered (CR)</option>
+                                <option>Extinct in the Wild (EW)</option>
+                                <option>Extinct (EX)</option>
+                            </select>
+                            <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
+                            <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
+                        </div>
                     </form>
                 </div>
             </div>

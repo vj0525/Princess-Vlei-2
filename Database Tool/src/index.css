@@ -127,6 +127,25 @@ h2 {
 .orgEntry{
   background-color: rgba(38, 206, 228, 0.8);
   border-radius: 10px;
-  padding: 5px;
-  margin: 10px;
+  padding: 10px;
+  margin-left: 35%;
+  width: 30%;
+  margin-top: 15px;
+  text-align: left;
+}
+.trash, .edit{
+  margin-left: 15%;
+  width: 27.5%;
+}
+#modSearchBox{
+  margin-left: 40%;
+  width:20%;
+}
+#modSearchButton{
+  background-color: #0e5384;
+    color: #FFFFFF;
+    border: 5px solid #0e5384;
+    border-radius:7px;
+    display: inline-flex;
+    text-align: center;
 }

@@ -1,37 +1,33 @@
 import FancyButton from '../components/FancyButton';
-import Input from '../components/InputBox';
-import TopBar from '../components/VleiTopBar.png';
+import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
-export default function SurveyPageOne(){
+
+export default function SurveyOnePage(){
 
     const navigate = useNavigate();
 
-    const navToSuc = () => {
-        navigate('/success');
+    const navToPlant = () => {
+        navigate('/surveyplant');
     }
-    const navToError = () => {
-        navigate('/Error')
+
+    const navToAni = () => {
+        navigate('/surveyanimal');
     }
+    
     const navToNew = () => {
         navigate('/NewData');
     }
-    function submitInfo(){
-        //To Add, Check that data submits successfully and nav to error if not
-        navToSuc();
-    }
-
-    return(
+    
+    return (
         <div className="main-div">
-            <img src={TopBar} className="topBar" alt="Header for Princess Vlei Application"/>
-            <h2>Enter the location information from the survey data</h2>
-            <Input value="Name of Location" />
-            <Input value="HC Score" />
-            <Input value="Surface Area (Hectares)" />
-            <Input value="Date" />
-            <Input value="Amount" />
-            <FancyButton title="Submit" buttonFunc={()=>submitInfo()} specialty={true} />
+            <TopBar />
+            <h2>What type of organism do you have survey data on?</h2>
+            <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
+            <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
+            <div>
             <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+            </div>
         </div>
     )
 }

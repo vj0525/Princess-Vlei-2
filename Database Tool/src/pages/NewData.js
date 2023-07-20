@@ -1,5 +1,4 @@
 import FancyButton from '../components/FancyButton';
-import Input from '../components/InputBox';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
@@ -29,8 +28,10 @@ export default function NewDataPage(){
             <h2>What type of data would you like to input?</h2>
             <FancyButton title="Organism" buttonFunc={()=>navToOrg()}/>
             <FancyButton title="Survey" buttonFunc={()=>navToSury()} />
-            <FancyButton title="Education/Outreach" buttonFunc={()=>navToOut()} />
-            <FancyButton title="Back" buttonFunc={()=>navToIntro()} specialty={true} />
+            <FancyButton title="Education & Outreach" buttonFunc={()=>navToOut()} />
+            <div>
+                <FancyButton title="Back" buttonFunc={()=>navToIntro()} specialty={true} />
+            </div>
         </div>
     )
     }

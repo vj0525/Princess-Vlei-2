@@ -1,22 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
 .fancy-button{
-    background-color: #9393DB;
+    background-color: #449aad;
     color: #FFFFFF;
-    border: 5px solid #9393DB;
+    border: 5px solid #449aad;
     border-radius:20px;
-    text-align: center;
     vertical-align: middle;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-top: 2%;
-    padding-bottom: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 7%;
-    margin-bottom: 7%;
-    font-size: 1.2vw;
-    font-weight: 400;
+    width: 15%;
+    height: 20%;
+    font-weight: 500;
+    padding: 1%;
     cursor: pointer;
-    display:inline-flex;
+    margin: 2%;
+    text-align: center;
+    line-height: 150%;
+    display: inline-block;
 }
 .fancy-button:hover{
     animation-name: mouseNonspecial;
@@ -25,45 +23,46 @@
     animation-fill-mode: forwards;
 }
 @keyframes mouseNonspecial{
-    from {background-color: #9393DB;
+    from {background-color: #449aad;
         color: #FFFFFF;
     }
     to{background-color: #FFFFFF;
-        color: #9393DB;
+        color: #449aad;
     }
 }
-.special{
-    background-color: #3e41f0;
+.special, #submission{
+    background-color: #0e5384;
     color: #FFFFFF;
-    border: 5px solid #3e41f0;
+    border: 5px solid #0e5384;
     border-radius:7px;
+    display: inline-flex;
     text-align: center;
-    padding-left: 7%;
-    padding-right: 7%;
-    padding-top: 2%;
-    padding-bottom: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 7%;
-    margin-bottom: 7%;
+    width: 22%;
+    height: 7%;
+    margin: 3%;
+    padding: 1%;
     font-size: 1.2vw;
     font-weight: 400;
     cursor: pointer;
-    display: block;
+    align-items: center;
 }
-.special:hover{
+.special:hover, #submission:hover{
     animation-name: mouseSpecial;
     animation-duration: .5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 @keyframes mouseSpecial{
-    from {background-color: #3e41f0;
+    from {background-color: #0e5384;
         color: #FFFFFF;
-        border: 5px solid #3e41f0;
     }
     to{background-color: #FFFFFF;
-        color: #3e41f0;
-        border: 5px solid #3e41f0;
+        color: #0e5384;
     }
+}
+.textP, #submission {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 150%;
+    text-align: center;
+    font-weight: 400;
 }

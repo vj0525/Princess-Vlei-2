@@ -109,7 +109,7 @@ export default function SurveyPlantPage(){
     return(
         <div className="main-div">
             <TopBar />
-            <h2>Enter the location information from the survey data</h2>
+            <h2>Enter the Location Information from the Survey Data:</h2>
             <div className="body-div">
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Common Name:</h3>

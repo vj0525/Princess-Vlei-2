@@ -101,7 +101,7 @@ export default function SurveyAnimalPage(){
     return(
         <div className="main-div">
             <TopBar />
-            <h2>Enter the information you'd like to provide</h2>
+            <h2>Enter the Information you'd like to Provide:</h2>
             <div className="body-div">
                 <div className="panels" id="titles">
                     <h3 className="formAccessories">Common Name:</h3>

@@ -93,6 +93,13 @@ export default function PlantPage(){
             <div className="body-div">
                 <div className="panels">
                     <form className="quickTest" id="plantForm" onSubmit={(event)=>submitInfo(event)}>
+                    <div className='col1' id="titles">
+                        <h3 className="formAccessories">Genus:</h3>
+                        <h3 className="formAccessories">Species:</h3>
+                        <h3 className="formAccessories">Common Name:</h3>
+                        <h3 className="formAccessories">Conservation Status:</h3>
+                    </div>
+                    <div className='col1'>
                         <input className="formItems" type="text" placeholder="Genus" name="genus" />
                         <input className="formItems" type="text" placeholder="Species" name="species" />
                         <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
@@ -108,6 +115,15 @@ export default function PlantPage(){
                             <option>Extinct in the Wild (EW)</option>
                             <option>Extinct (EX)</option>
                         </select>
+                    </div>
+                    <div className='col1' id="titles">
+                        <h3 className="formAccessories">Growth Form:</h3>
+                        <h3 className="formAccessories">Growing Method:</h3>
+                        <h3 className="formAccessories">Vegetation Type:</h3>
+                        <h3 className="formAccessories">Alien?:</h3>
+                        <h3 className="formAccessories">Invasive?:</h3>
+                    </div>
+                    <div className='col1'>
                         <select className="formSelect" name="growth_form" form="plantForm">
                             <option>Please choose a form</option>
                             <option>Restiad</option>
@@ -128,6 +144,7 @@ export default function PlantPage(){
                         <input className="formItems" type="text" placeholder="Vegetation Type" name="veg_type" />
                         <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
+                    </div>    
                     </form>
                 </div>
             </div>

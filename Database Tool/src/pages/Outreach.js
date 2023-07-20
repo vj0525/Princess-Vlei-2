@@ -61,7 +61,7 @@ export default function OutreachPage(){
             <div className="body-div">
                 <div className="panels">
                     <form className="quickTest" id="educationForm" onSubmit={(event)=>submitInfo(event)}>
-                        <div className='col1'>
+                        <div className='col1' id="titles">
                             <h3 className="formAccessories">Event Type:</h3>
                             <h3 className="formAccessories">School:</h3>
                             <h3 className="formAccessories">School Grade:</h3>
@@ -73,11 +73,13 @@ export default function OutreachPage(){
                             <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
                             <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
                         </div>
-                        <div className='col1'>
-                            <h3 className="formAccessories">Average Score:</h3>
+                        <div className='col1' id="titles">
+                            <h3 className="formAccessories">Avg Connected with Nature:</h3>
+                            <h3 className="formAccessories">Avg Learned Something:</h3>
+                            <h3 className="formAccessories">Avg Enjoyed Experience:</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="number" min="0.0" max="10.0" placeholder="Average Score" name="avg_score" />
+                            <input className="formItems" type="number" min="0" max="100" placeholder="Average Score" name="avg_score" />
                         </div>
                     </form>    
                 </div>

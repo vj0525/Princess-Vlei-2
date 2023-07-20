@@ -73,9 +73,10 @@ export default function ModAnimalPage(){
         document.getElementById('forIDPurposes').appendChild(newSet);
     }
     async function searchFilter(key){
-        console.log(key);
+        let timeout = setTimeout(800);
+
         let keyString = key.toLowerCase();
-        const response = await fetch(`https://pv-test.onrender.com/api/organism?title=${keyString}`, {
+        const response = await fetch(`https://pv-test.onrender.com/api/organism?name=${keyString}`, {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         });
@@ -87,6 +88,7 @@ export default function ModAnimalPage(){
         console.log(data);
         return data;
     }
+    
     return (
         <div className="main-div">
             <TopBar />

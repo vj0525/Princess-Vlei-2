@@ -14,6 +14,23 @@ export default function OutreachPage(){
     const navToNew = () => {
         navigate('/NewData');
     }
+    function updateMessage(error, route=""){
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(oldMessageIfApplies){
+            console.log(oldMessageIfApplies)
+            oldMessageIfApplies.remove();
+        }
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = error;
+        paragraph.setAttribute('id','errorMessage');
+        if(route){
+            const linked = document.createElement('a');
+            linked.setAttribute('href',route);
+            linked.innerHTML = 'here';
+            paragraph.appendChild(linked);
+        }
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
@@ -59,7 +76,8 @@ export default function OutreachPage(){
                     </form>    
                 </div>
             </div>
-            
+            <div id="forErrorMessages">
+            </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
                 <button type="submit" form="educationForm" id="submission" value="Submit"><p className="textP">Submit</p></button>

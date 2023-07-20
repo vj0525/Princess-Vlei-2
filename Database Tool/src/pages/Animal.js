@@ -14,6 +14,23 @@ export default function AnimalPage(){
     const navToOrg = () => {
         navigate('/Organism');
     }
+    function updateMessage(error, route=""){
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(oldMessageIfApplies){
+            console.log(oldMessageIfApplies)
+            oldMessageIfApplies.remove();
+        }
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = error;
+        paragraph.setAttribute('id','errorMessage');
+        if(route){
+            const linked = document.createElement('a');
+            linked.setAttribute('href',route);
+            linked.innerHTML = 'here';
+            paragraph.appendChild(linked);
+        }
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
@@ -24,6 +41,11 @@ export default function AnimalPage(){
         let data = Object.fromEntries(pandorasBox.entries());
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
+        if(data['conservation_status']==='Please choose a status'){
+            updateMessage('Please choose a conservation status before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         const dataString = JSON.stringify(data).toLowerCase();
         console.log(dataString);
         const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
@@ -75,6 +97,8 @@ export default function AnimalPage(){
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
                     </form>
                 </div>
+            </div>
+            <div id="forErrorMessages">
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />

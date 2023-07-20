@@ -14,6 +14,23 @@ export default function PlantPage(){
     const navToOrg = () => {
         navigate('/Organism');
     }
+    function updateMessage(error, route=""){
+        const oldMessageIfApplies = document.getElementById('errorMessage');
+        if(oldMessageIfApplies){
+            console.log(oldMessageIfApplies)
+            oldMessageIfApplies.remove();
+        }
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = error;
+        paragraph.setAttribute('id','errorMessage');
+        if(route){
+            const linked = document.createElement('a');
+            linked.setAttribute('href',route);
+            linked.innerHTML = 'here';
+            paragraph.appendChild(linked);
+        }
+        document.getElementById('forErrorMessages').appendChild(paragraph);
+    }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
@@ -24,6 +41,11 @@ export default function PlantPage(){
         let data = Object.fromEntries(pandorasBox.entries());
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
+        if(data['conservation_status']==='Please choose a status'){
+            updateMessage('Please choose a conservation status before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         const dataStringOrg = JSON.stringify(data).toLowerCase();
         console.log(dataStringOrg);
         const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
@@ -75,7 +97,18 @@ export default function PlantPage(){
                         <input className="formItems" type="text" placeholder="Genus" name="genus" />
                         <input className="formItems" type="text" placeholder="Species" name="species" />
                         <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
-                        <input className="formItems" type="text" placeholder="Conservation Status" name="conservation_status" />
+                        <select className="formItems" name="conservation_status" form="animalForm">
+                            <option>Please choose a status</option>
+                            <option>Data Deficient (DD)</option>
+                            <option>Not Evaluated (NE)</option>
+                            <option>Least Concern (LC)</option>
+                            <option>Near Threatened (NT)</option>
+                            <option>Vulnerable (VU)</option>
+                            <option>Endangered (EN)</option>
+                            <option>Critically Endangered (CR)</option>
+                            <option>Extinct in the Wild (EW)</option>
+                            <option>Extinct (EX)</option>
+                        </select>
                         <input className="formItems" type="text" placeholder="Growth Form" name="growth_form" />
                         <input className="formItems" type="text" placeholder="Growing Method" name="growing_method" />
                         <input className="formItems" type="text" placeholder="Vegetation Type" name="veg_type" />
@@ -83,6 +116,8 @@ export default function PlantPage(){
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
                     </form>
                 </div>
+            </div>
+            <div id="forErrorMessages">
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />

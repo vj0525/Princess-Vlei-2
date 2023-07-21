@@ -130,7 +130,9 @@ h2 {
   vertical-align: middle;
 }
 .orgEntry{
-  background-color: rgba(38, 206, 228, 0.8);
+  font-family: 'Open Sans', sans-serif;
+  border: 1px solid #3a6d06;
+  background-color: #70c4dd2e;
   border-radius: 10px;
   padding: 10px;
   margin-left: 35%;

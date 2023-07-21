@@ -18,15 +18,18 @@ export default function ModSurveyOnePage(){
     const navToNew = () => {
         navigate('/modify');
     }
+
+    function back() {
+        window.history.back();
+    }
     
     return (
         <div className="main-div">
             <TopBar />
-            <h2>What type of organism do you want to see survey data on?</h2>
-            <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
-            <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
+            <h2>What Survey do you Want to Modify?</h2>
+
             <div>
-            <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
+            <FancyButton title="Back" buttonFunc={()=>back()} specialty={true} />
             </div>
         </div>
     )

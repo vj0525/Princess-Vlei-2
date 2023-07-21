@@ -143,6 +143,11 @@ h2 {
 .trash, .edit{
   margin-left: 15%;
   width: 27.5%;
+  background-color: #0e5384;
+  color: #FFFFFF;
+  padding: 2%;
+  border-radius: 7px;  
+  font-family: 'Open Sans', sans-serif;
 }
 #modSearchBox{
   margin-left: 40%;
@@ -150,11 +155,16 @@ h2 {
 }
 #modSearchButton{
   background-color: #0e5384;
-    color: #FFFFFF;
-    border: 5px solid #0e5384;
-    border-radius:7px;
-    display: inline-flex;
-    text-align: center;
+  color: #FFFFFF;
+  border: 5px solid #0e5384;
+  border-radius:7px;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  padding: 1.5%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 .col1 {

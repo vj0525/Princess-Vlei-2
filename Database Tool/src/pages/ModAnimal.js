@@ -31,7 +31,7 @@ export default function ModAnimalPage(){
     function DivMaker(organism){
         const entry = document.createElement('div');
         entry.setAttribute('class', 'orgEntry');
-        entry.setAttribute('id', `orgEntry-${organism.orgID}`);
+        entry.setAttribute('id', `${organism.orgID}`);
         const common = document.createElement('h4');
         common.innerHTML = `Name: ${organism['Common_Name']}`;
         const genus = document.createElement('h4');
@@ -42,10 +42,11 @@ export default function ModAnimalPage(){
         conserve.innerHTML = `Conservation Status: ${organism['Conservation_Status']}`;
         const trashButton = document.createElement('button');
         trashButton.setAttribute('class','trash');
-        trashButton.innerHTML = 'delete organism';
+        trashButton.addEventListener('click',()=>areYouSure(organism.orgID));
+        trashButton.innerHTML = 'Delete Organism';
         const editButton = document.createElement('button');
         editButton.setAttribute('class', 'edit');
-        editButton.innerHTML = 'edit organism';
+        editButton.innerHTML = 'Edit Organism';
         entry.appendChild(common);
         entry.appendChild(genus);
         entry.appendChild(species);
@@ -87,6 +88,67 @@ export default function ModAnimalPage(){
             navToError();
             return;
         }
+        console.log(data);
+        return data;
+    }
+    function areYouSure(id=0){
+        console.log("hello", id);
+        const entry = document.getElementById(id);
+        entry.innerHTML = "Are you sure you want to delete this organism?";
+        const unsure = document.createElement('button');
+        unsure.innerHTML = "No";
+        unsure.addEventListener('click',()=>undoDelete(id));
+        entry.appendChild(unsure);
+        const sure = document.createElement('button');
+        sure.innerHTML = "Yes";
+        sure.addEventListener('click',()=>deleteOrganism(id));
+        entry.appendChild(sure);
+    }
+    async function undoDelete(id){
+        const response = await fetch(`https://pv-test.onrender.com/api/organism/${id}`, {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json();
+        if (!response.ok){
+            navToError();
+            return;
+        }
+        const entry = document.getElementById(id);
+        entry.innerHTML = "";
+        const common = document.createElement('h4');
+        common.innerHTML = `Name: ${data['Common_Name']}`;
+        const genus = document.createElement('h4');
+        genus.innerHTML = `Genus: ${data['Genus']}`;
+        const species = document.createElement('h4');
+        species.innerHTML = `Species: ${data['Species']}`;
+        const conserve = document.createElement('h4');
+        conserve.innerHTML = `Conservation Status: ${data['Conservation_Status']}`;
+        const trashButton = document.createElement('button');
+        trashButton.setAttribute('class','trash');
+        trashButton.addEventListener('click',()=>areYouSure(id));
+        trashButton.innerHTML = 'Delete Organism';
+        const editButton = document.createElement('button');
+        editButton.setAttribute('class', 'edit');
+        editButton.innerHTML = 'Edit Organism';
+        entry.appendChild(common);
+        entry.appendChild(genus);
+        entry.appendChild(species);
+        entry.appendChild(conserve);
+        entry.appendChild(trashButton);
+        entry.appendChild(editButton);
+    }
+    async function deleteOrganism(id){
+        const response = await fetch(`https://pv-test.onrender.com/api/organism/${id}`, {
+            method: 'DELETE',
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json();
+        if (!response.ok){
+            navToError();
+            return;
+        }
+        document.getElementById(id).innerHTML = "Organism was deleted successfully!";
         console.log(data);
         return data;
     }

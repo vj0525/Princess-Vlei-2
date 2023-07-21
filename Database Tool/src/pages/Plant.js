@@ -56,6 +56,11 @@ export default function PlantPage(){
             document.getElementById("loadText").innerHTML = "";
             return;
         }
+        if(data['veg_type']==='Please choose a type'){
+            updateMessage('Please choose a vegetation type before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         const dataStringOrg = JSON.stringify(data).toLowerCase();
         console.log(dataStringOrg);
         const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
@@ -141,7 +146,12 @@ export default function PlantPage(){
                             <option>Seed</option>
                             <option>Cutting</option>
                         </select>
-                        <input className="formItems" type="text" placeholder="Vegetation Type" name="veg_type" />
+                        <select className="formSelect" name="veg_type" form="plantForm">
+                            <option>Please choose a type</option>
+                            <option>Cape Flats Dune Strandveld</option>
+                            <option>Cape Flats Sand Fynbos</option>
+                            <option>Cape Flats Freshwater Vegetation</option>
+                        </select>
                         <input className="formBox" type="checkbox" placeholder="Alien" name="alien" /> {/*Three options of indigienous, non-invasive alien or invasive alien. Don't allow checkboxes to check invasive but not alien */}
                         <input className="formBox" type="checkbox" placeholder="Invasive" name="invasive" />
                     </div>    

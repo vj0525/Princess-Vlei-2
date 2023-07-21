@@ -94,8 +94,10 @@ code {
 }
 #login-div{
   text-align: center;
+  align-items: center;
   display: block;
-  width: 100%;
+  width: 65%;
+  margin-left: 36%;
 }
 #login-panel{
   text-align: center;

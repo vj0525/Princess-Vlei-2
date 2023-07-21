@@ -40,10 +40,9 @@ Flora.findById = (floraID, result) => {
   });
 };
 
-//We need to do some analysis on this function before implementation
-/*
-Organism.getAll = (common_name, result) => {
-  let query = "SELECT * FROM Organism";
+
+Flora.getAll = (common_name, result) => {
+  let query = "SELECT * FROM Flora";
 
   if (common_name) {
     query += ` WHERE common_name LIKE '%${common_name}%'`;
@@ -56,11 +55,11 @@ Organism.getAll = (common_name, result) => {
       return;
     }
 
-    console.log("Organisms: ", res);
+    console.log("Flora: ", res);
     result(null, res);
   });
 };
-*/
+
 
 Flora.getAllInvasive = result => {
   sql.query("SELECT * FROM Flora NATURAL JOIN Organism WHERE invasive = true", (err, res) => {

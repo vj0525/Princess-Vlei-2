@@ -28,21 +28,20 @@ exports.create = (req, res) => {
   });
 };
 
-/*
-// Retrieve all Organism from the database (with condition).
-exports.findAll = (req, res) => {
-  const title = req.query.title;
 
-  Organism.getAll(title, (err, data) => {
+// Retrieve all Flora from the database (with condition).
+exports.findAll = (req, res) => {
+  const name = req.query.name;
+
+  Flora.getAll(name, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving organisms."
+          err.message || "Some error occurred while retrieving flora."
       });
     else res.send(data);
   });
 };
-*/
 
 exports.findAllInvasive = (req, res) => {
   Flora.getAllInvasive((err, data) => {
@@ -55,7 +54,7 @@ exports.findAllInvasive = (req, res) => {
   });
 };
 
-// Find a single Organism with a id
+// Find a single Flora with a id
 exports.findOne = (req, res) => {
     Flora.findById(req.params.id, (err, data) => {
     if (err) {

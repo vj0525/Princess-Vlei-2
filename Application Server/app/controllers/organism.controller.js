@@ -32,9 +32,9 @@ exports.create = (req, res) => {
 
 // Retrieve all Organism from the database (with condition).
 exports.findAll = (req, res) => {
-  const title = req.query.title;
+  const name = req.query.name;
 
-  Organism.getAll(title, (err, data) => {
+  Organism.getAll(name, (err, data) => {
     if (err)
       res.status(500).send({
         message:

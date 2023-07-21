@@ -161,7 +161,7 @@ export default function ModAnimalPage(){
             If you'd like to see all entries, just hit enter with nothing in the search box</h3>
             <div className="centerer">
             <input className="formItems" id="modSearchBox" type="text" onChange={(key)=>setSearch(key.target.value)} placeholder="Search here for a specific animal"/>
-            <button id="modSearchButton" onClick={()=>putUpDivs(searchFilter,search)}>enter</button>
+            <button id="modSearchButton" onClick={()=>putUpDivs(searchFilter,search)}>Enter</button>
             </div>
             <div id="forIDPurposes">
                 <div id="data-container">

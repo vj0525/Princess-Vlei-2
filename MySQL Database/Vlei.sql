@@ -13,9 +13,10 @@ CREATE TABLE Fauna_Survey (
 	faunaSID int NOT NULL AUTO_INCREMENT,
 	faunaID int NOT NULL,
 	Survey_Date date NOT NULL,
-	Sex varchar(1) NOT NULL,
-	Latitude int NOT NULL,
-	Longitude int NOT NULL,
+	Sex varchar(1),
+	Latitude int,
+	Longitude int,
+	Location varchar(2) NOT NULL,
 	Activity varchar(255) NOT NULL,
 	Life_Stage varchar(255) NOT NULL,
 	PRIMARY KEY (faunaSID),
@@ -33,22 +34,36 @@ CREATE TABLE Flora (
 
 CREATE TABLE Flora_Survey (
 	floraSID int NOT NULL AUTO_INCREMENT,
-	floraID int REFERENCES Flora(floraID),
 	Survey_Date date NOT NULL,
-	Latitude int NOT NULL,
-	Longitude int NOT NULL,
-    PRIMARY KEY (floraSID),
-    FOREIGN KEY(floraID) REFERENCES Flora(floraID)
+	Latitude int,
+	Longitude int,
+	Location varchar(2) NOT NULL,
+    PRIMARY KEY (floraSID)
+);
+
+CREATE TABLE Flora_Survey_Species(
+	floraSID int NOT NULL REFERENCES Flora_Survey(floraSID),
+	FOREIGN KEY(floraSID) REFERENCES Flora_Survey(floraSID),
+	floraID int NOT NULL REFERENCES Flora(floraID),
+	FOREIGN KEY(floraID) REFERENCES Flora(floraID)
 );
 
 CREATE TABLE Education (
 	eduID int NOT NULL AUTO_INCREMENT,
+	Event_Date date NOT NULL,
 	Event_Type varchar(255) NOT NULL,
 	School varchar(255) NOT NULL,
 	School_Grade int NOT NULL,
 	Num_Of_Learners int NOT NULL,
 	Avg_Score int NOT NULL,
 	PRIMARY KEY (eduID)
+);
+
+CREATE TABLE User (
+	uID int NOT NULL AUTO_INCREMENT,
+	Username varchar(255) UNIQUE NOT NULL,
+	Password varchar(255) NOT NULL,
+	PRIMARY KEY (uID)
 );
 
 #-----------------NOT USED------------------------#

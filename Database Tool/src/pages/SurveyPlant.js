@@ -47,7 +47,7 @@ export default function SurveyPlantPage(){
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
-        
+        /*
         document.getElementById("loadText").innerHTML = "Loading...";
 
         const pandorasBox = new FormData(event.target);
@@ -56,7 +56,7 @@ export default function SurveyPlantPage(){
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
-        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?title=${data["common_name"].toLowerCase()}`, {
+        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
             method: 'GET'
         });
         console.log(responseID);
@@ -82,13 +82,7 @@ export default function SurveyPlantPage(){
             return;
         }
         //Next make sure it's a flora
-        //Gonna have to test tomorrow with database consistency 
-        /*
-        const responsePlanthood = await fetch(`https://pv-test.onrender.com/api/flora?floraID=${orgID})}`, {
-            method: 'GET'
-        });
-        console.log(responsePlanthood)
-        */
+        //Gonna have to test tomorrow with database consistency
         data["floraID"] = orgID;
         const dataStringFull = JSON.stringify(data);
         console.log(dataStringFull);
@@ -103,26 +97,72 @@ export default function SurveyPlantPage(){
         }
         console.log(data);
         navToSuc();
+        */
         return;
     }
 
     return(
         <div className="main-div">
             <TopBar />
-            <h2>Enter the location information from the survey data</h2>
+            <h2>Enter the Location Information from the Survey Data:</h2>
             <div className="body-div">
-                <div className="panels" id="titles">
-                    <h3 className="formAccessories">Common Name:</h3>
-                    <h3 className="formAccessories">Date:</h3>
-                    <h3 className="formAccessories">Latitude:</h3>
-                    <h3 className="formAccessories">Longitude:</h3>
-                </div>
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
-                        <input className="formItems" type="text" placeholder="Plant Name" name="common_name" required/>
-                        <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
-                        <input className="formItems" type="text" placeholder="Latitude" name="latitude" required/>
-                        <input className="formItems" type="text" placeholder="Longitude" name="longitude" required/> 
+                        <div className='col1' id="titles">
+                            <h3 className="formAccessories">Date:</h3>
+                            <h3 className="formAccessories">Vegetation Type:</h3>
+                            <h3 className="formAccessories">Location:</h3>
+                            <h3 className="formAccessories">Latitude (if known):</h3>
+                            <h3 className="formAccessories">Longitude (if known):</h3>
+                            <h3 className="formAccessories">Number of species present:</h3>
+                            <h3 className="formAccessories">Annual Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Bare Ground Area Cover Percentage:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
+                            <select className="formItems" name="veg_type" form="surveyForm">
+                                <option>Please choose a vegetation type</option>
+                                <option>Cape Flats Dune Standveld</option>
+                                <option>Cape Flats Sand Fynbos</option>
+                                <option>Cape Flats Freshwater Vegetation</option>
+                            </select>
+                            <select className="formItems" name="location" form="surveyForm">
+                                <option>Please choose a location</option>
+                                <option>Civic Dunes</option>
+                                <option>South Shore</option>
+                                <option>Button Dunes</option>
+                                <option>Elegia Nuda Drainage Line</option>
+                                <option>Slipway</option>
+                                <option>North Shore</option>
+                                <option>South Field</option>
+                                <option>East Shore</option>
+                            </select>
+                            <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
+                            <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
+                            <input className="formItems" type="number" placeholder="Number of Species" min="0" max="1000" step="1" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="annual_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="bare_ground_cover" />
+                        </div>
+                        <div className='col1' id="titles">
+                            <h3 className="formAccessories">Restiad Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Gramnoid Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Erica Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Protea Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">HerbPen Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Small Shrub Ground Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Large Shrub Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Geophyte Area Cover Percentage:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="restiad_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbpen_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophyte_cover" />
+                        </div>
                     </form>    
                 </div>
             </div>

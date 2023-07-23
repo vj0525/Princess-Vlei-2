@@ -21,10 +21,10 @@ export default function IntroPage() {
     const navToNew = () => {
         navigate('/NewData');
     }
-/* For once we make modifying data option
+//For once we make modifying data option
     const navToModify = () => {
         navigate('/modify');
-    }*/
+    }
 
     const navToLogIn = () => {
         navigate('/');
@@ -36,7 +36,7 @@ export default function IntroPage() {
             <h2>Welcome!<br />
             What would you like to do?</h2>
             <FancyButton title="Enter New Data" buttonFunc={()=>navToNew()}/>
-            <FancyButton title="Modify Existing Data" buttonFunc={()=>console.log("Hello World")} />
+            <FancyButton title="Modify Existing Data" buttonFunc={()=>navToModify()} />
             <div>
                 <FancyButton title="Log Out" buttonFunc={()=>navToLogIn()} specialty={true} />
             </div>

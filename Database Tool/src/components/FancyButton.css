@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
+
 .fancy-button{
     background-color: #449aad;
     color: #FFFFFF;
@@ -15,6 +16,7 @@
     text-align: center;
     line-height: 150%;
     display: inline-block;
+    align-items: baseline;
 }
 .fancy-button:hover{
     animation-name: mouseNonspecial;
@@ -37,11 +39,10 @@
     border-radius:7px;
     display: inline-flex;
     text-align: center;
-    width: 22%;
-    height: 7%;
+    width: 200px;
+    height: 86px;
     margin: 3%;
     padding: 1%;
-    font-size: 1.2vw;
     font-weight: 400;
     cursor: pointer;
     align-items: center;
@@ -60,9 +61,18 @@
         color: #0e5384;
     }
 }
+#submission {
+    max-width: 240px;
+    max-height: 190px;
+    min-width: 210px;
+    min-height: 125px;
+    width: 30%;
+    height: auto;
+    line-height: -10px;
+}
 .textP, #submission {
     font-family: 'Open Sans', sans-serif;
-    font-size: 150%;
     text-align: center;
     font-weight: 400;
+    font-size: 20px;
 }

@@ -56,7 +56,7 @@ export default function SurveyAnimalPage(){
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
-        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?title=${data["common_name"].toLowerCase()}`, {
+        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
             method: 'GET'
         });
         console.log(responseID);
@@ -101,26 +101,40 @@ export default function SurveyAnimalPage(){
     return(
         <div className="main-div">
             <TopBar />
-            <h2>Enter the information you'd like to provide</h2>
+            <h2>Enter the Information you'd like to Provide:</h2>
             <div className="body-div">
-                <div className="panels" id="titles">
-                    <h3 className="formAccessories">Common Name:</h3>
-                    <h3 className="formAccessories">Date:</h3>
-                    <h3 className="formAccessories">Latitude:</h3>
-                    <h3 className="formAccessories">Longitude:</h3>
-                    <h3 className="formAccessories">Sex:</h3>
-                    <h3 className="formAccessories">Activity:</h3>
-                    <h3 className="formAccessories">Life Stage:</h3>
-                </div>
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
-                        <input className="formItems" type="text" placeholder="Animal Name" name="common_name" required/>
-                        <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
-                        <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
-                        <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
-                        <input className="formItems" type="text" placeholder="Sex" name="sex" />
-                        <input className="formItems" type="text" placeholder="Activity" name="activity" />
-                        <input className="formItems" type="text" placeholder="Life Stage" name="life_stage" />
+                        <div className='col1'>
+                            <h3 className="formAccessories" id="titles">Common Name:</h3>
+                            <h3 className="formAccessories" id="titles">Sex:</h3>
+                            <h3 className="formAccessories" id="titles">Activity:</h3>
+                            <h3 className="formAccessories" id="titles">Life Stage:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="text" placeholder="Animal Name" name="common_name" required/>
+                            <input className="formItems" type="text" placeholder="Sex" name="sex" />
+                            <input className="formItems" type="text" placeholder="Activity" name="activity" />
+                            <input className="formItems" type="text" placeholder="Life Stage" name="life_stage" />
+                        </div>
+                        <div className='col1'>
+                            <h3 className="formAccessories" id="titles">Date:</h3>
+                            <h3 className="formAccessories" id="titles">Location:</h3>
+                            <h3 className="formAccessories" id="titles">Latitude:</h3>
+                            <h3 className="formAccessories" id="titles">Longitude:</h3>
+                        </div>
+                        <div className='col1'>
+                            <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
+                            <select className="formItems" name="location" form="surveyForm">
+                                <option>Please choose a location</option>
+                                <option>East</option>
+                                <option>West</option>
+                                <option>North</option>
+                                <option>South</option>
+                            </select>
+                            <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
+                            <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
+                        </div>
                     </form>    
                 </div>
             </div>

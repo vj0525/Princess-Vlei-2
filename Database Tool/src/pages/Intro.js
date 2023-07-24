@@ -18,11 +18,11 @@ export default function IntroPage() {
     const location = useLocation();
     const navigate = useNavigate();
     const navToNew = () => {
-        navigate('/NewData', {state:{'token':location.state.token_value}});
+        navigate('/NewData', {state:{token_value:location.state.token_value}});
     }
 //For once we make modifying data option
     const navToModify = () => {
-        navigate('/modify', {state:{'token':location.state.token_value}});
+        navigate('/modify', {state:{token_value:location.state.token_value}});
     }
 
     const navToLogIn = () => {

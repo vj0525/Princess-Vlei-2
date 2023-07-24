@@ -7,19 +7,19 @@ export default function NewDataPage(){
     const navigate = useNavigate();
 
     const navToOrg = () => {
-        navigate('/organism',{state:{'token_value':location.state.token_value}});
+        navigate('/organism',{state:{token_value:location.state.token_value}});
     }
 
     const navToSury = () => {
-        navigate('/surveyone',{state:{'token_value':location.state.token_value}});
+        navigate('/surveyone',{state:{token_value:location.state.token_value}});
     }
 
     const navToOut = () => {
-        navigate('/outreach',{state:{'token_value':location.state.token_value}});
+        navigate('/outreach',{state:{token_value:location.state.token_value}});
     }
 
     const navToIntro = () => {
-        navigate('/intro',{state:{'token_value':location.state.token_value}});
+        navigate('/intro',{state:{token_value:location.state.token_value}});
       }
     
     return (

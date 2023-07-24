@@ -10,6 +10,7 @@ export default function Login(){
       navigate('/intro', {state:{token_value: token}});
     }
     async function logUser(event) {
+      console.log("logging");
       event.preventDefault();
       const pandorasBox = new FormData(event.target);
       let data = Object.fromEntries(pandorasBox.entries()); 

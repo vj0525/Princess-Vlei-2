@@ -8,15 +8,15 @@ export default function OrganismPage(){
     const navigate = useNavigate();
 
     const navToPlant = () => {
-        navigate('/plant',{state:{'token_value':location.state.token_value}});
+        navigate('/plant',{state:{token_value:location.state.token_value}});
     }
 
     const navToAni = () => {
-        navigate('/animal',{state:{'token_value':location.state.token_value}});
+        navigate('/animal',{state:{token_value:location.state.token_value}});
     }
     
     const navToNew = () => {
-        navigate('/NewData',{state:{'token_value':location.state.token_value}});
+        navigate('/NewData',{state:{token_value:location.state.token_value}});
     }
 
     return (

@@ -7,7 +7,7 @@ const Flora_Survey = function(flora_survey) {
   this.latitude = flora_survey.latitude;
   this.longitude = flora_survey.longitude;
   this.location = flora_survey.location;
-  this.restaid = flora_survey.restaid;
+  this.restiad = flora_survey.restiad;
   this.gramnoid = flora_survey.gramnoid;
   this.erica = flora_survey.erica;
   this.protea = flora_survey.protea;
@@ -81,8 +81,8 @@ Flora_Survey.getAllInvasive = result => {
 
 Flora_Survey.updateById = (floraSID, Flora_Survey, result) => {
   sql.query(
-    "UPDATE Flora_Survey SET survey_date = ?, num_species = ?, latitude = ?, longitude = ?, location = ?, restaid = ?, gramnoid = ?, erica = ?, protea = ?, herbPen = ?, small_shrub = ?, large_shrub = ?, geophytes = ?, annual = ? WHERE floraSID = ?",
-    [Flora_Survey.growth_form, Flora_Survey.num_species, Flora_Survey.growing_method, Flora_Survey.veg_type, Flora_Survey.location, Flora_Survey.restaid, Flora_Survey.gramnoid, Flora_Survey.erica, Flora_Survey.protea, Flora_Survey.herbPen, Flora_Survey.small_shrub, Flora_Survey.large_shrub, Flora_Survey.geophytes, Flora_Survey.annual, Flora_Survey.bare_ground, floraSID],
+    "UPDATE Flora_Survey SET survey_date = ?, num_species = ?, latitude = ?, longitude = ?, location = ?, restiad = ?, gramnoid = ?, erica = ?, protea = ?, herbPen = ?, small_shrub = ?, large_shrub = ?, geophytes = ?, annual = ? WHERE floraSID = ?",
+    [Flora_Survey.growth_form, Flora_Survey.num_species, Flora_Survey.growing_method, Flora_Survey.veg_type, Flora_Survey.location, Flora_Survey.restiad, Flora_Survey.gramnoid, Flora_Survey.erica, Flora_Survey.protea, Flora_Survey.herbPen, Flora_Survey.small_shrub, Flora_Survey.large_shrub, Flora_Survey.geophytes, Flora_Survey.annual, Flora_Survey.bare_ground, floraSID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

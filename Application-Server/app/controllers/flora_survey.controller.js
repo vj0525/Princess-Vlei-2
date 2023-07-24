@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     location: req.body.location,
-    restaid: req.body.restaid,
+    restiad: req.body.restiad,
     gramnoid: req.body.gramnoid,
     erica: req.body.erica,
     protea: req.body.protea,

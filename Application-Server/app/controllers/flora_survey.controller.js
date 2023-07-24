@@ -11,10 +11,21 @@ exports.create = (req, res) => {
 
   // Create a Organism
   const flora_survey = new Flora_Survey({
-    floraID: req.body.floraID,
     survey_date: req.body.survey_date,
+    num_species: req.body.num_species,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
+    location: req.body.location,
+    restiad: req.body.restiad,
+    gramnoid: req.body.gramnoid,
+    erica: req.body.erica,
+    protea: req.body.protea,
+    herbPen: req.body.herbPen,
+    small_shrub: req.body.small_shrub,
+    large_shrub: req.body.large_shrub,
+    geophytes: req.body.geophytes,
+    annual: req.body.annual,
+    bare_ground: req.body.bare_ground
   });
 
   // Save Organism in the database

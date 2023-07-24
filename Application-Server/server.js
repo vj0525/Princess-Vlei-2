@@ -6,11 +6,13 @@ require('dotenv').config({path: __dirname + '/.env'})
 
 const app = express();
 
+/*
 var corsOptions = {
   origin: ["http://localhost:3000", "http://localhost:8081"]
 };
+*/
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -27,7 +29,9 @@ require("./app/routes/organism.routes.js")(app);
 require("./app/routes/fauna_survey.routes.js")(app);
 require("./app/routes/flora.routes.js")(app);
 require("./app/routes/flora_survey.routes.js")(app);
+require("./app/routes/flora_survey_species.routes.js")(app);
 require("./app/routes/education.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

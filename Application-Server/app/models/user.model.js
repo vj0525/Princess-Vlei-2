@@ -48,6 +48,7 @@ User.findByUsername = (username, result) => {
       return;
     }
 
+    console.log("User not found");
     // not found Organism with the id
     result({ kind: "not_found" }, null);
   });

@@ -46,23 +46,24 @@ exports.login = (req,res) => {
         message:
           err.message || "Some error occurred while finding the username."
       });
-    
-    bcrypt.compare(user.password, data.Password, function(err, result) {
-      if (err)
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while comparing passwords."
-      });
-
-      if(result == true){
-        const token = jwt.sign({username:user.username},"princess_vlei");
-        res.status(200).json({user:{token}});
-      }else{
-        res.status(500).send({
-          message: "Incorrect Password."
+    else{
+      bcrypt.compare(user.password, data.Password, function(err, result) {
+        if (err)
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while comparing passwords."
         });
-      }
-    });
+
+        if(result == true){
+          const token = jwt.sign({username:user.username},"princess_vlei");
+          res.status(200).json({user:{token}});
+        }else{
+          res.status(500).send({
+            message: "Incorrect Password."
+          });
+        }
+      });
+    }
   });
   
 }

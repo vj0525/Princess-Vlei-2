@@ -4,18 +4,16 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Login(){
-  const [token, setToken] = useState("");
   const navigate = useNavigate();
-
+  let token = "";
     const navToIntro = () => {
-      navigate('/intro', {state:{'token':token}});
+      navigate('/intro', {state:{token_value: token}});
     }
     async function logUser(event) {
       event.preventDefault();
       const pandorasBox = new FormData(event.target);
       let data = Object.fromEntries(pandorasBox.entries()); 
       const dataString = JSON.stringify(data).toLowerCase();
-      console.log(dataString);
       const response = await fetch('https://pv-test.onrender.com/api/user/login', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -27,7 +25,7 @@ export default function Login(){
       return;
     }
     else if(response.status === 200){
-      setToken(received.token);
+      token = received.user.token;
       navToIntro();
     }
     else{

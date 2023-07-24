@@ -1,18 +1,19 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
 export default function AnimalPage(){
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navToSuc = () => {
-        navigate('/Success');
+        navigate('/Success',{state:{'token_value':location.state.token_value}});
     }
     const navToError = () => {
-        navigate('/Error')
+        navigate('/Error',{state:{'token_value':location.state.token_value}})
     }
     const navToOrg = () => {
-        navigate('/Organism');
+        navigate('/Organism',{state:{'token_value':location.state.token_value}});
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
@@ -48,9 +49,11 @@ export default function AnimalPage(){
         }
         const dataString = JSON.stringify(data).toLowerCase();
         console.log(dataString);
+        console.log(location.state.token_value);
         const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json",
+                        "Token": location.state.token_value},
             body: dataString
         });
         await responseOrg.json();

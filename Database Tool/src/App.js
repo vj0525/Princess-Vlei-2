@@ -11,6 +11,7 @@ import SuccessPage from './pages/Success';
 import SurveyOnePage from './pages/SurveyOne';
 import SurveyAnimalPage from './pages/SurveyAnimal';
 import SurveyPlantPage from './pages/SurveyPlant';
+import SurveyPlantSpecPage from './pages/SurveyPlantSpec';
 import ModDataPage from './pages/ModData';
 import ModAnimalPage from './pages/ModAnimal';
 import ModPlantPage from './pages/ModPlant';
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/surveyone" element={<SurveyOnePage />} />
         <Route path="/surveyanimal" element={<SurveyAnimalPage />} />
         <Route path="/surveyplant" element={<SurveyPlantPage />} />
+        <Route path="surveyplantspec" element={<SurveyPlantSpecPage />} />
         <Route path="/modify" element={<ModDataPage />} />
         <Route path="/animal-modify" element={<ModAnimalPage />} />
         <Route path="/plant-modify" element={<ModPlantPage />} />

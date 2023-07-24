@@ -1,11 +1,16 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import {Routes, Route, useNavigate, useParams} from 'react-router-dom';
 
 export default function SurveyPlantPage(){
 
     const navigate = useNavigate();
 
+    const navContinue = () => {
+        console.log(speciesRichness);
+        navigate('/surveyplantspec',{ state: {count: speciesRichness}});
+    }
     const navToSuc = () => {
         navigate('/success');
     }
@@ -96,11 +101,12 @@ export default function SurveyPlantPage(){
             return;
         }
         console.log(data);
-        navToSuc();
         */
+        navContinue();
+        
         return;
     }
-
+    const [speciesRichness, setSpeciesRichness] = useState(0);
     return(
         <div className="main-div">
             <TopBar />
@@ -114,9 +120,9 @@ export default function SurveyPlantPage(){
                             <h3 className="formAccessories">Location:</h3>
                             <h3 className="formAccessories">Latitude (if known):</h3>
                             <h3 className="formAccessories">Longitude (if known):</h3>
-                            <h3 className="formAccessories">Number of species present:</h3>
-                            <h3 className="formAccessories">Annual Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Bare Ground Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Annual Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Restiad Area Cover Percentage:</h3>
                         </div>
                         <div className='col1'>
                             <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
@@ -139,12 +145,11 @@ export default function SurveyPlantPage(){
                             </select>
                             <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
                             <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
-                            <input className="formItems" type="number" placeholder="Number of Species" min="0" max="1000" step="1" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="annual_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="bare_ground_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="bare_ground" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="annual" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="restiad" />
                         </div>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Restiad Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Gramnoid Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Erica Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Protea Area Cover Percentage:</h3>
@@ -152,16 +157,19 @@ export default function SurveyPlantPage(){
                             <h3 className="formAccessories">Small Shrub Ground Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Large Shrub Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Geophyte Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Number of species present:</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="restiad_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbpen_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophyte_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbpen" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophyte" />
+                            <input className="formItems" type="number" placeholder="Number of Species"
+                            min="0" max="1000" step="1" name="num_species"
+                            onChange={(key)=>setSpeciesRichness(key.target.value)}/>
                         </div>
                     </form>    
                 </div>
@@ -170,7 +178,7 @@ export default function SurveyPlantPage(){
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOne()} specialty={true} />
-                <button type="submit" form="surveyForm" id="submission"><p className="textP">Submit</p></button>
+                <button type="submit" form="surveyForm" id="submission"><p className="textP">Continue</p></button>
             </div>
             <p id="loadText" className="load"></p>
         </div>

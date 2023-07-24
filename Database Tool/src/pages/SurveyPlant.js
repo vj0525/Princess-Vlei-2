@@ -39,8 +39,8 @@ export default function SurveyPlantPage(){
     }
     function addToHundred(data){
         return (data.bare_ground + data.annual + data.restiad
-            + data.gramnoid + data.erica + data.protea + data.herbpen
-            + data.small_shrub + data.large_shrub + data.geophyte) === 100;
+            + data.gramnoid + data.erica + data.protea + data.herbPen
+            + data.small_shrub + data.large_shrub + data.geophytes) === 100;
     }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
@@ -54,10 +54,10 @@ export default function SurveyPlantPage(){
         data.gramnoid = Number(data.gramnoid);
         data.erica = Number(data.erica);
         data.protea = Number(data.protea);
-        data.herbpen = Number(data.herbpen);
+        data.herbPen = Number(data.herbPen);
         data.small_shrub = Number(data.small_shrub);
         data.large_shrub = Number(data.large_shrub);
-        data.geophyte = Number(data.geophyte);
+        data.geophytes = Number(data.geophytes);
         data.num_species = Number(data.num_species);
         data['latitude'] = data['latitude'] ? data['latitude'] : null;
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
@@ -66,7 +66,7 @@ export default function SurveyPlantPage(){
             document.getElementById("loadText").innerHTML = "";
             return;
         }
-        const dataStringFull = JSON.stringify(data).toLowerCase();
+        const dataStringFull = JSON.stringify(data);
         const responseFull = await fetch(`https://pv-test.onrender.com/api/flora_survey`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -137,10 +137,10 @@ export default function SurveyPlantPage(){
                             <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid" />
                             <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica" />
                             <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbpen" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbPen" />
                             <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub" />
                             <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophyte" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophytes" />
                             <input className="formItems" type="number" placeholder="Number of Species"
                             min="0" max="1000" step="1" name="num_species"
                             onChange={(key)=>setSpeciesRichness(key.target.value)}/>

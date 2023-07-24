@@ -7,13 +7,13 @@ export default function AnimalPage(){
     const navigate = useNavigate();
 
     const navToSuc = () => {
-        navigate('/Success',{state:{token_value:location.state.token_value}});
+        navigate('/Success', {state:{token_value:location.state.token_value}});
     }
     const navToError = () => {
-        navigate('/Error',{state:{token_value:location.state.token_value}})
+        navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOrg = () => {
-        navigate('/Organism',{state:{token_value:location.state.token_value}});
+        navigate('/Organism', {state:{token_value:location.state.token_value}});
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
@@ -53,7 +53,7 @@ export default function AnimalPage(){
         const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
-                        "Token": location.state.token_value,},
+                        "Token": location.state.token_value},
             body: dataString
         });
         await responseOrg.json();

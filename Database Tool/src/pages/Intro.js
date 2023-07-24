@@ -17,6 +17,7 @@ import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 export default function IntroPage() {
     const location = useLocation();
     const navigate = useNavigate();
+    
     const navToNew = () => {
         navigate('/NewData', {state:{token_value:location.state.token_value}});
     }

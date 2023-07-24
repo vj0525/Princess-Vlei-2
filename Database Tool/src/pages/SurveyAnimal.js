@@ -1,19 +1,19 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
 export default function SurveyAnimalPage(){
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navToSuc = () => {
-        navigate('/success');
+        navigate('/success', {state:{token_value:location.state.token_value}});
     }
     const navToError = () => {
-        navigate('/Error')
+        navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOne = () => {
-        navigate('/surveyone');
+        navigate('/surveyone', {state:{token_value:location.state.token_value}});
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
@@ -86,7 +86,8 @@ export default function SurveyAnimalPage(){
         console.log(dataStringFull);
         const responseFull = await fetch('https://pv-test.onrender.com/api/fauna_survey', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json",
+                    "Token": location.state.token_value},
             body: dataStringFull
         });
         if (!responseFull.ok){

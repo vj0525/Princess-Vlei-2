@@ -1,10 +1,10 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
 import { useState } from 'react';
-import {Routes, Route, useNavigate, useParams} from 'react-router-dom';
+import {Routes, Route, useNavigate, useParams, useLocation} from 'react-router-dom';
 
 export default function SurveyPlantPage(){
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navContinue = () => {
@@ -12,13 +12,13 @@ export default function SurveyPlantPage(){
         navigate('/surveyplantspec',{ state: {count: Number(speciesRichness)}});
     }
     const navToSuc = () => {
-        navigate('/success');
+        navigate('/success', {state:{token_value:location.state.token_value}});
     }
     const navToError = () => {
-        navigate('/Error')
+        navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOne = () => {
-        navigate('/surveyone');
+        navigate('/surveyone', {state:{token_value:location.state.token_value}});
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
@@ -69,7 +69,8 @@ export default function SurveyPlantPage(){
         const dataStringFull = JSON.stringify(data);
         const responseFull = await fetch(`https://pv-test.onrender.com/api/flora_survey`, {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json",
+                    "Token": location.state.token_value},
             body: dataStringFull
         });
         if (!responseFull.ok){

@@ -1,22 +1,22 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function SurveyOnePage(){
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navToPlant = () => {
-        navigate('/surveyplant');
+        navigate('/surveyplant', {state:{token_value:location.state.token_value}});
     }
 
     const navToAni = () => {
-        navigate('/surveyanimal');
+        navigate('/surveyanimal', {state:{token_value:location.state.token_value}});
     }
     
     const navToNew = () => {
-        navigate('/NewData');
+        navigate('/NewData', {state:{token_value:location.state.token_value}});
     }
     
     return (

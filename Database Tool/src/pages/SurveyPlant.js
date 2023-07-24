@@ -9,7 +9,7 @@ export default function SurveyPlantPage(){
 
     const navContinue = () => {
         console.log(speciesRichness);
-        navigate('/surveyplantspec',{ state: {count: speciesRichness}});
+        navigate('/surveyplantspec',{ state: {count: Number(speciesRichness)}});
     }
     const navToSuc = () => {
         navigate('/success');
@@ -37,61 +37,37 @@ export default function SurveyPlantPage(){
         }
         document.getElementById('forErrorMessages').appendChild(paragraph);
     }
-    function plantDNE(dataWID){
-        let message = "";
-        if(dataWID.length === 0){
-            message = ""
-        }
-        else if(dataWID.length === 1){
-            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }else{
-            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }
-        updateMessage(message,'/plant')
+    function addToHundred(data){
+        return (data.bare_ground + data.annual + data.restiad
+            + data.gramnoid + data.erica + data.protea + data.herbpen
+            + data.small_shrub + data.large_shrub + data.geophyte) === 100;
     }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
-        /*
         document.getElementById("loadText").innerHTML = "Loading...";
-
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
+        data.bare_ground = Number(data.bare_ground);
+        data.annual = Number(data.annual);
+        data.restiad = Number(data.restiad);
+        data.gramnoid = Number(data.gramnoid);
+        data.erica = Number(data.erica);
+        data.protea = Number(data.protea);
+        data.herbpen = Number(data.herbpen);
+        data.small_shrub = Number(data.small_shrub);
+        data.large_shrub = Number(data.large_shrub);
+        data.geophyte = Number(data.geophyte);
+        data.num_species = Number(data.num_species);
         data['latitude'] = data['latitude'] ? data['latitude'] : null;
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
-        const dataStringForID = JSON.stringify(data).toLowerCase();
-        console.log(dataStringForID);
-        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
-            method: 'GET'
-        });
-        console.log(responseID);
-        const dataWID = await responseID.json();
-        if (!responseID.ok){
-            navToError();
-            return;
-        }
-        console.log(dataWID);
-        let orgID = -1;
-        for (let entry in dataWID){
-            console.log(dataWID[entry]);
-            console.log(dataWID[entry]['Common_Name']);
-            if (dataWID[entry]['Common_Name'] === data['common_name'].toLowerCase()){
-                console.log("Caught one");
-                orgID = dataWID[entry]['orgID'];
-                break;
-            }
-        }
-        if (orgID < 0){
-            plantDNE(dataWID);
+        if(!addToHundred(data)){
+            updateMessage('These percentages do not add to a hundred percent. Please recheck your values');
             document.getElementById("loadText").innerHTML = "";
             return;
         }
-        //Next make sure it's a flora
-        //Gonna have to test tomorrow with database consistency
-        data["floraID"] = orgID;
-        const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull);
-        const responseFull = await fetch('https://pv-test.onrender.com/api/flora_survey', {
+        const dataStringFull = JSON.stringify(data).toLowerCase();
+        const responseFull = await fetch(`https://pv-test.onrender.com/api/flora_survey`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: dataStringFull
@@ -100,8 +76,6 @@ export default function SurveyPlantPage(){
             navToError();
             return;
         }
-        console.log(data);
-        */
         navContinue();
         
         return;

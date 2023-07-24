@@ -59,8 +59,6 @@ export default function SurveyPlantPage(){
         data.large_shrub = Number(data.large_shrub);
         data.geophytes = Number(data.geophytes);
         data.num_species = Number(data.num_species);
-        data['latitude'] = data['latitude'] ? data['latitude'] : null;
-        data['longitude'] = data['longitude'] ? data['longitude'] : null;
         if(!addToHundred(data)){
             updateMessage('These percentages do not add to a hundred percent. Please recheck your values');
             document.getElementById("loadText").innerHTML = "";

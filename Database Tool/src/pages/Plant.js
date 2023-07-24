@@ -35,7 +35,6 @@ export default function PlantPage(){
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
-
         document.getElementById("loadText").innerHTML = "Loading...";
 
         const pandorasBox = new FormData(event.target);

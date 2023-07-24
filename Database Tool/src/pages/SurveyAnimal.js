@@ -52,8 +52,6 @@ export default function SurveyAnimalPage(){
 
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
-        data['latitude'] = data['latitude'] ? data['latitude'] : null;
-        data['longitude'] = data['longitude'] ? data['longitude'] : null;
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
         const responseID = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
@@ -128,10 +126,14 @@ export default function SurveyAnimalPage(){
                             <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
                             <select className="formItems" name="location" form="surveyForm">
                                 <option>Please choose a location</option>
-                                <option>East</option>
-                                <option>West</option>
-                                <option>North</option>
-                                <option>South</option>
+                                <option>Civic Dunes</option>
+                                <option>South Shore</option>
+                                <option>Button Dunes</option>
+                                <option>Elegia Nuda Drainage Line</option>
+                                <option>Slipway</option>
+                                <option>North Shore</option>
+                                <option>South Field</option>
+                                <option>East Shore</option>
                             </select>
                             <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
                             <input className="formItems" type="text" placeholder="Longitude" name="longitude" />

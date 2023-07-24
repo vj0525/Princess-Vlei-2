@@ -10,12 +10,11 @@ export default function Login(){
       navigate('/intro', {state:{token_value: token}});
     }
     async function logUser(event) {
-      console.log("logging");
       event.preventDefault();
       const pandorasBox = new FormData(event.target);
       let data = Object.fromEntries(pandorasBox.entries()); 
       const dataString = JSON.stringify(data).toLowerCase();
-      const response = await fetch('https://pv-test.onrender.com/api/user/login', {
+      const response = await fetch('https://princessvleiapi.onrender.com/api/user/login', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: dataString

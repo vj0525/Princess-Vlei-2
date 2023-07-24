@@ -64,7 +64,7 @@ export default function PlantPage(){
         }
         const dataStringOrg = JSON.stringify(data).toLowerCase();
         console.log(dataStringOrg);
-        const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
+        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},

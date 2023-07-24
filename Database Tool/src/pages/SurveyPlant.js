@@ -67,7 +67,7 @@ export default function SurveyPlantPage(){
             return;
         }
         const dataStringFull = JSON.stringify(data);
-        const responseFull = await fetch(`https://pv-test.onrender.com/api/flora_survey`, {
+        const responseFull = await fetch(`https://princessvleiapi.onrender.com/api/flora_survey`, {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},

@@ -17,7 +17,7 @@ export default function ModAnimalPage(){
         navigate('/organism-modify', {state:{token_value:location.state.token_value}});
     }
     async function initializeAll(){
-        const response = await fetch('https://pv-test.onrender.com/api/organism', {
+        const response = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'GET',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value}
@@ -81,7 +81,7 @@ export default function ModAnimalPage(){
     }
     async function searchFilter(key){
         let keyString = key.toLowerCase();
-        const response = await fetch(`https://pv-test.onrender.com/api/organism?name=${keyString}`, {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${keyString}`, {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         });
@@ -110,7 +110,7 @@ export default function ModAnimalPage(){
         entry.appendChild(sure);
     }
     async function undoDelete(id){
-        const response = await fetch(`https://pv-test.onrender.com/api/organism/${id}`, {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         });
@@ -144,7 +144,7 @@ export default function ModAnimalPage(){
         entry.appendChild(editButton);
     }
     async function deleteOrganism(id){
-        const response = await fetch(`https://pv-test.onrender.com/api/organism/${id}`, {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
             method: 'DELETE',
             headers: {"Content-Type": "application/json"}
         });

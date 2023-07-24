@@ -56,7 +56,7 @@ export default function SurveyAnimalPage(){
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
-        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
+        const responseID = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
             method: 'GET'
         });
         console.log(responseID);

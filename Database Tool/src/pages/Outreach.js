@@ -41,7 +41,7 @@ export default function OutreachPage(){
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         const dataString = JSON.stringify(data).toLowerCase();
-        const responseOrg = await fetch('https://pv-test.onrender.com/api/education', {
+        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/education', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},

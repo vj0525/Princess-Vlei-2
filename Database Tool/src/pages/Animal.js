@@ -50,7 +50,7 @@ export default function AnimalPage(){
         const dataString = JSON.stringify(data).toLowerCase();
         console.log(dataString);
         console.log(location.state.token_value);
-        const responseOrg = await fetch('https://pv-test.onrender.com/api/organism', {
+        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                         "Token": location.state.token_value},

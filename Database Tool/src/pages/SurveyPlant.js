@@ -76,6 +76,7 @@ export default function SurveyPlantPage(){
             navToError();
             return;
         }
+        console.log(responseFull);
         navContinue();
         
         return;

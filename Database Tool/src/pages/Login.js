@@ -9,6 +9,13 @@ export default function Login(){
       navigate('/intro');
     }
 
+    async function logUser(event) {
+      event.preventDefault();
+
+
+      navToIntro();
+    }
+
   return (
 
     //Write stuff here confirming username and password. If inaccurate, just say wrong password and return
@@ -18,12 +25,14 @@ export default function Login(){
         Please log in with your credentials.</h2>
         <div id="login-div">
             <div id="login-panel">
+              <form className='' id='loginForm' onSubmit={(event)=>logUser(event)}>
                 <input className="formItems" type="text" placeholder="Username" name="username" />
                 <input className="formItems" type="password" placeholder="Password" name="password"/>
+              </form>
             </div>
         </div>
         <div>
-          <FancyButton title="Log in" buttonFunc={navToIntro} specialty={true}/>
+          <button type="submit" form="loginForm" id="submission"><p className="textP">Submit</p></button>
         </div>
     </div>
   )

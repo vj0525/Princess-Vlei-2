@@ -129,7 +129,7 @@ h2 {
   font-weight: 600;
   vertical-align: middle;
 }
-.orgEntry{
+.orgEntry, .areSure {
   font-family: 'Open Sans', sans-serif;
   border: 1px solid #3a6d06;
   background-color: #70c4dd2e;
@@ -177,3 +177,23 @@ h2 {
   padding-left: 5%;
 }
 
+.areSure {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.sure, .unsure {
+  background-color: #0e5384;
+  color: #FFFFFF;
+  border: 5px solid #0e5384;
+  border-radius:7px;
+  display: inline-flexbox;
+  margin: 1%;
+  text-align: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  padding: 1.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+}

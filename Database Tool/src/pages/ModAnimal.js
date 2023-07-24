@@ -94,12 +94,15 @@ export default function ModAnimalPage(){
     function areYouSure(id=0){
         console.log("hello", id);
         const entry = document.getElementById(id);
-        entry.innerHTML = "Are you sure you want to delete this organism?";
+        entry.setAttribute('class', 'areSure');
+        entry.innerHTML = "Are you sure you want to delete this organism?\n";
         const unsure = document.createElement('button');
         unsure.innerHTML = "No";
+        unsure.setAttribute('class','sure');
         unsure.addEventListener('click',()=>undoDelete(id));
         entry.appendChild(unsure);
         const sure = document.createElement('button');
+        sure.setAttribute('class','unsure');
         sure.innerHTML = "Yes";
         sure.addEventListener('click',()=>deleteOrganism(id));
         entry.appendChild(sure);

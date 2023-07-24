@@ -31,6 +31,7 @@ require("./app/routes/flora.routes.js")(app);
 require("./app/routes/flora_survey.routes.js")(app);
 require("./app/routes/flora_survey_species.routes.js")(app);
 require("./app/routes/education.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,13 +1,14 @@
 module.exports = app => {
   const education = require("../controllers/education.controller.js");
+  const {verifyToken} = require("../Auth/auth");
 
   var router = require("express").Router();
 
   // Create a new Organisms
-  router.post("/", education.create);
+  router.post("/", verifyToken, education.create);
 
   //Modify an existing Fauna Survey
-  router.put("/:id", education.update);
+  router.put("/:id", verifyToken, education.update);
 
   // Retrieve all Organisms
   router.get("/", education.findAll);
@@ -16,7 +17,7 @@ module.exports = app => {
   router.get("/:id", education.findOne);
 
   // Delete a Organism with id
-  router.delete("/:id", education.delete);
+  router.delete("/:id", verifyToken, education.delete);
 
   app.use('/api/education', router);
 };

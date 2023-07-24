@@ -1,10 +1,11 @@
 module.exports = app => {
   const flora = require("../controllers/flora.controller.js");
+  const {verifyToken} = require("../auth/auth");
 
   var router = require("express").Router();
 
   // Create a new Organisms
-  router.post("/", flora.create);
+  router.post("/", verifyToken, flora.create);
 
   // Create a new Organisms
   router.get("/", flora.findAll);
@@ -16,7 +17,7 @@ module.exports = app => {
   router.get("/:id", flora.findOne);
 
   // Delete a Organism with id
-  router.delete("/:id", flora.delete);
+  router.delete("/:id", verifyToken, flora.delete);
 
   app.use('/api/flora', router);
 };

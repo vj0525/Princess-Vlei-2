@@ -1,10 +1,11 @@
 module.exports = app => {
   const organism = require("../controllers/organism.controller.js");
+  const {verifyToken} = require("../auth/auth");
 
   var router = require("express").Router();
 
   // Create a new Organisms
-  router.post("/", organism.create);
+  router.post("/", verifyToken, organism.create);
 
   // Retrieve all Organisms
   router.get("/", organism.findAll);
@@ -16,7 +17,7 @@ module.exports = app => {
   router.get("/:id", organism.findOne);
 
   // Delete a Organism with id
-  router.delete("/:id", organism.delete);
+  router.delete("/:id", verifyToken, organism.delete);
 
   app.use('/api/organism', router);
 };

@@ -35,8 +35,19 @@ CREATE TABLE Flora (
 CREATE TABLE Flora_Survey (
 	floraSID int NOT NULL AUTO_INCREMENT,
 	Survey_Date date NOT NULL,
+	Num_Species int NOT NULL,
 	Latitude int,
 	Longitude int,
+	Restaid int,
+	Gramnoid int,
+	Erica int,
+	Protea int,
+	HerbPen int,
+	Small_Shrub int,
+	Large_Shrub int,
+	Geophytes int,
+	Annual int,
+	Bare_Ground int,
 	Location varchar(2) NOT NULL,
     PRIMARY KEY (floraSID)
 );

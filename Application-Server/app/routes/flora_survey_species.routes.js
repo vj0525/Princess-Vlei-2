@@ -1,6 +1,6 @@
 module.exports = app => {
   const flora_survey_species = require("../controllers/flora_survey_species.controller.js");
-  const {verifyToken} = require("../Auth/auth");
+  const {verifyToken} = require("../auth/auth");
 
   var router = require("express").Router();
 

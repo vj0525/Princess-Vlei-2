@@ -1,6 +1,6 @@
 module.exports = app => {
   const flora = require("../controllers/flora.controller.js");
-  const {verifyToken} = require("../Auth/auth");
+  const {verifyToken} = require("../auth/auth");
 
   var router = require("express").Router();
 

@@ -14,6 +14,7 @@ export default function SurveyPlantSpecPage(){
             main.appendChild(entry);
         }
     }
+    //makeInputs(location.state.count);
     return (
        <div id="some-div">
         <h1>Success</h1>

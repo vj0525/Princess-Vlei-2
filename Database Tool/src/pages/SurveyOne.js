@@ -24,7 +24,7 @@ export default function SurveyOnePage(){
             <TopBar />
             <h2>What type of organism do you have survey data on?</h2>
             <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
-            <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
+            <FancyButton title="Animal/Fungi" buttonFunc={()=>navToAni()} />
             <div>
             <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
             </div>

@@ -24,7 +24,7 @@ export default function OrganismPage(){
             <TopBar />
             <h2>What type of organism are you entering?</h2>
             <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
-            <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
+            <FancyButton title="Animal/Fungi" buttonFunc={()=>navToAni()} />
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
             </div>

@@ -6,7 +6,9 @@ const Education = function(education) {
   this.school = education.school;
   this.school_grade = education.school_grade;
   this.num_of_learners = education.num_of_learners;
-  this.avg_score = education.avg_score;
+  this.learn_score = education.learn_score;
+  this.nature_score = education.nature_score;
+  this.engagement_score = education.engagement_score;
 };
 
 Education.create = (newEducation, result) => {
@@ -62,8 +64,8 @@ Education.getAll = (school, result) => {
 
 Education.updateById = (eduID, Education, result) => {
   sql.query(
-    "UPDATE Education SET event_type = ?, school = ?, school_grade = ?, num_of_learners = ?, avg_score = ? WHERE eduID = ?",
-    [Education.event_type, Education.school, Education.school_grade, Education.num_of_learners, Education.avg_score, eduID],
+    "UPDATE Education SET event_type = ?, school = ?, school_grade = ?, num_of_learners = ?, learn_score = ?, nature_score = ?, engagement_score = ? WHERE eduID = ?",
+    [Education.event_type, Education.school, Education.school_grade, Education.num_of_learners, Education.learn_score, Education.nature_score, Education.engagement_score, eduID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

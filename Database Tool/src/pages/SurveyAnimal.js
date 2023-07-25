@@ -52,40 +52,57 @@ export default function SurveyAnimalPage(){
 
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
-        data['latitude'] = data['latitude'] ? data['latitude'] : null;
-        data['longitude'] = data['longitude'] ? data['longitude'] : null;
-        data['sex'] = data['sex'] === 'N/A' ? 'N' : data['sex'];
-        const dataStringForID = JSON.stringify(data).toLowerCase();
-        console.log(dataStringForID);
-        const responseID = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
-            method: 'GET'
-        });
-        console.log(responseID);
-        const dataWID = await responseID.json();
-        if (!responseID.ok){
-            navToError();
-            return;
-        }
-        console.log(dataWID);
-        let orgID = -1;
-        for (let entry in dataWID){
-            console.log(dataWID[entry]);
-            console.log(dataWID[entry]['Common_Name']);
-            if (dataWID[entry]['Common_Name'] === data['common_name'].toLowerCase()){
-                console.log("Caught one");
-                orgID = dataWID[entry]['orgID'];
-                break;
-            }
-        }
-        if (orgID < 0){
-            animalDNE(dataWID);
+        if(data['location']==='Please choose a location'){
+            updateMessage('Please choose a location before submitting')
             document.getElementById("loadText").innerHTML = "";
             return;
         }
-        data["faunaID"] = orgID;
+        data['latitude'] = data['latitude'] ? data['latitude'] : null;
+        data['longitude'] = data['longitude'] ? data['longitude'] : null;
+        data['sex'] = data['sex'] === 'N/A' ? 'N' : data['sex'];
+        let entry = data['_name'];
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/noflora?common=${entry}`, {
+                method: 'GET',
+                headers: {"Content-Type": "application/json",
+                        "Token": location.state.token_value}
+            });
+            let dataName = await response.json();
+            if (!response.ok){
+                navToError();
+                return;
+            }
+            console.log(dataName);
+            if(dataName.length === 0){
+                //Scientific time
+                console.log(entry.indexOf(' '), entry.substring(entry.indexOf(' ')+1))
+                if(entry.indexOf(' ') !== -1 && entry.substring(entry.indexOf(' ')+1).indexOf(' ') === -1){
+                    //We have a scientific name
+                    const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/noflora?scientific=${entry}`, {
+                        method: 'GET',
+                        headers: {"Content-Type": "application/json",
+                                "Token": location.state.token_value}
+                    });
+                    dataName = await response.json();
+                    if (!response.ok){
+                        navToError();
+                        return;
+                    }
+                    if(dataName.length === 0){
+                        document.getElementById("loadText").innerHTML = "";
+                        animalDNE(entry);
+                        return;    
+                    }
+                }else{
+                    //Neither
+                    document.getElementById("loadText").innerHTML = "";
+                    animalDNE(entry);
+                    return;
+                }
+            }
+        data["faunaID"] = dataName[0]['orgID'];
         const dataStringFull = JSON.stringify(data);
         console.log(dataStringFull);
-        const responseFull = await fetch('https://pv-test.onrender.com/api/fauna_survey', {
+        const responseFull = await fetch('https://princessvleiapi.onrender.com/api/fauna_survey', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},
@@ -108,13 +125,13 @@ export default function SurveyAnimalPage(){
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1'>
-                            <h3 className="formAccessories" id="titles">Common Name:</h3>
+                            <h3 className="formAccessories" id="titles">Name (Scientific or Common)*:</h3>
                             <h3 className="formAccessories" id="titles">Sex:</h3>
                             <h3 className="formAccessories" id="titles">Activity:</h3>
                             <h3 className="formAccessories" id="titles">Life Stage:</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="text" placeholder="Animal Name" name="common_name" required/>
+                            <input className="formItems" type="text" placeholder="Animal Name" name="_name" required/>
                             <select className="formItems" name="sex" form="surveyForm">
                                 <option>N/A</option>
                                 <option>M</option>
@@ -124,10 +141,10 @@ export default function SurveyAnimalPage(){
                             <input className="formItems" type="text" placeholder="Life Stage" name="life_stage" />
                         </div>
                         <div className='col1'>
-                            <h3 className="formAccessories" id="titles">Date:</h3>
-                            <h3 className="formAccessories" id="titles">Location:</h3>
-                            <h3 className="formAccessories" id="titles">Latitude:</h3>
-                            <h3 className="formAccessories" id="titles">Longitude:</h3>
+                            <h3 className="formAccessories" id="titles">Date*:</h3>
+                            <h3 className="formAccessories" id="titles">Location*:</h3>
+                            <h3 className="formAccessories" id="titles">Latitude (if known):</h3>
+                            <h3 className="formAccessories" id="titles">Longitude (if known):</h3>
                         </div>
                         <div className='col1'>
                             <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>

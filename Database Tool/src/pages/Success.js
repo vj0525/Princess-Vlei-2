@@ -14,8 +14,6 @@ export default function SuccessPage(){
     }
 
     function back() {
-        const hi = window.location.href;
-        console.log(hi);
         if(location.state.plant_spec){
             navigate('/surveyplant', {state:{token_value:location.state.token_value}});
             return;

@@ -50,6 +50,16 @@ export default function SurveyPlantPage(){
         document.getElementById("loadText").innerHTML = "Loading...";
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
+        if(data['location']==='Please choose a location'){
+            updateMessage('Please choose a location before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
+        if(data['veg_type']==='Please choose a type'){
+            updateMessage('Please choose a vegetation type before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         data.bare_ground = Number(data.bare_ground);
         data.annual = Number(data.annual);
         data.restiad = Number(data.restiad);
@@ -94,9 +104,9 @@ export default function SurveyPlantPage(){
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Date:</h3>
-                            <h3 className="formAccessories">Vegetation Type:</h3>
-                            <h3 className="formAccessories">Location:</h3>
+                            <h3 className="formAccessories">Date*:</h3>
+                            <h3 className="formAccessories">Vegetation Type*:</h3>
+                            <h3 className="formAccessories">Location*:</h3>
                             <h3 className="formAccessories">Latitude (if known):</h3>
                             <h3 className="formAccessories">Longitude (if known):</h3>
                             <h3 className="formAccessories">Bare Ground Area Cover Percentage:</h3>

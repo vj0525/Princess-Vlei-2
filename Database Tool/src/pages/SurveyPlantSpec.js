@@ -124,7 +124,7 @@ export default function SurveyPlantSpecPage(){
     return (
         <div className="main-div">
         <TopBar />
-        <h2>Enter as many species as you recognized:</h2>
+        <h2>Enter as many species as you recognized either by common name or scientific name:</h2>
         <div className="body-div" >
             <div className="panels">
                 <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>

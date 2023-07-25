@@ -9,7 +9,7 @@ export default function SurveyPlantSpecPage(){
     const navigate = useNavigate();
 
     const navToSuc = () => {
-        navigate('/success', {state:{token_value:location.state.token_value}});
+        navigate('/success', {state:{token_value:location.state.token_value, plant_spec:true}});
     }
     const navToError = () => {
         navigate('/error', {state:{token_value:location.state.token_value}})

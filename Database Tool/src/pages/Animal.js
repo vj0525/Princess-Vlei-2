@@ -18,7 +18,6 @@ export default function AnimalPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -47,9 +46,18 @@ export default function AnimalPage(){
             document.getElementById("loadText").innerHTML = "";
             return;
         }
+        const responseSci = await fetch(`https://princessvleiapi.onrender.com/api/organism/noflora?scientific=${data['genus']} ${data['species']}`, {
+            method: 'GET',
+            headers: {"Content-Type": "application/json",
+                    "Token": location.state.token_value},
+        });
+        const dataSci = await responseSci.json();
+        if (dataSci.length !== 0){
+            updateMessage(`An organism of this exact genus and species has already been inputted in the database with the common name: ${dataSci[0]['Common_Name']}`)
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         const dataString = JSON.stringify(data).toLowerCase();
-        console.log(dataString);
-        console.log(location.state.token_value);
         const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -61,7 +69,6 @@ export default function AnimalPage(){
             navToError();
             return;
         }
-        console.log(dataString);
         navToSuc();
         return;
     }
@@ -74,19 +81,19 @@ export default function AnimalPage(){
                 <div className="panels">
                     <form className="quickTest" id="animalForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1'>
-                            <h3 className="formAccessories" id="titles">Genus:</h3>
-                            <h3 className="formAccessories" id="titles">Species:</h3>
-                            <h3 className="formAccessories" id="titles">Common Name:</h3>
+                            <h3 className="formAccessories" id="titles">Genus*:</h3>
+                            <h3 className="formAccessories" id="titles">Species*:</h3>
+                            <h3 className="formAccessories" id="titles">Common Name (if applicable):</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="text" placeholder="Genus" name="genus" />
-                            <input className="formItems" type="text" placeholder="Species" name="species" />
-                            <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
+                            <input className="formItems" type="text" placeholder="Genus" name="genus" required/>
+                            <input className="formItems" type="text" placeholder="Species" name="species" required/>
+                            <input className="formItems" type="text" placeholder="Common Name" name="common_name"/>
                         </div>
                         <div className='col1'>
-                            <h3 className="formAccessories" id="titles">Conservation Status:</h3>
-                            <h3 className="formAccessories" id="titles">Alien Species?:</h3>
-                            <h3 className="formAccessories" id="titles">Invasive Species?:</h3>
+                            <h3 className="formAccessories" id="titles">Conservation Status*:</h3>
+                            <h3 className="formAccessories" id="titles">Alien Species?*:</h3>
+                            <h3 className="formAccessories" id="titles">Invasive Species?*:</h3>
                         </div>
                         <div className='col1'>
                             <select className="formItems" name="conservation_status" form="animalForm">

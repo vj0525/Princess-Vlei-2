@@ -51,10 +51,8 @@ export default function SurveyPlantSpecPage(){
                 navToError();
                 return;
             }
-            console.log(dataWID);
             if(dataWID.length === 0){
                 //Scientific time
-                console.log(entry.indexOf(' '), entry.substring(entry.indexOf(' ')+1))
                 if(entry.indexOf(' ') !== -1 && entry.substring(entry.indexOf(' ')+1).indexOf(' ') === -1){
                     //We have a scientific name
                     const response = await fetch(`https://princessvleiapi.onrender.com/api/flora?scientific=${entry}`, {
@@ -104,7 +102,6 @@ export default function SurveyPlantSpecPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -124,7 +121,7 @@ export default function SurveyPlantSpecPage(){
     return (
         <div className="main-div">
         <TopBar />
-        <h2>Enter as many species as you recognized:</h2>
+        <h2>Enter as many species as you recognized either by common name or scientific name:</h2>
         <div className="body-div" >
             <div className="panels">
                 <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>

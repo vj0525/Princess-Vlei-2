@@ -18,7 +18,6 @@ export default function PlantPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -67,26 +66,12 @@ export default function PlantPage(){
                     "Token": location.state.token_value},
         });
         const dataSci = await responseSci.json();
-        console.log(dataSci);
         if (dataSci.length !== 0){
             updateMessage(`An organism of this exact genus and species has already been inputted in the database with the common name: ${dataSci[0]['Common_Name']}`)
             document.getElementById("loadText").innerHTML = "";
             return;
         }
-        const responseCom = await fetch(`https://princessvleiapi.onrender.com/api/flora?common=${data['common_name']}`, {
-            method: 'GET',
-            headers: {"Content-Type": "application/json",
-                    "Token": location.state.token_value},
-        });
-        const dataCom = await responseCom.json();
-        console.log(dataCom);
-        if (dataCom.length !== 0){
-            updateMessage(`An organism of this exact common name has already been inputted in the database with the scientific name: ${dataCom[0]['Genus']} ${dataCom[0]['Species']}`)
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
         const dataStringOrg = JSON.stringify(data).toLowerCase();
-        console.log(dataStringOrg);
         const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -98,10 +83,8 @@ export default function PlantPage(){
             navToError();
             return;
         }
-        console.log(dataWID);
         data["floraID"] = await dataWID["orgID"];
         const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull);
         const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -112,7 +95,6 @@ export default function PlantPage(){
             navToError();
             return;
         }
-        console.log(data);
         navToSuc();
         return;
     }
@@ -125,15 +107,15 @@ export default function PlantPage(){
                 <div className="panels">
                     <form className="quickTest" id="plantForm" onSubmit={(event)=>submitInfo(event)}>
                     <div className='col1' id="titles">
-                        <h3 className="formAccessories">Genus:</h3>
-                        <h3 className="formAccessories">Species:</h3>
-                        <h3 className="formAccessories">Common Name:</h3>
-                        <h3 className="formAccessories">Conservation Status:</h3>
+                        <h3 className="formAccessories">Genus*:</h3>
+                        <h3 className="formAccessories">Species*:</h3>
+                        <h3 className="formAccessories">Common Name (if applicable):</h3>
+                        <h3 className="formAccessories">Conservation Status*:</h3>
                     </div>
                     <div className='col1'>
-                        <input className="formItems" type="text" placeholder="Genus" name="genus" />
-                        <input className="formItems" type="text" placeholder="Species" name="species" />
-                        <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
+                        <input className="formItems" type="text" placeholder="Genus" name="genus" required/>
+                        <input className="formItems" type="text" placeholder="Species" name="species" required/>
+                        <input className="formItems" type="text" placeholder="Common Name" name="common_name"/>
                         <select className="formSelect" name="conservation_status" form="plantForm">
                             <option>Please choose a status</option>
                             <option>Data Deficient (DD)</option>
@@ -148,11 +130,11 @@ export default function PlantPage(){
                         </select>
                     </div>
                     <div className='col1' id="titles">
-                        <h3 className="formAccessories">Growth Form:</h3>
-                        <h3 className="formAccessories">Growing Method:</h3>
-                        <h3 className="formAccessories">Vegetation Type:</h3>
-                        <h3 className="formAccessories">Alien?:</h3>
-                        <h3 className="formAccessories">Invasive?:</h3>
+                        <h3 className="formAccessories">Growth Form*:</h3>
+                        <h3 className="formAccessories">Growing Method*:</h3>
+                        <h3 className="formAccessories">Vegetation Type*:</h3>
+                        <h3 className="formAccessories">Alien Species? *:</h3>
+                        <h3 className="formAccessories">Invasive Species? *:</h3>
                     </div>
                     <div className='col1'>
                         <select className="formSelect" name="growth_form" form="plantForm">

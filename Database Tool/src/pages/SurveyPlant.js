@@ -10,7 +10,6 @@ export default function SurveyPlantPage(){
     const navigate = useNavigate();
 
     const navContinue = () => {
-        console.log(speciesRichness);
         navigate('/surveyplantspec',{ state: {count: Number(speciesRichness), floraSID: Number(surveyID), token_value:location.state.token_value}});
     }
     const navToSuc = () => {
@@ -25,7 +24,6 @@ export default function SurveyPlantPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -50,6 +48,16 @@ export default function SurveyPlantPage(){
         document.getElementById("loadText").innerHTML = "Loading...";
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
+        if(data['location']==='Please choose a location'){
+            updateMessage('Please choose a location before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
+        if(data['veg_type']==='Please choose a type'){
+            updateMessage('Please choose a vegetation type before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         data.bare_ground = Number(data.bare_ground);
         data.annual = Number(data.annual);
         data.restiad = Number(data.restiad);
@@ -78,10 +86,7 @@ export default function SurveyPlantPage(){
             return;
         }
         const responseWID = await responseFull.json();
-        console.log(responseFull);
-        console.log(responseWID);
         surveyID = responseWID['floraSID'];
-        console.log(surveyID);
         navContinue();
         
         return;
@@ -94,9 +99,9 @@ export default function SurveyPlantPage(){
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Date:</h3>
-                            <h3 className="formAccessories">Vegetation Type:</h3>
-                            <h3 className="formAccessories">Location:</h3>
+                            <h3 className="formAccessories">Date*:</h3>
+                            <h3 className="formAccessories">Vegetation Type*:</h3>
+                            <h3 className="formAccessories">Location*:</h3>
                             <h3 className="formAccessories">Latitude (if known):</h3>
                             <h3 className="formAccessories">Longitude (if known):</h3>
                             <h3 className="formAccessories">Bare Ground Area Cover Percentage:</h3>

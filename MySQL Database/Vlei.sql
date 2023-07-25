@@ -38,7 +38,7 @@ CREATE TABLE Flora_Survey (
 	Num_Species int NOT NULL,
 	Latitude int,
 	Longitude int,
-	Restaid int,
+	Restiad int,
 	Gramnoid int,
 	Erica int,
 	Protea int,
@@ -48,7 +48,7 @@ CREATE TABLE Flora_Survey (
 	Geophytes int,
 	Annual int,
 	Bare_Ground int,
-	Location varchar(2) NOT NULL,
+	Location varchar(255) NOT NULL,
     PRIMARY KEY (floraSID)
 );
 

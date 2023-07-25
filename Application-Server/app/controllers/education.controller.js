@@ -15,7 +15,9 @@ exports.create = (req, res) => {
     school: req.body.school,
     school_grade: req.body.school_grade,
     num_of_learners: req.body.num_of_learners,
-    avg_score: req.body.avg_score
+    learn_score: req.body.learn_score,
+    nature_score: req.body.nature_score,
+    engagement_score: req.body.engagement_score
   });
 
   // Save Organism in the database

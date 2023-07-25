@@ -13,8 +13,8 @@ export default function EditAnimalPage() {
     const navToError = () => {
         navigate('/Error', {state:{token_value:location.state.token_value}})
     }
-    function back() {
-        window.history.back();
+    const navToOrgSearch = () => {
+        navigate('/organism-search', {state:{token_value:location.state.token_value}})
     }
 
     async function submitInfo(event){
@@ -106,7 +106,7 @@ export default function EditAnimalPage() {
             <div id="forErrorMessages">
             </div>
             <div>
-                <FancyButton title="Back" buttonFunc={()=>back()} specialty={true} />
+                <FancyButton title="Back" buttonFunc={()=>navToOrgSearch()} specialty={true} />
                 <button type="submit" form="animalForm" id="submission"><p className="textP">Submit</p></button>
             </div>
             <p id="loadText" className="load"></p>

@@ -21,8 +21,8 @@ Flora.create = (newFlora, result) => {
   });
 };
 
-Flora.findById = (floraID, result) => {
-  sql.query(`SELECT * FROM Flora WHERE floraID = ${floraID}`, (err, res) => {
+Flora.findByName = (common_name, result) => {
+  sql.query(`SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID WHERE common_name = '${common_name}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

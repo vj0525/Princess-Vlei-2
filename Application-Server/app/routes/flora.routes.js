@@ -16,6 +16,9 @@ module.exports = app => {
   // Retrieve a single Organism with id
   router.get("/:name", flora.findOne);
 
+  // Retrieve a single Organism with id
+  router.get("/id/:id", flora.findOneId);
+
   // Delete a Organism with id
   router.delete("/:id", verifyToken, flora.delete);
 

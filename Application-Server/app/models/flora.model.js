@@ -40,6 +40,26 @@ Flora.findByName = (common_name, result) => {
   });
 };
 
+Flora.findById = (id, result) => {
+  sql.query(`SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID WHERE floraID = '${id}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found Flora: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Flora with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+
 
 Flora.getAll = (common_name, scientific_name, result) => {
   let query = "SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID";

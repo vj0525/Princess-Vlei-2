@@ -72,6 +72,23 @@ exports.findOne = (req, res) => {
   });
 };
 
+exports.findOneId = (req, res) => {
+    Flora.findById(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Flora with id ${req.params.id}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Flora with id " + req.params.id
+        });
+      }
+    } else res.send(data);
+  });
+};
+
+
 // Update a Organism identified by the id in the request
 exports.update = (req, res) => {
     // Validate Request

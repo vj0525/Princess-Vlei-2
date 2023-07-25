@@ -31,9 +31,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Flora from the database (with condition).
 exports.findAll = (req, res) => {
-  const name = req.query.name;
+  const common = req.query.common;
+  const scientific = req.query.scientific;
 
-  Flora.getAll(name, (err, data) => {
+  Flora.getAll(common, scientific, (err, data) => {
     if (err)
       res.status(500).send({
         message:

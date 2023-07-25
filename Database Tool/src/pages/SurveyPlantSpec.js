@@ -37,7 +37,8 @@ export default function SurveyPlantSpecPage(){
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
         for(let spec = 0; spec < location.state.count; spec++){
-            if(document.getElementById(`connection-${spec}`).getAttribute('disabled') || document.getElementById(`connection-${spec}`).innerHTML === ""){
+            if(document.getElementById(`connection-${spec}`).getAttribute('disabled') || document.getElementById(`connection-${spec}`).value === ""){
+                console.log("Boo");
                 continue;
             }
             let entry = data[`connection-${spec}`];
@@ -76,11 +77,13 @@ export default function SurveyPlantSpecPage(){
                 }
                 document.getElementById(`connection-${spec}`).setAttribute('disabled',true);
             }else{
+                document.getElementById("loadText").innerHTML = "";
                 speciesDNE(dataWID, entry);
                 return;
             }
 
         }
+        navToSuc();
     }
     function speciesDNE(dataWID, entry){
         let message = "";

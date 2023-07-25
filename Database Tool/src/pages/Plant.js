@@ -78,7 +78,7 @@ export default function PlantPage(){
         data["floraID"] = await dataWID["orgID"];
         const dataStringFull = JSON.stringify(data);
         console.log(dataStringFull);
-        const responseFull = await fetch('https://pv-test.onrender.com/api/flora', {
+        const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},

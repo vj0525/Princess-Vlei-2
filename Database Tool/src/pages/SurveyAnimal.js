@@ -54,6 +54,7 @@ export default function SurveyAnimalPage(){
         let data = Object.fromEntries(pandorasBox.entries());
         data['latitude'] = data['latitude'] ? data['latitude'] : null;
         data['longitude'] = data['longitude'] ? data['longitude'] : null;
+        data['sex'] = data['sex'] === 'N/A' ? 'N' : data['sex'];
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
         const responseID = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
@@ -114,7 +115,11 @@ export default function SurveyAnimalPage(){
                         </div>
                         <div className='col1'>
                             <input className="formItems" type="text" placeholder="Animal Name" name="common_name" required/>
-                            <input className="formItems" type="text" placeholder="Sex" name="sex" />
+                            <select className="formItems" name="sex" form="surveyForm">
+                                <option>N/A</option>
+                                <option>M</option>
+                                <option>F</option>
+                            </select>
                             <input className="formItems" type="text" placeholder="Activity" name="activity" />
                             <input className="formItems" type="text" placeholder="Life Stage" name="life_stage" />
                         </div>
@@ -142,6 +147,8 @@ export default function SurveyAnimalPage(){
                         </div>
                     </form>    
                 </div>
+            </div>
+            <div id="forErrorMessages">
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOne()} specialty={true} />

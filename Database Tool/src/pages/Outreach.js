@@ -65,23 +65,28 @@ export default function OutreachPage(){
                     <form className="quickTest" id="educationForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1' id="titles">
                             <h3 className="formAccessories">Event Type:</h3>
-                            <h3 className="formAccessories">School:</h3>
-                            <h3 className="formAccessories">School Grade:</h3>
-                            <h3 className="formAccessories">Number of Learners:</h3>
+                            <h3 className="formAccessories">Date</h3>
+                            <h3 className="formAccessories">Organization:</h3>
+                            <h3 className="formAccessories">School Grade (if applicable):</h3>
                         </div>
                         <div className='col1'>
                             <input className="formItems" type="text" placeholder="Event Type" name="event_type" page="Education" />
-                            <input className="formItems" type="text" placeholder="School" name="school" page="Education" />
+                            <input className="formItems" type="date" placeholder="Date" name="date" />
+                            <input className="formItems" type="text" placeholder="School" name="organization" page="Education" />
                             <input className="formItems" type="number" min="0" max="12" placeholder="School Grade" name="school_grade" />
-                            <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
+                            
                         </div>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Avg Connected with Nature:</h3>
-                            <h3 className="formAccessories">Avg Learned Something:</h3>
-                            <h3 className="formAccessories">Avg Enjoyed Experience:</h3>
+                            <h3 className="formAccessories">Number of Learners:</h3>
+                            <h3 className="formAccessories">Connected with Nature Score:</h3>
+                            <h3 className="formAccessories">Learned Score:</h3>
+                            <h3 className="formAccessories">Enjoyed Experience Score:</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="number" min="0" max="100" placeholder="Average Score" name="avg_score" />
+                            <input className="formItems" type="number" min="1" max="1000" placeholder="Number of Learners" name="num_of_learners" />
+                            <input className="formItems" type="number" min="0" max="100" placeholder="Connected with Nature Score" name="nature_score" />
+                            <input className="formItems" type="number" min="0" max="100" placeholder="Educational Score" name="learn_score" />
+                            <input className="formItems" type="number" min="0" max="100" placeholder="Enjoyed Experience Score" name="engagement_score" />
                         </div>
                     </form>    
                 </div>

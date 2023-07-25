@@ -22,7 +22,7 @@ export default function EditPlantPage(){
         document.getElementById("loadText").innerHTML = "Loading...";
 
         const pandorasBox = new FormData(event.target);
-        const plantData = localStorage.getItem("plantKey");
+        const plantData = localStorage.getItem("orgKey");
         let data = Object.fromEntries(pandorasBox.entries());
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
@@ -48,6 +48,10 @@ export default function EditPlantPage(){
                     "Token": location.state.token_value},
             body: dataStringOrg
         });
+        if (!responseOrg.ok){
+             navToError();
+             return;
+         }
 
 // I dont really know what to do w/ floraID and if I need to change anything here
 

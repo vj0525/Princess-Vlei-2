@@ -60,7 +60,7 @@ exports.findOne = (req, res) => {
     Flora.findByName(req.params.name, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
+        res.status(200).send({
           message: `Not found Flora with common name ${req.params.name}.`
         });
       } else {
@@ -76,7 +76,7 @@ exports.findOneId = (req, res) => {
     Flora.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
+        res.status(200).send({
           message: `Not found Flora with id ${req.params.id}.`
         });
       } else {

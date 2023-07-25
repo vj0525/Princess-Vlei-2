@@ -3,7 +3,7 @@ import TopBar from '../components/TopBar.js';
 import { useState } from 'react';
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
-export default function ModAnimalPage(){
+export default function ModOrgSearchPage(){
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -14,7 +14,10 @@ export default function ModAnimalPage(){
         navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOrg = () => {
-        navigate('/organism-modify', {state:{token_value:location.state.token_value}});
+        navigate('/organism-search', {state:{token_value:location.state.token_value}});
+    }
+    const navToEditAni = () => {
+        navigate('/edit-animal', {state:{token_value:location.state.token_value}});
     }
     async function initializeAll(){
         const response = await fetch('https://princessvleiapi.onrender.com/api/organism', {
@@ -48,6 +51,7 @@ export default function ModAnimalPage(){
         trashButton.innerHTML = 'Delete Organism';
         const editButton = document.createElement('button');
         editButton.setAttribute('class', 'edit');
+        editButton.addEventListener('click', ()=>editOrganism(organism.orgID));
         editButton.innerHTML = 'Edit Organism';
         entry.appendChild(common);
         entry.appendChild(genus);
@@ -135,6 +139,7 @@ export default function ModAnimalPage(){
         trashButton.innerHTML = 'Delete Organism';
         const editButton = document.createElement('button');
         editButton.setAttribute('class', 'edit');
+        editButton.addEventListener('click', ()=>editOrganism(id));
         editButton.innerHTML = 'Edit Organism';
         entry.appendChild(common);
         entry.appendChild(genus);
@@ -157,16 +162,30 @@ export default function ModAnimalPage(){
         console.log(data);
         return data;
     }
+    async function editOrganism(id) {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            navToError();
+            return;
+        }
+
+        localStorage.setItem("orgKey", JSON.stringify(data));
+        navToEditAni();
+    }
     const [search, setSearch] = useState("");
     return (
         <div className="main-div">
             <TopBar />
-            <h3>Type in an animal's name to pull up that data point.<br />
+            <h3>Type in an organism's name to pull up that data point.<br />
             You can also type in part of a name to see multiple entries that match.<br />
             If you'd like to see all entries, just hit enter with nothing in the search box</h3>
             <div className="centerer">
-            <input className="formItems" id="modSearchBox" type="text" onChange={(key)=>setSearch(key.target.value)} placeholder="Search here for a specific animal"/>
-            <button id="modSearchButton" onClick={()=>putUpDivs(searchFilter,search)}>Enter</button>
+                <input className="formItems" id="modSearchBox" type="text" onChange={(key)=>setSearch(key.target.value)} placeholder="Search here for a specific organism"/>
+                <button id="modSearchButton" onClick={()=>putUpDivs(searchFilter,search)}>Enter</button>
             </div>
             <div id="forIDPurposes">
                 <div id="data-container">

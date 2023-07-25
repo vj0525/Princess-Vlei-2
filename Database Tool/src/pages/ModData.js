@@ -7,7 +7,7 @@ export default function ModDataPage(){
     const navigate = useNavigate();
 
     const navToOrg = () => {
-        navigate('/organism-modify', {state:{token_value:location.state.token_value}});
+        navigate('/organism-search', {state:{token_value:location.state.token_value}});
     }
 
     const navToSury = () => {

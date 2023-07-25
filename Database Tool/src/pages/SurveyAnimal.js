@@ -35,7 +35,7 @@ export default function SurveyAnimalPage(){
     function animalDNE(dataWID){
         let message = "";
         if(dataWID.length === 0){
-            message = ""
+            message = "There is no animal with a similar name in our database. You may want to try entering this animal in the animal database "
         }
         else if(dataWID.length === 1){
             message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this animal in the animal database `
@@ -52,6 +52,8 @@ export default function SurveyAnimalPage(){
 
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
+        data['latitude'] = data['latitude'] ? data['latitude'] : null;
+        data['longitude'] = data['longitude'] ? data['longitude'] : null;
         const dataStringForID = JSON.stringify(data).toLowerCase();
         console.log(dataStringForID);
         const responseID = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {

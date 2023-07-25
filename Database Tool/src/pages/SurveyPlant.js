@@ -4,12 +4,14 @@ import { useState } from 'react';
 import {Routes, Route, useNavigate, useParams, useLocation} from 'react-router-dom';
 
 export default function SurveyPlantPage(){
+    let [surveyID, setSurveyID] = useState(0);
+    const [speciesRichness, setSpeciesRichness] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
 
     const navContinue = () => {
         console.log(speciesRichness);
-        navigate('/surveyplantspec',{ state: {count: Number(speciesRichness)}});
+        navigate('/surveyplantspec',{ state: {count: Number(speciesRichness), floraSID: Number(surveyID), token_value:location.state.token_value}});
     }
     const navToSuc = () => {
         navigate('/success', {state:{token_value:location.state.token_value}});
@@ -75,12 +77,15 @@ export default function SurveyPlantPage(){
             navToError();
             return;
         }
+        const responseWID = await responseFull.json();
         console.log(responseFull);
+        console.log(responseWID);
+        surveyID = responseWID['floraSID'];
+        console.log(surveyID);
         navContinue();
         
         return;
     }
-    const [speciesRichness, setSpeciesRichness] = useState(0);
     return(
         <div className="main-div">
             <TopBar />

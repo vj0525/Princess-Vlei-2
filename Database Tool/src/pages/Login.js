@@ -11,6 +11,7 @@ export default function Login(){
     }
     async function logUser(event) {
       event.preventDefault();
+      document.getElementById("loadText").innerHTML = "Loading...";
       const pandorasBox = new FormData(event.target);
       let data = Object.fromEntries(pandorasBox.entries()); 
       const dataString = JSON.stringify(data).toLowerCase();
@@ -20,6 +21,7 @@ export default function Login(){
         body: dataString
     });
     const received = await response.json();
+    document.getElementById("loadText").innerHTML = "";
     if(response.status === 500){
       document.getElementById("errorText").innerHTML = received.message;
       return;
@@ -50,6 +52,7 @@ export default function Login(){
             </div>
         </div>
         <div id="errorText"></div>
+        <p id="loadText" className="load"></p>
         <div>
           <button type="submit" form="loginForm" id="submission"><p className="textP">Submit</p></button>
         </div>

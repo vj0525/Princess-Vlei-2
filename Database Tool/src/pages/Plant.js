@@ -75,12 +75,13 @@ export default function PlantPage(){
             return;
         }
         console.log(dataWID);
-        data["floraID"] = dataWID["orgID"];
+        data["floraID"] = await dataWID["orgID"];
         const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull)
+        console.log(dataStringFull);
         const responseFull = await fetch('https://pv-test.onrender.com/api/flora', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json",
+                    "Token": location.state.token_value},
             body: dataStringFull
         });
         if (!responseFull.ok){

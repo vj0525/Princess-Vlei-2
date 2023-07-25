@@ -3,7 +3,8 @@ const sql = require("./db.js");
 // constructor
 const Education = function(education) {
   this.event_type = education.event_type;
-  this.school = education.school;
+  this.event_date = education.event_date;
+  this.organization = education.organization;
   this.school_grade = education.school_grade;
   this.num_of_learners = education.num_of_learners;
   this.learn_score = education.learn_score;
@@ -47,7 +48,7 @@ Education.getAll = (school, result) => {
   let query = "SELECT * FROM Education";
 
   if (school) {
-    query += ` WHERE school LIKE '%${school}%'`;
+    query += ` WHERE organization LIKE '%${school}%'`;
   }
 
   sql.query(query, (err, res) => {
@@ -64,8 +65,8 @@ Education.getAll = (school, result) => {
 
 Education.updateById = (eduID, Education, result) => {
   sql.query(
-    "UPDATE Education SET event_type = ?, school = ?, school_grade = ?, num_of_learners = ?, learn_score = ?, nature_score = ?, engagement_score = ? WHERE eduID = ?",
-    [Education.event_type, Education.school, Education.school_grade, Education.num_of_learners, Education.learn_score, Education.nature_score, Education.engagement_score, eduID],
+    "UPDATE Education SET event_type = ?, event_date = ?, organization = ?, school_grade = ?, num_of_learners = ?, learn_score = ?, nature_score = ?, engagement_score = ? WHERE eduID = ?",
+    [Education.event_type, Education.event_date, Education.organization, Education.school_grade, Education.num_of_learners, Education.learn_score, Education.nature_score, Education.engagement_score, eduID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -7,8 +7,14 @@ module.exports = app => {
   // Create a new Organisms
   router.post("/", verifyToken, organism.create);
 
+  // Create a new Organisms
+  router.put("/:id", verifyToken, organism.update);
+
   // Retrieve all Organisms
   router.get("/", organism.findAll);
+
+  // Retrieve all Organisms
+  router.get("/noflora", organism.findSpecific)
 
   // Retrieve all invasive Organisms
   router.get("/invasive", organism.findAllInvasive);

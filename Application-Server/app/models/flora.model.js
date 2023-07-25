@@ -21,8 +21,27 @@ Flora.create = (newFlora, result) => {
   });
 };
 
-Flora.findById = (floraID, result) => {
-  sql.query(`SELECT * FROM Flora WHERE floraID = ${floraID}`, (err, res) => {
+Flora.findByName = (common_name, result) => {
+  sql.query(`SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID WHERE common_name = '${common_name}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found Flora: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Flora with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+Flora.findById = (id, result) => {
+  sql.query(`SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID WHERE floraID = '${id}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -41,11 +60,15 @@ Flora.findById = (floraID, result) => {
 };
 
 
-Flora.getAll = (common_name, result) => {
-  let query = "SELECT * FROM Flora";
+
+Flora.getAll = (common_name, scientific_name, result) => {
+  let query = "SELECT * FROM Flora INNER JOIN Organism ON Flora.floraID = Organism.orgID";
 
   if (common_name) {
-    query += ` WHERE common_name LIKE '%${common_name}%'`;
+    query += ` WHERE common_name = '${common_name}'`;
+  }else if (scientific_name){
+    const scientific = scientific_name.split(" ");
+    query += ` WHERE genus = '${scientific[0]}' AND species = '${scientific[1]}'`;
   }
 
   sql.query(query, (err, res) => {

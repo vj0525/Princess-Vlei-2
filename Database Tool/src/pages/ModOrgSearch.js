@@ -14,10 +14,13 @@ export default function ModOrgSearchPage(){
         navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOrg = () => {
-        navigate('/organism-search', {state:{token_value:location.state.token_value}});
+        navigate('/modify', {state:{token_value:location.state.token_value}});
     }
     const navToEditAni = () => {
         navigate('/edit-animal', {state:{token_value:location.state.token_value}});
+    }
+    const navToEditPlant = () => {
+        navigate('/edit-plant', {state:{token_value:location.state.token_value}});
     }
     async function initializeAll(){
         const response = await fetch('https://princessvleiapi.onrender.com/api/organism', {
@@ -155,34 +158,41 @@ export default function ModOrgSearchPage(){
         return data;
     }
     async function editOrganism(id) {
-        // const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
-        //     method: 'GET',
-        //     headers: {"Content-Type": "application/json"}
-        // });
-
-        const response = await fetch(`https://princessvleiapi.onrender.com/api/flora/${id}`, {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         });
         const data = await response.json();
-        console.log(JSON.stringify(data));
+        if (!response.ok) {
+            navToError();
+            return;
+        }
+        localStorage.setItem("orgKey", JSON.stringify(data));
 
-        if (data.message) {
-            console.log("hi");
+        const plant = await plantOrAnimal(id);
+
+        if (plant) {
+            navToEditPlant();
+            return;
+        }
+        navToEditAni();
+        return;
+    }
+    async function plantOrAnimal(id) {
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/flora/id/${id}`, {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            navToError();
+            return;
         }
 
-        // if data == flora --> nav to flora page 
-        // else --> animal page
-
-
-
-        // if (!response.ok) {
-        //     navToError();
-        //     return;
-        // }
-
-        // localStorage.setItem("orgKey", JSON.stringify(data));
-        // navToEditAni();
+        if (!data.message) {
+            return true;
+        }
+        return false;
     }
 
     const [search, setSearch] = useState("");

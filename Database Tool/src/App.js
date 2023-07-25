@@ -11,15 +11,19 @@ import SuccessPage from './pages/Success';
 import SurveyOnePage from './pages/SurveyOne';
 import SurveyAnimalPage from './pages/SurveyAnimal';
 import SurveyPlantPage from './pages/SurveyPlant';
+import SurveyPlantSpecPage from './pages/SurveyPlantSpec';
 import ModDataPage from './pages/ModData';
-import ModAnimalPage from './pages/ModAnimal';
-import ModPlantPage from './pages/ModPlant';
-import ModOrganismPage from './pages/ModOrganism';
+import ModOrgSearchPage from './pages/ModOrgSearch';
 import ModOutreachPage from './pages/ModOutreach';
 import ModSuccessPage from './pages/ModSuccess';
 import ModSurveyOnePage from './pages/ModSurveyOne';
 import ModSurveyAnimalPage from './pages/ModSurveyAnimal';
 import ModSurveyPlantPage from './pages/ModSurveyPlant';
+import EditAnimalPage from "./pages/EditAnimal";
+import EditPlantPage from "./pages/EditPlant";
+import EditOutreachPage from "./pages/EditOutreach";
+import EditSurveyAnimalPage from "./pages/EditAnimal";
+import EditSurveyPlantPage from "./pages/EditSurveyPlant";
 
 /* 
 To add a new page to the link tree, add a new route with a path and an page element
@@ -42,15 +46,19 @@ export default function App() {
         <Route path="/surveyone" element={<SurveyOnePage />} />
         <Route path="/surveyanimal" element={<SurveyAnimalPage />} />
         <Route path="/surveyplant" element={<SurveyPlantPage />} />
+        <Route path="surveyplantspec" element={<SurveyPlantSpecPage />} />
         <Route path="/modify" element={<ModDataPage />} />
-        <Route path="/animal-modify" element={<ModAnimalPage />} />
-        <Route path="/plant-modify" element={<ModPlantPage />} />
-        <Route path="/organism-modify" element={<ModOrganismPage />} />
+        <Route path="/organism-search" element={<ModOrgSearchPage />} />
         <Route path="/outreach-modify" element={<ModOutreachPage />} />
         <Route path="/success-modify" element={<ModSuccessPage />} />
         <Route path="/surveyone-modify" element={<ModSurveyOnePage />} />
         <Route path="/surveyanimal-modify" element={<ModSurveyAnimalPage />} />
         <Route path="/surveyplant-modify" element={<ModSurveyPlantPage />} />
+        <Route path="/edit-animal" element={<EditAnimalPage />} />
+        <Route path="/edit-plant" element={<EditPlantPage />} />
+        <Route path="/edit-outreach" element={<EditOutreachPage />} />
+        <Route path="/edit-survey-plant" element={<EditSurveyPlantPage />} />
+        <Route path="/edit-survey-animal" element={<EditSurveyAnimalPage />} />
       </Routes>
     </BrowserRouter>
   )

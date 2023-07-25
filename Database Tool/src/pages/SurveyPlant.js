@@ -1,24 +1,29 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import {Routes, Route, useNavigate, useParams, useLocation} from 'react-router-dom';
 
 export default function SurveyPlantPage(){
-
+    let [surveyID, setSurveyID] = useState(0);
+    const [speciesRichness, setSpeciesRichness] = useState(0);
+    const location = useLocation();
     const navigate = useNavigate();
 
+    const navContinue = () => {
+        navigate('/surveyplantspec',{ state: {count: Number(speciesRichness), floraSID: Number(surveyID), token_value:location.state.token_value}});
+    }
     const navToSuc = () => {
-        navigate('/success');
+        navigate('/success', {state:{token_value:location.state.token_value}});
     }
     const navToError = () => {
-        navigate('/Error')
+        navigate('/Error', {state:{token_value:location.state.token_value}})
     }
     const navToOne = () => {
-        navigate('/surveyone');
+        navigate('/surveyone', {state:{token_value:location.state.token_value}});
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -32,75 +37,60 @@ export default function SurveyPlantPage(){
         }
         document.getElementById('forErrorMessages').appendChild(paragraph);
     }
-    function plantDNE(dataWID){
-        let message = "";
-        if(dataWID.length === 0){
-            message = ""
-        }
-        else if(dataWID.length === 1){
-            message = `You may have meant ${dataWID[0]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }else{
-            message = `You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try entering this plant in the plant database `
-        }
-        updateMessage(message,'/plant')
+    function addToHundred(data){
+        return (data.bare_ground + data.annual + data.restiad
+            + data.gramnoid + data.erica + data.protea + data.herbPen
+            + data.small_shrub + data.large_shrub + data.geophytes) === 100;
     }
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
-        /*
         document.getElementById("loadText").innerHTML = "Loading...";
-
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());
-        data['latitude'] = data['latitude'] ? data['latitude'] : null;
-        data['longitude'] = data['longitude'] ? data['longitude'] : null;
-        const dataStringForID = JSON.stringify(data).toLowerCase();
-        console.log(dataStringForID);
-        const responseID = await fetch(`https://pv-test.onrender.com/api/organism?name=${data["common_name"].toLowerCase()}`, {
-            method: 'GET'
-        });
-        console.log(responseID);
-        const dataWID = await responseID.json();
-        if (!responseID.ok){
-            navToError();
-            return;
-        }
-        console.log(dataWID);
-        let orgID = -1;
-        for (let entry in dataWID){
-            console.log(dataWID[entry]);
-            console.log(dataWID[entry]['Common_Name']);
-            if (dataWID[entry]['Common_Name'] === data['common_name'].toLowerCase()){
-                console.log("Caught one");
-                orgID = dataWID[entry]['orgID'];
-                break;
-            }
-        }
-        if (orgID < 0){
-            plantDNE(dataWID);
+        if(data['location']==='Please choose a location'){
+            updateMessage('Please choose a location before submitting')
             document.getElementById("loadText").innerHTML = "";
             return;
         }
-        //Next make sure it's a flora
-        //Gonna have to test tomorrow with database consistency
-        data["floraID"] = orgID;
+        if(data['veg_type']==='Please choose a type'){
+            updateMessage('Please choose a vegetation type before submitting')
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
+        data.bare_ground = Number(data.bare_ground);
+        data.annual = Number(data.annual);
+        data.restiad = Number(data.restiad);
+        data.gramnoid = Number(data.gramnoid);
+        data.erica = Number(data.erica);
+        data.protea = Number(data.protea);
+        data.herbPen = Number(data.herbPen);
+        data.small_shrub = Number(data.small_shrub);
+        data.large_shrub = Number(data.large_shrub);
+        data.geophytes = Number(data.geophytes);
+        data.num_species = Number(data.num_species);
+        if(!addToHundred(data)){
+            updateMessage('These percentages do not add to a hundred percent. Please recheck your values');
+            document.getElementById("loadText").innerHTML = "";
+            return;
+        }
         const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull);
-        const responseFull = await fetch('https://pv-test.onrender.com/api/flora_survey', {
+        const responseFull = await fetch(`https://princessvleiapi.onrender.com/api/flora_survey`, {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json",
+                    "Token": location.state.token_value},
             body: dataStringFull
         });
         if (!responseFull.ok){
             navToError();
             return;
         }
-        console.log(data);
-        navToSuc();
-        */
+        const responseWID = await responseFull.json();
+        surveyID = responseWID['floraSID'];
+        navContinue();
+        
         return;
     }
-
     return(
         <div className="main-div">
             <TopBar />
@@ -109,14 +99,14 @@ export default function SurveyPlantPage(){
                 <div className="panels">
                     <form className="quickTest" id="surveyForm" onSubmit={(event)=>submitInfo(event)}>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Date:</h3>
-                            <h3 className="formAccessories">Vegetation Type:</h3>
-                            <h3 className="formAccessories">Location:</h3>
+                            <h3 className="formAccessories">Date*:</h3>
+                            <h3 className="formAccessories">Vegetation Type*:</h3>
+                            <h3 className="formAccessories">Location*:</h3>
                             <h3 className="formAccessories">Latitude (if known):</h3>
                             <h3 className="formAccessories">Longitude (if known):</h3>
-                            <h3 className="formAccessories">Number of species present:</h3>
-                            <h3 className="formAccessories">Annual Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Bare Ground Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Annual Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Restiad Area Cover Percentage:</h3>
                         </div>
                         <div className='col1'>
                             <input className="formItems" type="date" placeholder="Date" name="survey_date" required/>
@@ -139,12 +129,11 @@ export default function SurveyPlantPage(){
                             </select>
                             <input className="formItems" type="text" placeholder="Latitude" name="latitude" />
                             <input className="formItems" type="text" placeholder="Longitude" name="longitude" />
-                            <input className="formItems" type="number" placeholder="Number of Species" min="0" max="1000" step="1" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="annual_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="bare_ground_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="bare_ground" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="annual" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="restiad" />
                         </div>
                         <div className='col1' id="titles">
-                            <h3 className="formAccessories">Restiad Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Gramnoid Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Erica Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Protea Area Cover Percentage:</h3>
@@ -152,16 +141,19 @@ export default function SurveyPlantPage(){
                             <h3 className="formAccessories">Small Shrub Ground Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Large Shrub Area Cover Percentage:</h3>
                             <h3 className="formAccessories">Geophyte Area Cover Percentage:</h3>
+                            <h3 className="formAccessories">Number of species present:</h3>
                         </div>
                         <div className='col1'>
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="restiad_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbpen_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub_cover" />
-                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophyte_cover" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="gramnoid" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="erica" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="protea" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="herbPen" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="small_shrub" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="large_shrub" />
+                            <input className="formItems" type="number" placeholder="%" min="0" max="100" name="geophytes" />
+                            <input className="formItems" type="number" placeholder="Number of Species"
+                            min="0" max="1000" step="1" name="num_species"
+                            onChange={(key)=>setSpeciesRichness(key.target.value)}/>
                         </div>
                     </form>    
                 </div>
@@ -170,7 +162,7 @@ export default function SurveyPlantPage(){
             </div>
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToOne()} specialty={true} />
-                <button type="submit" form="surveyForm" id="submission"><p className="textP">Submit</p></button>
+                <button type="submit" form="surveyForm" id="submission"><p className="textP">Continue</p></button>
             </div>
             <p id="loadText" className="load"></p>
         </div>

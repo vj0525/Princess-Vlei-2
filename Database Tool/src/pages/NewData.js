@@ -1,25 +1,25 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
 export default function NewDataPage(){
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navToOrg = () => {
-        navigate('/organism');
+        navigate('/organism',{state:{token_value:location.state.token_value}});
     }
 
     const navToSury = () => {
-        navigate('/surveyone');
+        navigate('/surveyone',{state:{token_value:location.state.token_value}});
     }
 
     const navToOut = () => {
-        navigate('/outreach');
+        navigate('/outreach',{state:{token_value:location.state.token_value}});
     }
 
     const navToIntro = () => {
-        navigate('/intro');
+        navigate('/intro',{state:{token_value:location.state.token_value}});
       }
     
     return (

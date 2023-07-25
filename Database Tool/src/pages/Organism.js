@@ -1,22 +1,22 @@
 import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
 
 export default function OrganismPage(){
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const navToPlant = () => {
-        navigate('/plant');
+        navigate('/plant',{state:{token_value:location.state.token_value}});
     }
 
     const navToAni = () => {
-        navigate('/animal');
+        navigate('/animal',{state:{token_value:location.state.token_value}});
     }
     
     const navToNew = () => {
-        navigate('/NewData');
+        navigate('/NewData',{state:{token_value:location.state.token_value}});
     }
 
     return (
@@ -24,7 +24,7 @@ export default function OrganismPage(){
             <TopBar />
             <h2>What type of organism are you entering?</h2>
             <FancyButton title="Plant" buttonFunc={()=>navToPlant()}/>
-            <FancyButton title="Animal" buttonFunc={()=>navToAni()} />
+            <FancyButton title="Animal/Fungi" buttonFunc={()=>navToAni()} />
             <div>
                 <FancyButton title="Back" buttonFunc={()=>navToNew()} specialty={true} />
             </div>

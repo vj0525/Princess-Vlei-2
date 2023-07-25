@@ -2,7 +2,7 @@ import FancyButton from '../components/FancyButton';
 import TopBar from '../components/TopBar.js';
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 
-export default function PlantPage(){
+export default function EditPlantPage(){
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -12,89 +12,63 @@ export default function PlantPage(){
     const navToError = () => {
         navigate('/Error', {state:{token_value:location.state.token_value}})
     }
-    const navToOrg = () => {
-        navigate('/Organism', {state:{token_value:location.state.token_value}});
+    const navToOrgSearch = () => {
+        navigate('/organism-search', {state:{token_value:location.state.token_value}})
     }
-    function updateMessage(error, route=""){
-        const oldMessageIfApplies = document.getElementById('errorMessage');
-        if(oldMessageIfApplies){
-            oldMessageIfApplies.remove();
-        }
-        const paragraph = document.createElement('p');
-        paragraph.innerHTML = error;
-        paragraph.setAttribute('id','errorMessage');
-        if(route){
-            const linked = document.createElement('a');
-            linked.setAttribute('href',route);
-            linked.innerHTML = 'here';
-            paragraph.appendChild(linked);
-        }
-        document.getElementById('forErrorMessages').appendChild(paragraph);
-    }
+    
     async function submitInfo(event){
         //To Add, Check that data submits successfully and nav to error if not
         event.preventDefault();
         document.getElementById("loadText").innerHTML = "Loading...";
 
         const pandorasBox = new FormData(event.target);
+        const plantData = localStorage.getItem("plantKey");
         let data = Object.fromEntries(pandorasBox.entries());
         data["alien"] = data["alien"]==='on';
         data["invasive"] = data["invasive"]==='on';
-        if(data['conservation_status']==='Please choose a status'){
-            updateMessage('Please choose a conservation status before submitting')
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
-        if(data['growth_form']==='Please choose a form'){
-            updateMessage('Please choose a growth form before submitting')
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
-        if(data['growing_method']==='Please choose a method'){
-            updateMessage('Please choose a growing method before submitting')
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
-        if(data['veg_type']==='Please choose a type'){
-            updateMessage('Please choose a vegetation type before submitting')
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
-        const responseSci = await fetch(`https://princessvleiapi.onrender.com/api/flora?scientific=${data['genus']} ${data['species']}`, {
-            method: 'GET',
-            headers: {"Content-Type": "application/json",
-                    "Token": location.state.token_value},
+        
+        const plantObj = JSON.parse(plantData);
+
+        Object.entries(data).forEach(([k1, v1]) => {
+            Object.entries(plantObj).forEach(([k2, v2]) => {
+                if (k1.toLowerCase() == k2.toLowerCase()) {
+                    if (!(v1 === "" || v1 === null || v1 === v2 || v1 === "Please choose a status" || v1 === "Please choose a form"
+                        || v1 === "Please choose a method" || v1 === "Please choose a type")) {
+                        plantObj[k2] = v1;
+                    }
+                }
+            });
         });
-        const dataSci = await responseSci.json();
-        if (dataSci.length !== 0){
-            updateMessage(`An organism of this exact genus and species has already been inputted in the database with the common name: ${dataSci[0]['Common_Name']}`)
-            document.getElementById("loadText").innerHTML = "";
-            return;
-        }
-        const dataStringOrg = JSON.stringify(data).toLowerCase();
-        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
-            method: 'POST',
+
+        const dataStringOrg = JSON.stringify(plantObj).toLowerCase();
+        console.log(dataStringOrg);
+        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism/${plantObj.orgID}', {
+            method: 'PUT',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},
             body: dataStringOrg
         });
-        const dataWID = await responseOrg.json();
-        if (!responseOrg.ok){
-            navToError();
-            return;
-        }
-        data["floraID"] = await dataWID["orgID"];
-        const dataStringFull = JSON.stringify(data);
-        const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json",
-                    "Token": location.state.token_value},
-            body: dataStringFull
-        });
-        if (!responseFull.ok){
-            navToError();
-            return;
-        }
+
+// I dont really know what to do w/ floraID and if I need to change anything here
+
+        // const dataWID = await responseOrg.json();
+        // if (!responseOrg.ok){
+        //     navToError();
+        //     return;
+        // }
+        
+        // const dataStringFull = JSON.stringify(data);
+        // const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora/${plantObj.floraID}', {
+        //     method: 'PUT',
+        //     headers: {"Content-Type": "application/json",
+        //             "Token": location.state.token_value},
+        //     body: dataStringFull
+        // });
+        // if (!responseFull.ok){
+        //     navToError();
+        //     return;
+        // }
+
         navToSuc();
         return;
     }
@@ -107,15 +81,15 @@ export default function PlantPage(){
                 <div className="panels">
                     <form className="quickTest" id="plantForm" onSubmit={(event)=>submitInfo(event)}>
                     <div className='col1' id="titles">
-                        <h3 className="formAccessories">Genus*:</h3>
-                        <h3 className="formAccessories">Species*:</h3>
-                        <h3 className="formAccessories">Common Name (if applicable):</h3>
-                        <h3 className="formAccessories">Conservation Status*:</h3>
+                        <h3 className="formAccessories">Genus:</h3>
+                        <h3 className="formAccessories">Species:</h3>
+                        <h3 className="formAccessories">Common Name:</h3>
+                        <h3 className="formAccessories">Conservation Status:</h3>
                     </div>
                     <div className='col1'>
-                        <input className="formItems" type="text" placeholder="Genus" name="genus" required/>
-                        <input className="formItems" type="text" placeholder="Species" name="species" required/>
-                        <input className="formItems" type="text" placeholder="Common Name" name="common_name"/>
+                        <input className="formItems" type="text" placeholder="Genus" name="genus" />
+                        <input className="formItems" type="text" placeholder="Species" name="species" />
+                        <input className="formItems" type="text" placeholder="Common Name" name="common_name" />
                         <select className="formSelect" name="conservation_status" form="plantForm">
                             <option>Please choose a status</option>
                             <option>Data Deficient (DD)</option>
@@ -130,11 +104,11 @@ export default function PlantPage(){
                         </select>
                     </div>
                     <div className='col1' id="titles">
-                        <h3 className="formAccessories">Growth Form*:</h3>
-                        <h3 className="formAccessories">Growing Method*:</h3>
-                        <h3 className="formAccessories">Vegetation Type*:</h3>
-                        <h3 className="formAccessories">Alien Species? *:</h3>
-                        <h3 className="formAccessories">Invasive Species? *:</h3>
+                        <h3 className="formAccessories">Growth Form:</h3>
+                        <h3 className="formAccessories">Growing Method:</h3>
+                        <h3 className="formAccessories">Vegetation Type:</h3>
+                        <h3 className="formAccessories">Alien?:</h3>
+                        <h3 className="formAccessories">Invasive?:</h3>
                     </div>
                     <div className='col1'>
                         <select className="formSelect" name="growth_form" form="plantForm">
@@ -169,7 +143,7 @@ export default function PlantPage(){
             <div id="forErrorMessages">
             </div>
             <div>
-                <FancyButton title="Back" buttonFunc={()=>navToOrg()} specialty={true} />
+                <FancyButton title="Back" buttonFunc={()=>navToOrgSearch()} specialty={true} />
                 <button type="submit" form="plantForm" id="submission"><p className="textP">Submit</p></button>
             </div>
             <p id="loadText" className="load"></p>

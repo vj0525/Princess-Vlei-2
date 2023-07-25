@@ -18,7 +18,6 @@ export default function OutreachPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -52,7 +51,6 @@ export default function OutreachPage(){
              navToError();
              return;
          }
-         console.log(dataString);
          navToSuc();
     }
 

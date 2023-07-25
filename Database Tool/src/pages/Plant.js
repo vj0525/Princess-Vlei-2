@@ -18,7 +18,6 @@ export default function PlantPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -67,14 +66,12 @@ export default function PlantPage(){
                     "Token": location.state.token_value},
         });
         const dataSci = await responseSci.json();
-        console.log(dataSci);
         if (dataSci.length !== 0){
             updateMessage(`An organism of this exact genus and species has already been inputted in the database with the common name: ${dataSci[0]['Common_Name']}`)
             document.getElementById("loadText").innerHTML = "";
             return;
         }
         const dataStringOrg = JSON.stringify(data).toLowerCase();
-        console.log(dataStringOrg);
         const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -86,10 +83,8 @@ export default function PlantPage(){
             navToError();
             return;
         }
-        console.log(dataWID);
         data["floraID"] = await dataWID["orgID"];
         const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull);
         const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -100,7 +95,6 @@ export default function PlantPage(){
             navToError();
             return;
         }
-        console.log(data);
         navToSuc();
         return;
     }

@@ -10,7 +10,6 @@ export default function SurveyPlantPage(){
     const navigate = useNavigate();
 
     const navContinue = () => {
-        console.log(speciesRichness);
         navigate('/surveyplantspec',{ state: {count: Number(speciesRichness), floraSID: Number(surveyID), token_value:location.state.token_value}});
     }
     const navToSuc = () => {
@@ -25,7 +24,6 @@ export default function SurveyPlantPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -88,10 +86,7 @@ export default function SurveyPlantPage(){
             return;
         }
         const responseWID = await responseFull.json();
-        console.log(responseFull);
-        console.log(responseWID);
         surveyID = responseWID['floraSID'];
-        console.log(surveyID);
         navContinue();
         
         return;

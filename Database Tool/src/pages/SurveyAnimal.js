@@ -18,7 +18,6 @@ export default function SurveyAnimalPage(){
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');
         if(oldMessageIfApplies){
-            console.log(oldMessageIfApplies)
             oldMessageIfApplies.remove();
         }
         const paragraph = document.createElement('p');
@@ -71,10 +70,8 @@ export default function SurveyAnimalPage(){
                 navToError();
                 return;
             }
-            console.log(dataName);
             if(dataName.length === 0){
                 //Scientific time
-                console.log(entry.indexOf(' '), entry.substring(entry.indexOf(' ')+1))
                 if(entry.indexOf(' ') !== -1 && entry.substring(entry.indexOf(' ')+1).indexOf(' ') === -1){
                     //We have a scientific name
                     const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/noflora?scientific=${entry}`, {
@@ -101,7 +98,6 @@ export default function SurveyAnimalPage(){
             }
         data["faunaID"] = dataName[0]['orgID'];
         const dataStringFull = JSON.stringify(data);
-        console.log(dataStringFull);
         const responseFull = await fetch('https://princessvleiapi.onrender.com/api/fauna_survey', {
             method: 'POST',
             headers: {"Content-Type": "application/json",
@@ -112,7 +108,6 @@ export default function SurveyAnimalPage(){
             navToError();
             return;
         }
-        console.log(data);
         navToSuc();
         return;
     }

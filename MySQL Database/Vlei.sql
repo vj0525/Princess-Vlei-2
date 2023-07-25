@@ -2,7 +2,7 @@ CREATE TABLE Organism (
 	orgID int NOT NULL AUTO_INCREMENT,
 	Species varchar(255) NOT NULL,
 	Genus varchar(255) NOT NULL,
-	Common_Name varchar(255) NOT NULL,
+	Common_Name varchar(255),
 	Conservation_Status varchar(255),
 	Alien boolean,
 	Invasive boolean,

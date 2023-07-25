@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     faunaID: req.body.faunaID,
     survey_date: req.body.survey_date,
     sex: req.body.sex,
+    location: req.body.location,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     activity: req.body.activity,

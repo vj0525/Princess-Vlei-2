@@ -25,3 +25,28 @@ exports.addSpecies = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.getByFlora = (req, res) => {
+  const id = req.params.id;
+  Flora_Survey_Species.getSurvey(id, (err, data) =>{
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Organism."
+      });
+    else res.send(data);
+  });
+}
+
+exports.getBySurvey = (req, res) => {
+  const id = req.params.id;
+  Flora_Survey_Species.getFlora(id, (err, data) =>{
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Organism."
+      });
+    else res.send(data);
+  });
+
+}

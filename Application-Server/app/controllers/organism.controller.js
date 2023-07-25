@@ -44,6 +44,21 @@ exports.findAll = (req, res) => {
   });
 };
 
+// Retrieve all Organism from the database (with condition).
+exports.findSpecific = (req, res) => {
+  const common = req.query.common;
+  const scientific = req.query.scientific;
+
+  Organism.getSpecific(common, scientific, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving organisms."
+      });
+    else res.send(data);
+  });
+};
+
 exports.findAllInvasive = (req, res) => {
   Organism.getAllInvasive((err, data) => {
     if (err)

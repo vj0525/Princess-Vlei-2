@@ -13,6 +13,9 @@ module.exports = app => {
   // Retrieve all Organisms
   router.get("/", organism.findAll);
 
+  // Retrieve all Organisms
+  router.get("/noflora", organism.findSpecific)
+
   // Retrieve all invasive Organisms
   router.get("/invasive", organism.findAllInvasive);
 

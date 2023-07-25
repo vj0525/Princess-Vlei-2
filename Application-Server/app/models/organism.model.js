@@ -61,6 +61,28 @@ Organism.getAll = (common_name, result) => {
   });
 };
 
+Organism.getSpecific = (common_name, scientific_name, result) => {
+  let query = "SELECT * FROM Organism WHERE orgID NOT IN ( SELECT floraID AS orgID FROM Flora)";
+
+  if (common_name) {
+    query += ` AND common_name = '${common_name}'`;
+  }else if (scientific_name){
+    const scientific = scientific_name.split(" ");
+    query += ` AND genus = '${scientific[0]}' AND species = '${scientific[1]}'`;
+  }
+
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("Organisms: ", res);
+    result(null, res);
+  });
+};
+
 Organism.getAllInvasive = result => {
   sql.query("SELECT * FROM Organism WHERE invasive=true", (err, res) => {
     if (err) {

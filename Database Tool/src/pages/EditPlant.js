@@ -28,6 +28,7 @@ export default function EditPlantPage(){
         data["invasive"] = data["invasive"]==='on';
         
         const plantObj = JSON.parse(plantData);
+        console.log(plantObj);
 
         Object.entries(data).forEach(([k1, v1]) => {
             Object.entries(plantObj).forEach(([k2, v2]) => {
@@ -42,7 +43,7 @@ export default function EditPlantPage(){
 
         const dataStringOrg = JSON.stringify(plantObj).toLowerCase();
         console.log(dataStringOrg);
-        const responseOrg = await fetch('https://princessvleiapi.onrender.com/api/organism/${plantObj.orgID}', {
+        const responseOrg = await fetch(`https://princessvleiapi.onrender.com/api/organism/${plantObj.orgID}`, {
             method: 'PUT',
             headers: {"Content-Type": "application/json",
                     "Token": location.state.token_value},

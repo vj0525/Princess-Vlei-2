@@ -21,7 +21,7 @@ export default function EditAnimalPage() {
         event.preventDefault();
         
         document.getElementById("loadText").innerHTML = "Loading...";
-        const animalData = localStorage.getItem("orgKey");
+        const animalData = localStorage.getItem("animalKey");
         console.log(JSON.parse(animalData));
         const pandorasBox = new FormData(event.target);
         let data = Object.fromEntries(pandorasBox.entries());

@@ -167,14 +167,15 @@ export default function ModOrgSearchPage(){
             navToError();
             return;
         }
-        localStorage.setItem("orgKey", JSON.stringify(data));
-
         const plant = await plantOrAnimal(id);
 
         if (plant) {
+            localStorage.setItem("plantKey", JSON.stringify(data));
             navToEditPlant();
             return;
         }
+
+        localStorage.setItem("animalKey", JSON.stringify(data));
         navToEditAni();
         return;
     }

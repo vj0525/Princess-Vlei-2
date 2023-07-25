@@ -31,9 +31,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Flora from the database (with condition).
 exports.findAll = (req, res) => {
-  const name = req.query.name;
+  const common = req.query.common;
+  const scientific = req.query.scientific;
 
-  Flora.getAll(name, (err, data) => {
+  Flora.getAll(common, scientific, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -56,15 +57,15 @@ exports.findAllInvasive = (req, res) => {
 
 // Find a single Flora with a id
 exports.findOne = (req, res) => {
-    Flora.findById(req.params.id, (err, data) => {
+    Flora.findByName(req.params.name, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flora with id ${req.params.id}.`
+          message: `Not found Flora with common name ${req.params.name}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Flora with id " + req.params.id
+          message: "Error retrieving Flora with common name " + req.params.name
         });
       }
     } else res.send(data);

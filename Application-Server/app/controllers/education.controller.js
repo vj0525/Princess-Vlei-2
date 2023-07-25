@@ -12,7 +12,8 @@ exports.create = (req, res) => {
   // Create a Organism
   const education = new Education({
     event_type: req.body.event_type,
-    school: req.body.school,
+    event_date: req.body.event_date,
+    organization: req.body.organization,
     school_grade: req.body.school_grade,
     num_of_learners: req.body.num_of_learners,
     learn_score: req.body.learn_score,
@@ -34,7 +35,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Organism from the database (with condition).
 exports.findAll = (req, res) => {
-  const school = req.query.school;
+  const school = req.query.organization;
 
   Education.getAll(school, (err, data) => {
     if (err)

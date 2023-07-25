@@ -25,8 +25,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to princess vlei database application." });
 });
 
-app.on('error', function (exc) {
-    sys.log("ignoring exception: " + exc);
+process.on('uncaughtException', function (err) {
+    console.error(err.stack);
+    console.log("Node NOT Exiting...");
 });
 
 require("./app/routes/organism.routes.js")(app);

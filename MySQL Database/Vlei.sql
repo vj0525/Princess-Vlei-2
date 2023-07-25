@@ -2,7 +2,7 @@ CREATE TABLE Organism (
 	orgID int NOT NULL AUTO_INCREMENT,
 	Species varchar(255) NOT NULL,
 	Genus varchar(255) NOT NULL,
-	Common_Name varchar(255) NOT NULL,
+	Common_Name varchar(255),
 	Conservation_Status varchar(255),
 	Alien boolean,
 	Invasive boolean,
@@ -16,7 +16,7 @@ CREATE TABLE Fauna_Survey (
 	Sex varchar(1),
 	Latitude int,
 	Longitude int,
-	Location varchar(2) NOT NULL,
+	Location varchar(255) NOT NULL,
 	Activity varchar(255) NOT NULL,
 	Life_Stage varchar(255) NOT NULL,
 	PRIMARY KEY (faunaSID),
@@ -61,12 +61,14 @@ CREATE TABLE Flora_Survey_Species(
 
 CREATE TABLE Education (
 	eduID int NOT NULL AUTO_INCREMENT,
-	Event_Date date NOT NULL,
+	Event_Date date,
 	Event_Type varchar(255) NOT NULL,
-	School varchar(255) NOT NULL,
-	School_Grade int NOT NULL,
+	Organization varchar(255) NOT NULL,
+	School_Grade int,
 	Num_Of_Learners int NOT NULL,
-	Avg_Score int NOT NULL,
+	Learn_Score int NOT NULL,
+	Nature_Score int NOT NULL,
+	Engagement_Score int NOT NULL,
 	PRIMARY KEY (eduID)
 );
 

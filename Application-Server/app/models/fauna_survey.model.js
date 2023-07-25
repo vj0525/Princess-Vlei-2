@@ -5,6 +5,7 @@ const Fauna_Survey = function(fauna_survey) {
   this.faunaID = fauna_survey.faunaID;
   this.survey_date = fauna_survey.survey_date;
   this.sex = fauna_survey.sex;
+  this.location = fauna_survey.location;
   this.latitude = fauna_survey.latitude;
   this.longitude = fauna_survey.longitude;
   this.activity = fauna_survey.activity;
@@ -61,8 +62,8 @@ Fauna_Survey.getAll = (result) => {
 
 Fauna_Survey.updateById = (faunaSID, Fauna_Survey, result) => {
   sql.query(
-    "UPDATE Fauna_Survey SET faunaID = ?, survey_date = ?, sex = ?, latitude = ?, longitude = ?, activity = ?, life_stage = ? WHERE faunaSID = ?",
-    [Fauna_Survey.faunaID, Fauna_Survey.survey_date, Fauna_Survey.sex, Fauna_Survey.latitude, Fauna_Survey.longitude, Fauna_Survey.activity, Fauna_Survey.life_stage, faunaSID],
+    "UPDATE Fauna_Survey SET faunaID = ?, survey_date = ?, sex = ?, latitude = ?, longitude = ?, location = ?, activity = ?, life_stage = ? WHERE faunaSID = ?",
+    [Fauna_Survey.faunaID, Fauna_Survey.survey_date, Fauna_Survey.sex, Fauna_Survey.latitude, Fauna_Survey.longitude, Fauna_Survey.location, Fauna_Survey.activity, Fauna_Survey.life_stage, faunaSID],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -21,6 +21,9 @@ import ModSurveyAnimalPage from './pages/ModSurveyAnimal';
 import ModSurveyPlantPage from './pages/ModSurveyPlant';
 import EditAnimalPage from "./pages/EditAnimal";
 import EditPlantPage from "./pages/EditPlant";
+import EditOutreachPage from "./pages/EditOutreach";
+import EditSurveyAnimalPage from "./pages/EditAnimal";
+import EditSurveyPlantPage from "./pages/EditSurveyPlant";
 
 /* 
 To add a new page to the link tree, add a new route with a path and an page element
@@ -53,6 +56,9 @@ export default function App() {
         <Route path="/surveyplant-modify" element={<ModSurveyPlantPage />} />
         <Route path="/edit-animal" element={<EditAnimalPage />} />
         <Route path="/edit-plant" element={<EditPlantPage />} />
+        <Route path="/edit-outreach" element={<EditOutreachPage />} />
+        <Route path="/edit-survey-plant" element={<EditSurveyPlantPage />} />
+        <Route path="/edit-survey-animal" element={<EditSurveyAnimalPage />} />
       </Routes>
     </BrowserRouter>
   )

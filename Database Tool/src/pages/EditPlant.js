@@ -48,23 +48,26 @@ export default function EditPlantPage(){
                     "Token": location.state.token_value},
             body: dataStringOrg
         });
-        const dataWID = await responseOrg.json();
-        if (!responseOrg.ok){
-            navToError();
-            return;
-        }
+
+// I dont really know what to do w/ floraID and if I need to change anything here
+
+        // const dataWID = await responseOrg.json();
+        // if (!responseOrg.ok){
+        //     navToError();
+        //     return;
+        // }
         
-        const dataStringFull = JSON.stringify(data);
-        const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora/${plantObj.floraID}', {
-            method: 'PUT',
-            headers: {"Content-Type": "application/json",
-                    "Token": location.state.token_value},
-            body: dataStringFull
-        });
-        if (!responseFull.ok){
-            navToError();
-            return;
-        }
+        // const dataStringFull = JSON.stringify(data);
+        // const responseFull = await fetch('https://princessvleiapi.onrender.com/api/flora/${plantObj.floraID}', {
+        //     method: 'PUT',
+        //     headers: {"Content-Type": "application/json",
+        //             "Token": location.state.token_value},
+        //     body: dataStringFull
+        // });
+        // if (!responseFull.ok){
+        //     navToError();
+        //     return;
+        // }
 
         navToSuc();
         return;

@@ -21,11 +21,22 @@ export default function SurveyPlantPage(){
     return (
         <div className="main-div">
             <TopBar />
-            <h2>Which Plant Are You Modifying?</h2>
-
+            <TopBar />
+            <h3>Type in an plant survey's name to pull up that data point.<br />
+            You can also type in part of a name to see multiple entries that match.<br />
+            If you'd like to see all entries, just hit enter with nothing in the search box</h3>
+            {/* <div className="centerer">
+                <input className="formItems" id="modSearchBox" type="text" onChange={(key)=>setSearch(key.target.value)} placeholder="Search here for a specific organism"/>
+                <button id="modSearchButton" onClick={()=>putUpDivs(searchFilter,search)}>Enter</button>
+            </div>
+            <div id="forIDPurposes">
+                <div id="data-container">
+                </div>
+            </div>
             <div>
             <FancyButton title="Back" buttonFunc={()=>back()} specialty={true} />
             </div>
+            <p id="loadText" className="load"></p> */}
         </div>
     )
 }

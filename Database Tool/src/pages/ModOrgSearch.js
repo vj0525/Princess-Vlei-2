@@ -30,7 +30,6 @@ export default function ModOrgSearchPage(){
             navToError();
             return;
         }
-        console.log(data);
         return data;
     }
     function DivMaker(organism){
@@ -67,18 +66,14 @@ export default function ModOrgSearchPage(){
         const data = await dataFunc(key);
         const oldDataIfApplies = document.getElementById('data-container');
         if(oldDataIfApplies){
-            console.log(oldDataIfApplies)
             oldDataIfApplies.remove();
         }
         const newSet = document.createElement('div');
         newSet.setAttribute('id','data-container');
         let datapoint = null;
-        console.log(data);
         for (let element in data){
-            console.log(data[element]);
             datapoint = DivMaker(data[element]);
             newSet.appendChild(datapoint);
-            console.log(newSet);
         }
         document.getElementById('forIDPurposes').appendChild(newSet);
         button.innerHTML = "enter";
@@ -94,11 +89,9 @@ export default function ModOrgSearchPage(){
             navToError();
             return;
         }
-        console.log(data);
         return data;
     }
     function areYouSure(id=0){
-        console.log("hello", id);
         const entry = document.getElementById(id);
         entry.setAttribute('class', 'areSure');
         entry.innerHTML = "Are you sure you want to delete this organism?\n";
@@ -159,23 +152,39 @@ export default function ModOrgSearchPage(){
             return;
         }
         document.getElementById(id).innerHTML = "Organism was deleted successfully!";
-        console.log(data);
         return data;
     }
     async function editOrganism(id) {
-        const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
+        // const response = await fetch(`https://princessvleiapi.onrender.com/api/organism/${id}`, {
+        //     method: 'GET',
+        //     headers: {"Content-Type": "application/json"}
+        // });
+
+        const response = await fetch(`https://princessvleiapi.onrender.com/api/flora/${id}`, {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         });
         const data = await response.json();
-        if (!response.ok) {
-            navToError();
-            return;
+        console.log(JSON.stringify(data));
+
+        if (data.message) {
+            console.log("hi");
         }
 
-        localStorage.setItem("orgKey", JSON.stringify(data));
-        navToEditAni();
+        // if data == flora --> nav to flora page 
+        // else --> animal page
+
+
+
+        // if (!response.ok) {
+        //     navToError();
+        //     return;
+        // }
+
+        // localStorage.setItem("orgKey", JSON.stringify(data));
+        // navToEditAni();
     }
+
     const [search, setSearch] = useState("");
     return (
         <div className="main-div">

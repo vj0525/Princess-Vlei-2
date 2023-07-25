@@ -38,33 +38,51 @@ export default function SurveyPlantSpecPage(){
         let data = Object.fromEntries(pandorasBox.entries());
         for(let spec = 0; spec < location.state.count; spec++){
             if(document.getElementById(`connection-${spec}`).getAttribute('disabled') || document.getElementById(`connection-${spec}`).value === ""){
-                console.log("Boo");
                 continue;
             }
             let entry = data[`connection-${spec}`];
-            const response = await fetch(`https://princessvleiapi.onrender.com/api/organism?name=${entry}`, {
+            const response = await fetch(`https://princessvleiapi.onrender.com/api/flora?common=${entry}`, {
                 method: 'GET',
                 headers: {"Content-Type": "application/json",
                         "Token": location.state.token_value}
             });
-            const dataWID = await response.json();
+            let dataWID = await response.json();
             if (!response.ok){
                 navToError();
                 return;
             }
             console.log(dataWID);
-            let orgID = -1;
-            for (let item in dataWID){
-                if (dataWID[item]['Common_Name'] === entry.toLowerCase()){
-                    console.log("Caught one");
-                    orgID = dataWID[item]['orgID'];
-                    break;
+            if(dataWID.length === 0){
+                //Scientific time
+                console.log(entry.indexOf(' '), entry.substring(entry.indexOf(' ')+1))
+                if(entry.indexOf(' ') !== -1 && entry.substring(entry.indexOf(' ')+1).indexOf(' ') === -1){
+                    //We have a scientific name
+                    const response = await fetch(`https://princessvleiapi.onrender.com/api/flora?scientific=${entry}`, {
+                        method: 'GET',
+                        headers: {"Content-Type": "application/json",
+                                "Token": location.state.token_value}
+                    });
+                    dataWID = await response.json();
+                    if (!response.ok){
+                        navToError();
+                        return;
+                    }
+                    if(dataWID.length === 0){
+                        document.getElementById("loadText").innerHTML = "";
+                        speciesDNE(entry);
+                        return;    
+                    }
+                }else{
+                    //Neither
+                    document.getElementById("loadText").innerHTML = "";
+                    speciesDNE(entry);
+                    return;
                 }
             }
-            if(orgID >= 0){
-                let connector = {floraSID: location.state.floraSID, floraID: orgID};    
-                let connectString = JSON.stringify(connector);
-                const responseEnd = await fetch(`https://princessvleiapi.onrender.com/api/addflora`, {
+            let orgID = dataWID[0]['floraID'];
+            let connector = {floraSID: location.state.floraSID, floraID: orgID};    
+            let connectString = JSON.stringify(connector);
+            const responseEnd = await fetch(`https://princessvleiapi.onrender.com/api/addflora`, {
                     method: 'POST',
                     headers: {"Content-Type": "application/json",
                             "Token": location.state.token_value},
@@ -76,26 +94,12 @@ export default function SurveyPlantSpecPage(){
                     return;
                 }
                 document.getElementById(`connection-${spec}`).setAttribute('disabled',true);
-            }else{
-                document.getElementById("loadText").innerHTML = "";
-                speciesDNE(dataWID, entry);
-                return;
             }
-
-        }
         navToSuc();
     }
-    function speciesDNE(dataWID, entry){
-        let message = "";
-        if(dataWID.length === 0){
-            message = `The species ${entry} is not recognized. All other entries before this were submitted. You may want to rewrite this or try adding it to the database `
-        }
-        else if(dataWID.length === 1){
-            message = `The species ${entry} is not recognized. All other entries before this were submitted. You may have meant ${dataWID[0]['Common_Name']}, or you may want to try adding it to the database `
-        }else{
-            message = `The species ${entry} is not recognized. All other entries before this were submitted. You may have meant ${dataWID[0]['Common_Name']} or ${dataWID[1]['Common_Name']}, or you may want to try adding it to the database `
-        }
-        updateMessage(message,'/animal')
+    function speciesDNE(entry){
+        const message = `The species ${entry} is not recognized. All other entries before this were submitted. You may want to rewrite this or try adding it to the database `;
+        updateMessage(message,'/animal');
     }
     function updateMessage(error, route=""){
         const oldMessageIfApplies = document.getElementById('errorMessage');

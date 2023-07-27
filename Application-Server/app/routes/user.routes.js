@@ -3,7 +3,8 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  router.post('/register',user.register);
+  //Uncomment this when secure registration is implemented
+  //router.post('/register',user.register);
   
   router.post('/login',user.login);
 

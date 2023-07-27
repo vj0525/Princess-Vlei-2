@@ -1,6 +1,6 @@
 module.exports = {
-  HOST: "db4free.net",
-  USER: "pvfdatab",
+  HOST: process.env.DBHOST,
+  USER: process.env.DBUSER,
   PASSWORD: process.env.DBPASS,
-  DB: "princessvlei"
+  DB: process.env.DBNAME
 };
